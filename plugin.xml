@@ -47,60 +47,54 @@
     <!-- ios -->
     <platform name="ios">
 
-        <config-file target="config.xml" parent="/widget/plugins">
-            <feature name="FacebookConnect">
-                <param name="ios-package" value="FacebookConnectPlugin" />
-            </feature>
-        </config-file>
-
-        <header-file src="src/ios/FacebookConnectPlugin.h" />
-        <source-file src="src/ios/FacebookConnectPlugin.m" />
-
-
+      
         <!-- release facebook 3.5.2 framework -->
-        <framework-file src="src/ios/FacebookSDK.framework" />
+        <source-file src="src/ios/frameworks/FacebookSDK-3.5.2-Release.a" framework="true" />
+        
+        <!-- debug facebook 3.5.2 framework  -->
+        <!-- <source-file src="src/ios/frameworks/FacebookSDK-3.5.2-Debug.a" framework="true" /> -->
 
         <!-- facebook header files -->
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBAccessTokenData.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBAppCall.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBAppEvents.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBAppLinkData.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBCacheDescriptor.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBDialogs.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBDialogsData.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBDialogsParams.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBError.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBErrorUtility.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBFrictionlessRecipientCache.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBFriendPickerViewController.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBGraphLocation.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBGraphObject.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBGraphPlace.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBGraphUser.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBInsights.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBLoginView.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBNativeDialogs.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBOpenGraphAction.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBOpenGraphActionShareDialogParams.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBOpenGraphObject.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBPlacePickerViewController.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBProfilePictureView.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBRequest.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBRequestConnection.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBSession.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBSessionTokenCachingStrategy.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBSettings.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBShareDialogParams.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBTestSession.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBUserSettingsViewController.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBViewController.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FBWebDialogs.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/FacebookSDK.h" target-dir="facebook" />
-        <header-file src="src/ios/FacebookSDK.framework/Versions/A/Headers/NSError+FBError.h" target-dir="facebook" />
-
+        <header-file src="src/ios/headers/FBAccessTokenData.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBAppCall.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBAppLinkData.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBCacheDescriptor.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBDialogs.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBDialogsData.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBDialogsParams.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBError.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBErrorUtility.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBFrictionlessRecipientCache.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBFriendPickerViewController.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBGraphLocation.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBGraphObject.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBGraphPlace.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBGraphUser.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBInsights.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBLoginView.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBNativeDialogs.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBOpenGraphAction.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBOpenGraphActionShareDialogParams.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBOpenGraphObject.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBPlacePickerViewController.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBProfilePictureView.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBRequest.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBRequestConnection.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBSession.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBSessionTokenCachingStrategy.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBSettings.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBShareDialogParams.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBTestSession.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBUserSettingsViewController.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBViewController.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FBWebDialogs.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/FacebookSDK.h" target-dir="facebook" />
+        <header-file src="src/ios/headers/NSError+FBError.h" target-dir="facebook" />
+        
         <!-- facebook resource bundles -->
+        <resource-file src="src/ios/resources/FacebookSDKResources.bundle" />
         <resource-file src="src/ios/resources/FBUserSettingsViewResources.bundle" />
-
+        
         <!-- system frameworks -->
         <framework src="libsqlite3.dylib" />
         <framework src="Social.framework" weak="true" />
