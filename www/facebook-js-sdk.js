@@ -1,5 +1,5 @@
-/*1329323125,171364642,JIT Construction: v510186,en_US*/
 
+/*1329323125,171364642,JIT Construction: v510186,en_US*/
 /**
  * Copyright Facebook Inc.
  *
@@ -60,7 +60,7 @@
  * @static
  * @access private
  */
- if (!window.FB) {
+if (!window.FB) {
   window.FB = {
     // use the init method to set these values correctly
     _apiKey       : null,
@@ -99,11 +99,11 @@
     },
     _locale: null,
     _localeIsRtl: false,
-    
+      
 
     // CORDOVA PATCH
     _nativeInterface : null,
-    
+      
     /**
      * Retrieve one of the various domains needed for Connect.
      *
@@ -111,34 +111,34 @@
      * @param domain   (String)  The domain to retrieve
      * @param noForcedHTTPS  (bool) Do not force https domain
      */
-     getDomain: function(domain, noForcedHTTPS) {
+    getDomain: function(domain, noForcedHTTPS) {
       var forceHTTPS = !noForcedHTTPS &&
-      (window.location.protocol == 'https:' || FB._https);
+        (window.location.protocol == 'https:' || FB._https);
       switch (domain) {
         case 'api':
-        return FB._domain.api;
+          return FB._domain.api;
         case 'api_read':
-        return FB._domain.api_read;
+          return FB._domain.api_read;
         case 'cdn':
-        return forceHTTPS ? FB._domain.https_cdn : FB._domain.cdn;
+          return forceHTTPS ? FB._domain.https_cdn : FB._domain.cdn;
         case 'cdn_foreign':
-        return FB._domain.cdn_foreign;
+          return FB._domain.cdn_foreign;
         case 'https_cdn':
-        return FB._domain.https_cdn;
+          return FB._domain.https_cdn;
         case 'graph':
-        return FB._domain.graph;
+          return FB._domain.graph;
         case 'staticfb':
-        return forceHTTPS ?  FB._domain.https_staticfb : FB._domain.staticfb;
+          return forceHTTPS ?  FB._domain.https_staticfb : FB._domain.staticfb;
         case 'https_staticfb':
-        return FB._domain.https_staticfb;
+          return FB._domain.https_staticfb;
         case 'www':
-        return forceHTTPS ? FB._domain.https_www : FB._domain.www;
+          return forceHTTPS ? FB._domain.https_www : FB._domain.www;
         case 'https_www':
-        return FB._domain.https_www;
+          return FB._domain.https_www;
         case 'm':
-        return forceHTTPS ? FB._domain.https_m : FB._domain.m;
+          return forceHTTPS ? FB._domain.https_m : FB._domain.m;
         case 'https_m':
-        return FB._domain.https_m;
+          return FB._domain.https_m;
       }
     },
 
@@ -155,7 +155,7 @@
      * @param transform  {function} [Optional], transformation function for
      *        each item
      */
-     copy: function(target, source, overwrite, transform) {
+    copy: function(target, source, overwrite, transform) {
       for (var key in source) {
         if (overwrite || typeof target[key] === 'undefined') {
           target[key] = transform ? transform(source[key]) :  source[key];
@@ -172,7 +172,7 @@
      * @param value {Object} value to set. Default value is {}. [Optional]
      * @return {Object} The created object
      */
-     create: function(name, value) {
+    create: function(name, value) {
       var node = window.FB, // We will use 'FB' as root namespace
       nameParts = name ? name.split('.') : [],
       c = nameParts.length;
@@ -199,13 +199,13 @@
      * @param overwrite {Boolean}        indicate if we should overwrite
      * @return {Object} the *same* target object back
      */
-     provide: function(target, source, overwrite) {
+    provide: function(target, source, overwrite) {
       // a string means a dot separated object that gets appended to, or created
       return FB.copy(
         typeof target == 'string' ? FB.create(target) : target,
         source,
         overwrite
-        );
+      );
     },
 
     /**
@@ -214,7 +214,7 @@
      * @access private
      * @return {String} a random ID
      */
-     guid: function() {
+    guid: function() {
       return 'f' + (Math.random() * (1<<30)).toString(16).replace('.', '');
     },
 
@@ -224,18 +224,18 @@
      * @access private
      * @param args {Object} the thing to log
      */
-     log: function(args) {
+    log: function(args) {
       if (FB._logging) {
         //TODO what is window.Debug, and should it instead be relying on the
         //     event fired below?
 //#JSCOVERAGE_IF 0
-if (window.Debug && window.Debug.writeln) {
-  window.Debug.writeln(args);
-} else if (window.console) {
-  window.console.log(args);
-}
+        if (window.Debug && window.Debug.writeln) {
+          window.Debug.writeln(args);
+        } else if (window.console) {
+          window.console.log(args);
+        }
 //#JSCOVERAGE_ENDIF
-}
+      }
 
       // fire an event if the event system is available
       if (FB.Event) {
@@ -250,7 +250,7 @@ if (window.Debug && window.Debug.writeln) {
      * @return DOMElement
      * @access private
      */
-     $: function(id) {
+    $: function(id) {
       return document.getElementById(id);
     }
   };
@@ -283,7 +283,7 @@ if (window.Debug && window.Debug.writeln) {
  * @private
  * @static
  */
- FB.provide('Array', {
+FB.provide('Array', {
   /**
    * Get index of item inside an array. Return's -1 if element is not found.
    *
@@ -291,7 +291,7 @@ if (window.Debug && window.Debug.writeln) {
    * @param item {Object} Item to locate.
    * @return {Number} Index of item.
    */
-   indexOf: function (arr, item) {
+  indexOf: function (arr, item) {
     if (arr.indexOf) {
       return arr.indexOf(item);
     }
@@ -314,7 +314,7 @@ if (window.Debug && window.Debug.writeln) {
    * @param source {Array} Source array.
    * @return {Array} Merged array.
    */
-   merge: function(target, source) {
+  merge: function(target, source) {
     for (var i=0; i < source.length; i++) {
       if (FB.Array.indexOf(target, source[i]) < 0) {
         target.push(source[i]);
@@ -330,7 +330,7 @@ if (window.Debug && window.Debug.writeln) {
    * @param fn {Function} Filter callback function.
    * @return {Array} Filtered array.
    */
-   filter: function(arr, fn) {
+  filter: function(arr, fn) {
     var b = [];
     for (var i=0; i < arr.length; i++) {
       if (fn(arr[i])) {
@@ -349,7 +349,7 @@ if (window.Debug && window.Debug.writeln) {
    * @param proto {Boolean} Specify true to include inherited properties.
    * @return {Array} The array of keys.
    */
-   keys: function(obj, proto) {
+  keys: function(obj, proto) {
     var arr = [];
     for (var key in obj) {
       if (proto || obj.hasOwnProperty(key)) {
@@ -367,7 +367,7 @@ if (window.Debug && window.Debug.writeln) {
    * @param transform {Function} Transformation function.
    * @return {Array} The transformed array.
    */
-   map: function(arr, transform) {
+  map: function(arr, transform) {
     var ret = [];
     for (var i=0; i < arr.length; i++) {
       ret.push(transform(arr[i]));
@@ -385,13 +385,13 @@ if (window.Debug && window.Debug.writeln) {
    *                      be included
    *
    */
-   forEach: function(item, fn, proto) {
+  forEach: function(item, fn, proto) {
     if (!item) {
       return;
     }
 
     if (Object.prototype.toString.apply(item) === '[object Array]' ||
-      (!(item instanceof Function) && typeof item.length == 'number')) {
+        (!(item instanceof Function) && typeof item.length == 'number')) {
       if (item.forEach) {
         item.forEach(fn);
       } else {
@@ -415,7 +415,7 @@ if (window.Debug && window.Debug.writeln) {
    * @param {HTMLCollection} coll Array-like collection
    * @return {Array}
    */
-   toArray: function(coll) {
+  toArray: function(coll) {
     for (var i = 0, a = [], len = coll.length; i < len; i++) {
       a[i] = coll[i];
     }
@@ -451,7 +451,7 @@ if (window.Debug && window.Debug.writeln) {
  * @static
  * @access private
  */
- FB.provide('QS', {
+FB.provide('QS', {
   /**
    * Encode parameters to a query string.
    *
@@ -461,7 +461,7 @@ if (window.Debug && window.Debug.writeln) {
    * @param   encode {Boolean} indicate if the key/value should be URI encoded
    * @return        {String}  the query string
    */
-   encode: function(params, sep, encode) {
+  encode: function(params, sep, encode) {
     sep    = sep === undefined ? '&' : sep;
     encode = encode === false ? function(s) { return s; } : encodeURIComponent;
 
@@ -482,13 +482,13 @@ if (window.Debug && window.Debug.writeln) {
    * @param   str {String} the query string
    * @return     {Object} the parameters to encode
    */
-   decode: function(str) {
+  decode: function(str) {
     var
-    decode = decodeURIComponent,
-    params = {},
-    parts  = str.split('&'),
-    i,
-    pair;
+      decode = decodeURIComponent,
+      params = {},
+      parts  = str.split('&'),
+      i,
+      pair;
 
     for (i=0; i<parts.length; i++) {
       pair = parts[i].split('=', 2);
@@ -530,7 +530,7 @@ if (window.Debug && window.Debug.writeln) {
  * @static
  * @access private
  */
- FB.provide('Content', {
+FB.provide('Content', {
   _root       : null,
   _hiddenRoot : null,
   _callbacks  : {},
@@ -543,7 +543,7 @@ if (window.Debug && window.Debug.writeln) {
    * @param root    {Node}        (optional) a custom root node
    * @return {Node} the node that was just appended
    */
-   append: function(content, root) {
+  append: function(content, root) {
     // setup the root node
     if (!root) {
       if (!FB.Content._root) {
@@ -575,11 +575,11 @@ if (window.Debug && window.Debug.writeln) {
    * @param content {String|Node} a DOM Node or HTML string
    * @return {Node} the node that was just appended
    */
-   appendHidden: function(content) {
+  appendHidden: function(content) {
     if (!FB.Content._hiddenRoot) {
       var
-      hiddenRoot = document.createElement('div'),
-      style      = hiddenRoot.style;
+        hiddenRoot = document.createElement('div'),
+        style      = hiddenRoot.style;
       style.position = 'absolute';
       style.top      = '-10000px';
       style.width    = style.height = 0;
@@ -608,7 +608,7 @@ if (window.Debug && window.Debug.writeln) {
    * @access private
    * @param opts {Object} the options described above
    */
-   insertIframe: function(opts) {
+  insertIframe: function(opts) {
     //
     // Browsers evolved. Evolution is messy.
     //
@@ -619,7 +619,7 @@ if (window.Debug && window.Debug.writeln) {
     // Dear FF, screw you too. Needs src _after_ DOM insertion.
     // Dear Webkit, you're okay. Works either way.
     var
-    guid = FB.guid(),
+      guid = FB.guid(),
 
       // Since we set the src _after_ inserting the iframe node into the DOM,
       // some browsers will fire two onload events, once for the first empty
@@ -629,35 +629,35 @@ if (window.Debug && window.Debug.writeln) {
       // correct onload handler to get fired.
       srcSet = false,
       onloadDone = false;
-      FB.Content._callbacks[guid] = function() {
-        if (srcSet && !onloadDone) {
-          onloadDone = true;
-          opts.onload && opts.onload(opts.root.firstChild);
-        }
-      };
+    FB.Content._callbacks[guid] = function() {
+      if (srcSet && !onloadDone) {
+        onloadDone = true;
+        opts.onload && opts.onload(opts.root.firstChild);
+      }
+    };
 
 
 //#JSCOVERAGE_IF
-if (document.attachEvent) {
+    if (document.attachEvent) {
       // Initial src is set to javascript:false so as to not trigger the
       // unsecure content warning.
       var html = (
         '<iframe' +
-        ' id="' + opts.id + '"' +
-        ' name="' + opts.name + '"' +
-        (opts.title ? ' title="' + opts.title + '"' : '') +
-        (opts.className ? ' class="' + opts.className + '"' : '') +
-        ' style="border:none;' +
-        (opts.width ? 'width:' + opts.width + 'px;' : '') +
-        (opts.height ? 'height:' + opts.height + 'px;' : '') +
-        '"' +
-        ' src="javascript:false;"' +
-        ' frameborder="0"' +
-        ' scrolling="no"' +
-        ' allowtransparency="true"' +
-        ' onload="FB.Content._callbacks.' + guid + '()"' +
+          ' id="' + opts.id + '"' +
+          ' name="' + opts.name + '"' +
+          (opts.title ? ' title="' + opts.title + '"' : '') +
+          (opts.className ? ' class="' + opts.className + '"' : '') +
+          ' style="border:none;' +
+                  (opts.width ? 'width:' + opts.width + 'px;' : '') +
+                  (opts.height ? 'height:' + opts.height + 'px;' : '') +
+                  '"' +
+          ' src="javascript:false;"' +
+          ' frameborder="0"' +
+          ' scrolling="no"' +
+          ' allowtransparency="true"' +
+          ' onload="FB.Content._callbacks.' + guid + '()"' +
         '></iframe>'
-        );
+      );
 
       // There is an IE bug with iframe caching that we have to work around. We
       // need to load a dummy iframe to consume the initial cache stream. The
@@ -669,9 +669,9 @@ if (document.attachEvent) {
       // string 'false', we set the iframe height to 1px so that it gets loaded
       // but stays invisible.
       opts.root.innerHTML = '<iframe src="javascript:false"'+
-      ' frameborder="0"'+
-      ' scrolling="no"'+
-      ' style="height:1px"></iframe>';
+                            ' frameborder="0"'+
+                            ' scrolling="no"'+
+                            ' style="height:1px"></iframe>';
 
       // Now we'll be setting the real src.
       srcSet = true;
@@ -736,7 +736,7 @@ if (document.attachEvent) {
    * @param opts {Object} the options
    * @param get Should we use get instead?
    */
-   submitToTarget: function(opts, get) {
+  submitToTarget: function(opts, get) {
     var form = document.createElement('form');
     form.action = opts.url;
     form.target = opts.target;
@@ -787,13 +787,13 @@ if (document.attachEvent) {
  * @static
  * @access private
  */
- FB.provide('Flash', {
+FB.provide('Flash', {
   //
   // DYNAMIC DATA
   //
   _minVersions: [
-  [9,  0, 159, 0 ],
-  [10, 0, 22,  87]
+    [9,  0, 159, 0 ],
+    [10, 0, 22,  87]
   ],
   _swfPath: 'swf/XdComm.swf',
 
@@ -803,7 +803,7 @@ if (document.attachEvent) {
    * @access private
    * @type Array
    */
-   _callbacks: [],
+  _callbacks: [],
 
   /**
    * Names of embedded swfs. Used for removing on unload.
@@ -811,7 +811,7 @@ if (document.attachEvent) {
    * @access private
    * @type Object
    */
-   _names: {},
+  _names: {},
 
   /**
    * Whether or not unload callback has been registered (used in IE9).
@@ -819,14 +819,14 @@ if (document.attachEvent) {
    * @access private
    * @type Boolean
    */
-   _unloadRegistered: false,
+  _unloadRegistered: false,
 
   /**
    * Initialize the SWF.
    *
    * @access private
    */
-   init: function() {
+  init: function() {
     // only initialize once
     if (FB.Flash._init) {
       return;
@@ -845,7 +845,7 @@ if (document.attachEvent) {
     };
 
     FB.Flash.embedSWF('XdComm',
-      FB.getDomain('cdn_foreign') + FB.Flash._swfPath);
+                      FB.getDomain('cdn_foreign') + FB.Flash._swfPath);
   },
 
   /**
@@ -853,25 +853,25 @@ if (document.attachEvent) {
    *
    * @access private
    */
-   embedSWF: function(name, swf, flashvars) {
+  embedSWF: function(name, swf, flashvars) {
     // create the swf
     var
-    IE   = !!document.attachEvent,
-    html = (
-      '<object ' +
-      'type="application/x-shockwave-flash" ' +
-      'id="' + name + '" ' +
-      (flashvars ? 'flashvars="' + flashvars + '" ' : '') +
-      (IE ? 'name="' + name + '" ' : '') +
-      (IE ? '' : 'data="' + swf + '" ') +
-      (IE
-        ? 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" '
-        : ''
-        ) +
-      'allowscriptaccess="always">' +
-      '<param name="movie" value="' + swf + '"></param>' +
-      '<param name="allowscriptaccess" value="always"></param>' +
-      '</object>'
+      IE   = !!document.attachEvent,
+      html = (
+        '<object ' +
+          'type="application/x-shockwave-flash" ' +
+          'id="' + name + '" ' +
+          (flashvars ? 'flashvars="' + flashvars + '" ' : '') +
+          (IE ? 'name="' + name + '" ' : '') +
+          (IE ? '' : 'data="' + swf + '" ') +
+          (IE
+              ? 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" '
+              : ''
+          ) +
+          'allowscriptaccess="always">' +
+          '<param name="movie" value="' + swf + '"></param>' +
+          '<param name="allowscriptaccess" value="always"></param>' +
+        '</object>'
       );
 
     FB.Content.appendHidden(html);
@@ -899,24 +899,24 @@ if (document.attachEvent) {
    * @access private
    * @return {Boolean} true if the minimum version requirements are matched
    */
-   hasMinVersion: function() {
+  hasMinVersion: function() {
     if (typeof FB.Flash._hasMinVersion === 'undefined') {
       var
-      versionString,
-      i,
-      l,
-      version = [];
+        versionString,
+        i,
+        l,
+        version = [];
       try {
         versionString = new ActiveXObject('ShockwaveFlash.ShockwaveFlash')
-        .GetVariable('$version');
+                          .GetVariable('$version');
       } catch(x) {
         if (navigator.mimeTypes.length > 0) {
           var mimeType = 'application/x-shockwave-flash';
           if (navigator.mimeTypes[mimeType].enabledPlugin) {
             var name = 'Shockwave Flash';
             versionString = (navigator.plugins[name + ' 2.0'] ||
-             navigator.plugins[name])
-            .description;
+                             navigator.plugins[name])
+                            .description;
           }
         }
       }
@@ -925,9 +925,9 @@ if (document.attachEvent) {
       //   [10, 0, 22]
       if (versionString) {
         var parts = versionString
-        .replace(/\D+/g, ',')
-        .match(/^,?(.+),?$/)[1]
-        .split(',');
+                      .replace(/\D+/g, ',')
+                      .match(/^,?(.+),?$/)[1]
+                      .split(',');
         for (i=0, l=parts.length; i<l; i++) {
           version.push(parseInt(parts[i], 10));
         }
@@ -953,12 +953,12 @@ if (document.attachEvent) {
           if (version[m] < spec[m]) {
             // less means this major version is no good
 //#JSCOVERAGE_IF 0
-FB.Flash._hasMinVersion = false;
-continue majorVersion;
+            FB.Flash._hasMinVersion = false;
+            continue majorVersion;
 //#JSCOVERAGE_ENDIF
-} else {
-  FB.Flash._hasMinVersion = true;
-  if (version[m] > spec[m]) {
+          } else {
+            FB.Flash._hasMinVersion = true;
+            if (version[m] > spec[m]) {
               // better than needed
               break majorVersion;
             }
@@ -976,7 +976,7 @@ continue majorVersion;
    * @access private
    * @param cb {Function} the function
    */
-   onReady: function(cb) {
+  onReady: function(cb) {
     FB.Flash.init();
     if (FB.Flash._ready) {
       // this forces the cb to be asynchronous to ensure no one relies on the
@@ -1141,78 +1141,78 @@ continue majorVersion;
 
     USE YOUR OWN COPY. IT IS EXTREMELY UNWISE TO LOAD CODE FROM SERVERS YOU DO
     NOT CONTROL.
-    */
+*/
 
 
 // Create a JSON object only if one does not already exist. We create the
 // methods in a closure to avoid creating global variables.
 
 if (!this.JSON) {
-  this.JSON = {};
+    this.JSON = {};
 }
 
 (function () {
 
-  function f(n) {
+    function f(n) {
         // Format integers to have at least two digits.
         return n < 10 ? '0' + n : n;
-      }
+    }
 
-      if (typeof Date.prototype.toJSON !== 'function') {
+    if (typeof Date.prototype.toJSON !== 'function') {
 
         Date.prototype.toJSON = function (key) {
 
-          return isFinite(this.valueOf()) ?
-          this.getUTCFullYear()   + '-' +
-          f(this.getUTCMonth() + 1) + '-' +
-          f(this.getUTCDate())      + 'T' +
-          f(this.getUTCHours())     + ':' +
-          f(this.getUTCMinutes())   + ':' +
-          f(this.getUTCSeconds())   + 'Z' : null;
+            return isFinite(this.valueOf()) ?
+                   this.getUTCFullYear()   + '-' +
+                 f(this.getUTCMonth() + 1) + '-' +
+                 f(this.getUTCDate())      + 'T' +
+                 f(this.getUTCHours())     + ':' +
+                 f(this.getUTCMinutes())   + ':' +
+                 f(this.getUTCSeconds())   + 'Z' : null;
         };
 
         String.prototype.toJSON =
         Number.prototype.toJSON =
         Boolean.prototype.toJSON = function (key) {
-          return this.valueOf();
+            return this.valueOf();
         };
-      }
+    }
 
-      var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
-      escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
-      gap,
-      indent,
+    var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+        escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+        gap,
+        indent,
         meta = {    // table of character substitutions
-          '\b': '\\b',
-          '\t': '\\t',
-          '\n': '\\n',
-          '\f': '\\f',
-          '\r': '\\r',
-          '"' : '\\"',
-          '\\': '\\\\'
+            '\b': '\\b',
+            '\t': '\\t',
+            '\n': '\\n',
+            '\f': '\\f',
+            '\r': '\\r',
+            '"' : '\\"',
+            '\\': '\\\\'
         },
         rep;
 
 
-        function quote(string) {
+    function quote(string) {
 
 // If the string contains no control characters, no quote characters, and no
 // backslash characters, then we can safely slap some quotes around it.
 // Otherwise we must also replace the offending characters with safe escape
 // sequences.
 
-escapable.lastIndex = 0;
-return escapable.test(string) ?
-'"' + string.replace(escapable, function (a) {
-  var c = meta[a];
-  return typeof c === 'string' ? c :
-  '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
-}) + '"' :
-'"' + string + '"';
-}
+        escapable.lastIndex = 0;
+        return escapable.test(string) ?
+            '"' + string.replace(escapable, function (a) {
+                var c = meta[a];
+                return typeof c === 'string' ? c :
+                    '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+            }) + '"' :
+            '"' + string + '"';
+    }
 
 
-function str(key, holder) {
+    function str(key, holder) {
 
 // Produce a string from holder[key].
 
@@ -1226,122 +1226,122 @@ function str(key, holder) {
 
 // If the value has a toJSON method, call it to obtain a replacement value.
 
-if (value && typeof value === 'object' &&
-  typeof value.toJSON === 'function') {
-  value = value.toJSON(key);
-}
+        if (value && typeof value === 'object' &&
+                typeof value.toJSON === 'function') {
+            value = value.toJSON(key);
+        }
 
 // If we were called with a replacer function, then call the replacer to
 // obtain a replacement value.
 
-if (typeof rep === 'function') {
-  value = rep.call(holder, key, value);
-}
+        if (typeof rep === 'function') {
+            value = rep.call(holder, key, value);
+        }
 
 // What happens next depends on the value's type.
 
-switch (typeof value) {
-  case 'string':
-  return quote(value);
+        switch (typeof value) {
+        case 'string':
+            return quote(value);
 
-  case 'number':
+        case 'number':
 
 // JSON numbers must be finite. Encode non-finite numbers as null.
 
-return isFinite(value) ? String(value) : 'null';
+            return isFinite(value) ? String(value) : 'null';
 
-case 'boolean':
-case 'null':
+        case 'boolean':
+        case 'null':
 
 // If the value is a boolean or null, convert it to a string. Note:
 // typeof null does not produce 'null'. The case is included here in
 // the remote chance that this gets fixed someday.
 
-return String(value);
+            return String(value);
 
 // If the type is 'object', we might be dealing with an object or an array or
 // null.
 
-case 'object':
+        case 'object':
 
 // Due to a specification blunder in ECMAScript, typeof null is 'object',
 // so watch out for that case.
 
-if (!value) {
-  return 'null';
-}
+            if (!value) {
+                return 'null';
+            }
 
 // Make an array to hold the partial results of stringifying this object value.
 
-gap += indent;
-partial = [];
+            gap += indent;
+            partial = [];
 
 // Is the value an array?
 
-if (Object.prototype.toString.apply(value) === '[object Array]') {
+            if (Object.prototype.toString.apply(value) === '[object Array]') {
 
 // The value is an array. Stringify every element. Use null as a placeholder
 // for non-JSON values.
 
-length = value.length;
-for (i = 0; i < length; i += 1) {
-  partial[i] = str(i, value) || 'null';
-}
+                length = value.length;
+                for (i = 0; i < length; i += 1) {
+                    partial[i] = str(i, value) || 'null';
+                }
 
 // Join all of the elements together, separated with commas, and wrap them in
 // brackets.
 
-v = partial.length === 0 ? '[]' :
-gap ? '[\n' + gap +
-partial.join(',\n' + gap) + '\n' +
-mind + ']' :
-'[' + partial.join(',') + ']';
-gap = mind;
-return v;
-}
+                v = partial.length === 0 ? '[]' :
+                    gap ? '[\n' + gap +
+                            partial.join(',\n' + gap) + '\n' +
+                                mind + ']' :
+                          '[' + partial.join(',') + ']';
+                gap = mind;
+                return v;
+            }
 
 // If the replacer is an array, use it to select the members to be stringified.
 
-if (rep && typeof rep === 'object') {
-  length = rep.length;
-  for (i = 0; i < length; i += 1) {
-    k = rep[i];
-    if (typeof k === 'string') {
-      v = str(k, value);
-      if (v) {
-        partial.push(quote(k) + (gap ? ': ' : ':') + v);
-      }
-    }
-  }
-} else {
+            if (rep && typeof rep === 'object') {
+                length = rep.length;
+                for (i = 0; i < length; i += 1) {
+                    k = rep[i];
+                    if (typeof k === 'string') {
+                        v = str(k, value);
+                        if (v) {
+                            partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                        }
+                    }
+                }
+            } else {
 
 // Otherwise, iterate through all of the keys in the object.
 
-for (k in value) {
-  if (Object.hasOwnProperty.call(value, k)) {
-    v = str(k, value);
-    if (v) {
-      partial.push(quote(k) + (gap ? ': ' : ':') + v);
-    }
-  }
-}
-}
+                for (k in value) {
+                    if (Object.hasOwnProperty.call(value, k)) {
+                        v = str(k, value);
+                        if (v) {
+                            partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                        }
+                    }
+                }
+            }
 
 // Join all of the member texts together, separated with commas,
 // and wrap them in braces.
 
-v = partial.length === 0 ? '{}' :
-gap ? '{\n' + gap + partial.join(',\n' + gap) + '\n' +
-mind + '}' : '{' + partial.join(',') + '}';
-gap = mind;
-return v;
-}
-}
+            v = partial.length === 0 ? '{}' :
+                gap ? '{\n' + gap + partial.join(',\n' + gap) + '\n' +
+                        mind + '}' : '{' + partial.join(',') + '}';
+            gap = mind;
+            return v;
+        }
+    }
 
 // If the JSON object does not yet have a stringify method, give it one.
 
-if (typeof JSON.stringify !== 'function') {
-  JSON.stringify = function (value, replacer, space) {
+    if (typeof JSON.stringify !== 'function') {
+        JSON.stringify = function (value, replacer, space) {
 
 // The stringify method takes a value and an optional replacer, and an optional
 // space parameter, and returns a JSON text. The replacer can be a function
@@ -1349,85 +1349,85 @@ if (typeof JSON.stringify !== 'function') {
 // A default replacer method can be provided. Use of the space parameter can
 // produce text that is more easily readable.
 
-var i;
-gap = '';
-indent = '';
+            var i;
+            gap = '';
+            indent = '';
 
 // If the space parameter is a number, make an indent string containing that
 // many spaces.
 
-if (typeof space === 'number') {
-  for (i = 0; i < space; i += 1) {
-    indent += ' ';
-  }
+            if (typeof space === 'number') {
+                for (i = 0; i < space; i += 1) {
+                    indent += ' ';
+                }
 
 // If the space parameter is a string, it will be used as the indent string.
 
-} else if (typeof space === 'string') {
-  indent = space;
-}
+            } else if (typeof space === 'string') {
+                indent = space;
+            }
 
 // If there is a replacer, it must be a function or an array.
 // Otherwise, throw an error.
 
-rep = replacer;
-if (replacer && typeof replacer !== 'function' &&
-  (typeof replacer !== 'object' ||
-   typeof replacer.length !== 'number')) {
-  throw new Error('JSON.stringify');
-}
+            rep = replacer;
+            if (replacer && typeof replacer !== 'function' &&
+                    (typeof replacer !== 'object' ||
+                     typeof replacer.length !== 'number')) {
+                throw new Error('JSON.stringify');
+            }
 
 // Make a fake root object containing our value under the key of ''.
 // Return the result of stringifying the value.
 
-return str('', {'': value});
-};
-}
+            return str('', {'': value});
+        };
+    }
 
 
 // If the JSON object does not yet have a parse method, give it one.
 
-if (typeof JSON.parse !== 'function') {
-  JSON.parse = function (text, reviver) {
+    if (typeof JSON.parse !== 'function') {
+        JSON.parse = function (text, reviver) {
 
 // The parse method takes a text and an optional reviver function, and returns
 // a JavaScript value if the text is a valid JSON text.
 
-var j;
+            var j;
 
-function walk(holder, key) {
+            function walk(holder, key) {
 
 // The walk method is used to recursively walk the resulting structure so
 // that modifications can be made.
 
-var k, v, value = holder[key];
-if (value && typeof value === 'object') {
-  for (k in value) {
-    if (Object.hasOwnProperty.call(value, k)) {
-      v = walk(value, k);
-      if (v !== undefined) {
-        value[k] = v;
-      } else {
-        delete value[k];
-      }
-    }
-  }
-}
-return reviver.call(holder, key, value);
-}
+                var k, v, value = holder[key];
+                if (value && typeof value === 'object') {
+                    for (k in value) {
+                        if (Object.hasOwnProperty.call(value, k)) {
+                            v = walk(value, k);
+                            if (v !== undefined) {
+                                value[k] = v;
+                            } else {
+                                delete value[k];
+                            }
+                        }
+                    }
+                }
+                return reviver.call(holder, key, value);
+            }
 
 
 // Parsing happens in four stages. In the first stage, we replace certain
 // Unicode characters with escape sequences. JavaScript handles many characters
 // incorrectly, either silently deleting them, or treating them as line endings.
 
-cx.lastIndex = 0;
-if (cx.test(text)) {
-  text = text.replace(cx, function (a) {
-    return '\\u' +
-    ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
-  });
-}
+            cx.lastIndex = 0;
+            if (cx.test(text)) {
+                text = text.replace(cx, function (a) {
+                    return '\\u' +
+                        ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+                });
+            }
 
 // In the second stage, we run the text against regular expressions that look
 // for non-JSON patterns. We are especially concerned with '()' and 'new'
@@ -1442,29 +1442,29 @@ if (cx.test(text)) {
 // we look to see that the remaining characters are only whitespace or ']' or
 // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
 
-if (/^[\],:{}\s]*$/.
-  test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@').
-    replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-    replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+            if (/^[\],:{}\s]*$/.
+test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@').
+replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 
 // In the third stage we use the eval function to compile the text into a
 // JavaScript structure. The '{' operator is subject to a syntactic ambiguity
 // in JavaScript: it can begin a block or an object literal. We wrap the text
 // in parens to eliminate the ambiguity.
 
-j = eval('(' + text + ')');
+                j = eval('(' + text + ')');
 
 // In the optional fourth stage, we recursively walk the new structure, passing
 // each name/value pair to a reviver function for possible transformation.
 
-return typeof reviver === 'function' ?
-walk({'': j}, '') : j;
-}
+                return typeof reviver === 'function' ?
+                    walk({'': j}, '') : j;
+            }
 
 // If the text is not JSON parseable, then a SyntaxError is thrown.
-throw new SyntaxError('JSON.parse');
-};
-}
+            throw new SyntaxError('JSON.parse');
+        };
+    }
 }());
 
 /**
@@ -1494,22 +1494,22 @@ throw new SyntaxError('JSON.parse');
  * @static
  * @access private
  */
- FB.provide('JSON', {
+FB.provide('JSON', {
   /**
    * Stringify an object.
    *
    * @param obj {Object} the input object
    * @return {String} the JSON string
    */
-   stringify: function(obj) {
+  stringify: function(obj) {
     // PrototypeJS is incompatible with native JSON or JSON2 (which is what
     // native JSON is based on)
-if (window.Prototype && Object.toJSON) {
-  return Object.toJSON(obj);
-} else {
-  return JSON.stringify(obj);
-}
-},
+    if (window.Prototype && Object.toJSON) {
+      return Object.toJSON(obj);
+    } else {
+      return JSON.stringify(obj);
+    }
+  },
 
   /**
    * Parse a JSON string.
@@ -1517,7 +1517,7 @@ if (window.Prototype && Object.toJSON) {
    * @param str {String} the JSON string
    * @param {Object} the parsed object
    */
-   parse: function(str) {
+  parse: function(str) {
     return JSON.parse(str);
   },
 
@@ -1529,7 +1529,7 @@ if (window.Prototype && Object.toJSON) {
    * @param obj {Object} the input object
    * @return {Object} object with only string values
    */
-   flatten: function(obj) {
+  flatten: function(obj) {
     var flat = {};
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
@@ -1581,7 +1581,7 @@ if (window.Prototype && Object.toJSON) {
  * @static
  * @access private
  */
- FB.provide('', {
+FB.provide('', {
   /**
    * Make a API call to the [Graph API](/docs/api).
    *
@@ -1681,7 +1681,7 @@ if (window.Prototype && Object.toJSON) {
    * @param params {Object} the parameters for the query
    * @param cb {Function} the callback function to handle the response
    */
-   api: function() {
+  api: function() {
     if (typeof arguments[0] === 'string') {
       FB.ApiServer.graph.apply(FB.ApiServer, arguments);
     } else {
@@ -1696,7 +1696,7 @@ if (window.Prototype && Object.toJSON) {
  * @class FB.ApiServer
  * @access private
  */
- FB.provide('ApiServer', {
+FB.provide('ApiServer', {
   METHODS: ['get', 'post', 'delete', 'put'],
   _callbacks: {},
   _readOnlyCalls: {
@@ -1732,15 +1732,15 @@ if (window.Prototype && Object.toJSON) {
    * @param params {Object}   the parameters for the query
    * @param cb     {Function} the callback function to handle the response
    */
-   graph: function() {
+  graph: function() {
     var
-    args = Array.prototype.slice.call(arguments),
-    atoms = args.shift().match(/\/?([^?]*)\??([^#]*)/),
-    path = atoms[1],
-    next = args.shift(),
-    method,
-    params,
-    cb;
+      args = Array.prototype.slice.call(arguments),
+      atoms = args.shift().match(/\/?([^?]*)\??([^#]*)/),
+      path = atoms[1],
+      next = args.shift(),
+      method,
+      params,
+      cb;
 
     while (next) {
       var type = typeof next;
@@ -1780,7 +1780,7 @@ if (window.Prototype && Object.toJSON) {
    * method   | String  | The API method to invoke.        | **Required**
    * @param cb {Function} The callback function to handle the response.
    */
-   rest: function(params, cb) {
+  rest: function(params, cb) {
     var method = params.method.toLowerCase().replace('.', '_');
     // this is an optional dependency on FB.Auth
     // Auth.revokeAuthorization affects the session
@@ -1811,7 +1811,7 @@ if (window.Prototype && Object.toJSON) {
    * @param params {Object}   the parameters for the query
    * @param cb     {Function} the callback function to handle the response
    */
-   oauthRequest: function(domain, path, method, params, cb) {
+  oauthRequest: function(domain, path, method, params, cb) {
     if (!params.access_token && FB.getAccessToken()) {
       params.access_token = FB.getAccessToken();
     }
@@ -1825,26 +1825,26 @@ if (window.Prototype && Object.toJSON) {
     var oldCb = cb;
     cb = function(response) {
       if (FB.Auth && response && FB.getAccessToken() == params.access_token &&
-        (response.error_code === '190' ||
-         (response.error &&
-          (response.error === 'invalid_token' ||
-           response.error.type === 'OAuthException')))) {
+          (response.error_code === '190' ||
+           (response.error &&
+            (response.error === 'invalid_token' ||
+             response.error.type === 'OAuthException')))) {
         FB.getLoginStatus(null, true);
-    }
+      }
 
-    oldCb && oldCb(response);
-  };
+      oldCb && oldCb(response);
+    };
 
-  try {
-    FB.ApiServer.jsonp(domain, path, method, FB.JSON.flatten(params), cb);
-  } catch (e1_ignore) {
     try {
-      if (!FB.initSitevars.corsKillSwitch &&
-        FB.ApiServer.corsPost(
+      FB.ApiServer.jsonp(domain, path, method, FB.JSON.flatten(params), cb);
+    } catch (e1_ignore) {
+      try {
+        if (!FB.initSitevars.corsKillSwitch &&
+            FB.ApiServer.corsPost(
           domain, path, method, FB.JSON.flatten(params), cb)) {
-        return;
-    }
-  } catch (e2_ignore) {
+          return;
+        }
+      } catch (e2_ignore) {
         // do nothing... fall back to flash.
       }
 
@@ -1852,8 +1852,8 @@ if (window.Prototype && Object.toJSON) {
         FB.ApiServer.flash(domain, path, method, FB.JSON.flatten(params), cb);
       } else {
         throw new Error('Your browser does not support long connect ' +
-          'requests. You can fix this problem by upgrading your browser ' +
-          'or installing the latest version of Flash');
+            'requests. You can fix this problem by upgrading your browser ' +
+            'or installing the latest version of Flash');
       }
     }
   },
@@ -1879,21 +1879,21 @@ if (window.Prototype && Object.toJSON) {
   },
 
   _createCORSRequest: function(method, url, content_type) {
-   if (!window.XMLHttpRequest) {
-    return null;
-  }
-  var xhr = new XMLHttpRequest();
-  if ("withCredentials" in xhr) {
-   xhr.open(method, url, true);
-   xhr.setRequestHeader('Content-type', content_type);
- } else if (window.XDomainRequest) {
-   xhr = new XDomainRequest();
-   xhr.open(method, url);
- } else {
-   xhr = null;
- }
- return xhr;
-},
+     if (!window.XMLHttpRequest) {
+      return null;
+     }
+     var xhr = new XMLHttpRequest();
+     if ("withCredentials" in xhr) {
+       xhr.open(method, url, true);
+       xhr.setRequestHeader('Content-type', content_type);
+     } else if (window.XDomainRequest) {
+       xhr = new XDomainRequest();
+       xhr.open(method, url);
+     } else {
+       xhr = null;
+     }
+     return xhr;
+  },
 
   /**
    * Basic JSONP Support.
@@ -1906,10 +1906,10 @@ if (window.Prototype && Object.toJSON) {
    * @param params {Object}   the parameters for the query
    * @param cb     {Function} the callback function to handle the response
    */
-   jsonp: function(domain, path, method, params, cb) {
+  jsonp: function(domain, path, method, params, cb) {
     var
-    g      = FB.guid(),
-    script = document.createElement('script');
+      g      = FB.guid(),
+      script = document.createElement('script');
 
     // jsonp needs method overrides as the request itself is always a GET
     if (domain === 'graph' && method !== 'get') {
@@ -1921,7 +1921,7 @@ if (window.Prototype && Object.toJSON) {
       FB.getDomain(domain) + path +
       (path.indexOf('?') > -1 ? '&' : '?') +
       FB.QS.encode(params)
-      );
+    );
     if (url.length > 2000) {
       throw new Error('JSONP only support a maximum of 2000 bytes of input.');
     }
@@ -1947,7 +1947,7 @@ if (window.Prototype && Object.toJSON) {
    * @param params {Object}   the parameters for the query
    * @param cb     {Function} the callback function to handle the response
    */
-   flash: function(domain, path, method, params, cb) {
+  flash: function(domain, path, method, params, cb) {
     if (!window.FB_OnXdHttpResult) {
       // the SWF calls this global function when a HTTP response is available
       // FIXME: remove global
@@ -1961,8 +1961,8 @@ if (window.Prototype && Object.toJSON) {
         params.suppress_http_code = 1;
       }
       var
-      url  = FB.getDomain(domain) + path,
-      body = FB.QS.encode(params);
+        url  = FB.getDomain(domain) + path,
+        body = FB.QS.encode(params);
 
       if (method === 'get') {
         // convert GET to POST if needed based on URL length
@@ -1996,7 +1996,7 @@ if (window.Prototype && Object.toJSON) {
         delete FB.ApiServer._callbacks[reqId];
       };
     });
-}
+  }
 });
 
 /**
@@ -2026,7 +2026,7 @@ if (window.Prototype && Object.toJSON) {
  * @static
  * @class FB.Event
  */
- FB.provide('EventProvider', {
+FB.provide('EventProvider', {
   /**
    * Returns the internal subscriber array that can be directly manipulated by
    * adding/removing things.
@@ -2034,7 +2034,7 @@ if (window.Prototype && Object.toJSON) {
    * @access private
    * @return {Object}
    */
-   subscribers: function() {
+  subscribers: function() {
     // this odd looking logic is to allow instances to lazily have a map of
     // their events. if subscribers were an object literal itself, we would
     // have issues with instances sharing the subscribers when its being used
@@ -2080,7 +2080,7 @@ if (window.Prototype && Object.toJSON) {
    * @param name {String} Name of the event.
    * @param cb {Function} The handler function.
    */
-   subscribe: function(name, cb) {
+  subscribe: function(name, cb) {
     var subs = this.subscribers();
 
     if (!subs[name]) {
@@ -2110,7 +2110,7 @@ if (window.Prototype && Object.toJSON) {
    * @param name {String} Name of the event.
    * @param cb {Function} The handler function.
    */
-   unsubscribe: function(name, cb) {
+  unsubscribe: function(name, cb) {
     var subs = this.subscribers()[name];
 
     FB.Array.forEach(subs, function(value, key) {
@@ -2131,15 +2131,15 @@ if (window.Prototype && Object.toJSON) {
    * to monitor() will be passed on to the callback. When the callback returns
    * true, the monitoring will cease.
    */
-   monitor: function(name, callback) {
+  monitor: function(name, callback) {
     if (!callback()) {
       var
-      ctx = this,
-      fn = function() {
-        if (callback.apply(callback, arguments)) {
-          ctx.unsubscribe(name, fn);
-        }
-      };
+        ctx = this,
+        fn = function() {
+          if (callback.apply(callback, arguments)) {
+            ctx.unsubscribe(name, fn);
+          }
+        };
 
       this.subscribe(name, fn);
     }
@@ -2155,7 +2155,7 @@ if (window.Prototype && Object.toJSON) {
    * @access private
    * @param name    {String}   name of the event
    */
-   clear: function(name) {
+  clear: function(name) {
     delete this.subscribers()[name];
   },
 
@@ -2166,10 +2166,10 @@ if (window.Prototype && Object.toJSON) {
    * @access private
    * @param name {String} the event name
    */
-   fire: function() {
+  fire: function() {
     var
-    args = Array.prototype.slice.call(arguments),
-    name = args.shift();
+      args = Array.prototype.slice.call(arguments),
+      name = args.shift();
 
     FB.Array.forEach(this.subscribers()[name], function(sub) {
       // this is because we sometimes null out unsubscribed rather than jiggle
@@ -2187,7 +2187,7 @@ if (window.Prototype && Object.toJSON) {
   /**
    * Listen to `event` with the `func` event handler.
    */
-   listen: function(element, event, func) {
+  listen: function(element, event, func) {
     if (element.addEventListener) {
       element.addEventListener(event, func, false);
     } else if (element.attachEvent) {
@@ -2198,7 +2198,7 @@ if (window.Prototype && Object.toJSON) {
   /**
    * Do not listen to `event` with the `func` event handler.
    */
-   unlisten: function(element, event, func) {
+  unlisten: function(element, event, func) {
     if (element.removeEventListener) {
       element.removeEventListener(event, func, false);
     } else if (element.detachEvent) {
@@ -2214,7 +2214,7 @@ if (window.Prototype && Object.toJSON) {
  * @class FB.Event
  * @extends FB.EventProvider
  */
- FB.provide('Event', FB.EventProvider);
+FB.provide('Event', FB.EventProvider);
 
 /**
  * Copyright Facebook Inc.
@@ -2246,7 +2246,7 @@ if (window.Prototype && Object.toJSON) {
  * @static
  * @access private
  */
- FB.provide('XD', {
+FB.provide('XD', {
   _origin     : null,
   _transport  : null,
   _callbacks  : {},
@@ -2265,7 +2265,7 @@ if (window.Prototype && Object.toJSON) {
    * @param channelUrl {String} optional channel URL
    * @access private
    */
-   init: function(channelUrl) {
+  init: function(channelUrl) {
     // only do init once, if this is set, we're already done
     if (FB.XD._origin) {
       return;
@@ -2276,7 +2276,7 @@ if (window.Prototype && Object.toJSON) {
     // on the URL of the current window. It is required and validated by
     // Facebook as part of the xd_proxy.php.
     var postMessageOrigin = (window.location.protocol + '//' +
-     window.location.host + '/' + FB.guid());
+                             window.location.host + '/' + FB.guid());
 
     if (window.addEventListener && !window.attachEvent && window.postMessage) {
       FB.XD._origin = postMessageOrigin;
@@ -2297,7 +2297,7 @@ if (window.Prototype && Object.toJSON) {
         // current window. It is required and validated by Facebook as
         // part of the xd_proxy.php.
         FB.XD._origin = (window.location.protocol + '//' + domain +
-         '/' + FB.guid());
+                         '/' + FB.guid());
         FB.XD.Flash.init();
         FB.XD._transport = 'flash';
       } else {
@@ -2333,12 +2333,12 @@ if (window.Prototype && Object.toJSON) {
    * @returns    {Node}     the resolved window object
    * @throws  SyntaxError   if the id is malformed
    */
-   resolveRelation: function(id) {
+  resolveRelation: function(id) {
     var
-    pt,
-    matches,
-    parts = id.split('.'),
-    node = window;
+      pt,
+      matches,
+      parts = id.split('.'),
+      node = window;
 
     for (var i=0, l=parts.length; i<l; i++) {
       pt = parts[i];
@@ -2372,7 +2372,7 @@ if (window.Prototype && Object.toJSON) {
    * @param force_https {Boolean}  Optional param to force https
    * @return        {String}   the xd url bound to the callback
    */
-   handler: function(cb, relation, forever, id, force_https) {
+  handler: function(cb, relation, forever, id, force_https) {
     // if for some reason, we end up trying to create a handler on a page that
     // is already being used for XD comm as part of the fragment, we simply
     // return 'javascript:false' to prevent a recursive page load loop
@@ -2391,7 +2391,7 @@ if (window.Prototype && Object.toJSON) {
     }
 
     var xdProxy = FB.getDomain((force_https ? 'https_' : '') + 'cdn') +
-    FB.XD._xdProxyUrl + '#';
+      FB.XD._xdProxyUrl + '#';
     id = id || FB.guid();
     relation = relation || 'opener';
 
@@ -2420,7 +2420,7 @@ if (window.Prototype && Object.toJSON) {
       xdProxy += (
         (xdProxy.indexOf('?') < 0 ? '?' : '&') +
         FB.XD.Fragment._magic + '#?=&'
-        );
+      );
     }
 
     if (forever) {
@@ -2443,7 +2443,7 @@ if (window.Prototype && Object.toJSON) {
    * @access private
    * @param data {String|Object} the message fragment string or parameters
    */
-   recv: function(data) {
+  recv: function(data) {
     if (typeof data == 'string') {
       // Try to determine if the data is in JSON format
       try {
@@ -2469,7 +2469,7 @@ if (window.Prototype && Object.toJSON) {
    * @for FB.XD
    * @access private
    */
-   PostMessage: {
+  PostMessage: {
 
     _isInitialized: false,
 
@@ -2478,12 +2478,12 @@ if (window.Prototype && Object.toJSON) {
      *
      * @access private
      */
-     init: function() {
+    init: function() {
       if (!FB.XD.PostMessage._isInitialized) {
         var H = FB.XD.PostMessage.onMessage;
         window.addEventListener
-        ? window.addEventListener('message', H, false)
-        : window.attachEvent('onmessage', H);
+          ? window.addEventListener('message', H, false)
+          : window.attachEvent('onmessage', H);
         FB.XD.PostMessage._isInitialized = true;
       }
     },
@@ -2494,7 +2494,7 @@ if (window.Prototype && Object.toJSON) {
      * @access private
      * @param event {Event} the event object
      */
-     onMessage: function(event) {
+    onMessage: function(event) {
       FB.XD.recv(event.data);
     }
   },
@@ -2508,7 +2508,7 @@ if (window.Prototype && Object.toJSON) {
    * @for FB.XD
    * @access private
    */
-   WebView: {
+  WebView: {
     onMessage: function(dest, origin, msg) {
       FB.XD.recv(msg);
     }
@@ -2522,13 +2522,13 @@ if (window.Prototype && Object.toJSON) {
    * @for FB.XD
    * @access private
    */
-   Flash: {
+  Flash: {
     /**
      * Initialize the Flash Local Connection.
      *
      * @access private
      */
-     init: function() {
+    init: function() {
       FB.Flash.onReady(function() {
         document.XdComm.postMessage_init(
           'FB.XD.Flash.onMessage',
@@ -2542,7 +2542,7 @@ if (window.Prototype && Object.toJSON) {
      * @access private
      * @param message {String} the URI encoded string sent by the SWF
      */
-     onMessage: function(message) {
+    onMessage: function(message) {
       FB.XD.recv(decodeURIComponent(message));
     }
   },
@@ -2555,17 +2555,17 @@ if (window.Prototype && Object.toJSON) {
    * @for FB.XD
    * @access private
    */
-   Fragment: {
+  Fragment: {
     _magic: 'fb_xd_fragment',
 
     /**
      * Check if the fragment looks like a message, and dispatch if it does.
      */
-     checkAndDispatch: function() {
+    checkAndDispatch: function() {
       var
-      loc = window.location.toString(),
-      fragment = loc.substr(loc.indexOf('#') + 1),
-      magicIndex = loc.indexOf(FB.XD.Fragment._magic);
+        loc = window.location.toString(),
+        fragment = loc.substr(loc.indexOf('#') + 1),
+        magicIndex = loc.indexOf(FB.XD.Fragment._magic);
 
       if (magicIndex > 0) {
         // make these no-op to help with performance
@@ -2650,7 +2650,7 @@ FB.XD.Fragment.checkAndDispatch();
  *
  *  @author marcel, epriestley
  */
- FB.provide('UA', {
+FB.provide('UA', {
 
   /**
    *  Check if the UA is Internet Explorer.
@@ -2661,7 +2661,7 @@ FB.XD.Fragment.checkAndDispatch();
    *  @return float|NaN Version number (if match) or NaN.
    *  @author marcel
    */
-   ie: function() {
+  ie: function() {
     return FB.UA._populate() || this._ie;
   },
 
@@ -2675,7 +2675,7 @@ FB.XD.Fragment.checkAndDispatch();
    *  @return float|NaN Version number (if match) or NaN.
    *  @author marcel
    */
-   firefox: function() {
+  firefox: function() {
     return FB.UA._populate() || this._firefox;
   },
 
@@ -2689,7 +2689,7 @@ FB.XD.Fragment.checkAndDispatch();
    *  @return float|NaN Version number (if match) or NaN.
    *  @author marcel
    */
-   opera: function() {
+  opera: function() {
     return FB.UA._populate() || this._opera;
   },
 
@@ -2703,7 +2703,7 @@ FB.XD.Fragment.checkAndDispatch();
    *  @return float|NaN Version number (if match) or NaN.
    *  @author marcel
    */
-   safari: function() {
+  safari: function() {
     return FB.UA._populate() || this._safari;
   },
 
@@ -2716,7 +2716,7 @@ FB.XD.Fragment.checkAndDispatch();
    *  @return float|NaN Version number (if match) or NaN.
    *  @author cjiang
    */
-   chrome : function() {
+  chrome : function() {
     return FB.UA._populate() || this._chrome;
   },
 
@@ -2728,7 +2728,7 @@ FB.XD.Fragment.checkAndDispatch();
    *  @return bool `true' if the user's OS is Windows.
    *  @author marcel
    */
-   windows: function() {
+  windows: function() {
     return FB.UA._populate() || this._windows;
   },
 
@@ -2740,7 +2740,7 @@ FB.XD.Fragment.checkAndDispatch();
    *  @return bool `true' if the user's OS is Mac OS X.
    *  @author marcel
    */
-   osx: function() {
+  osx: function() {
     return FB.UA._populate() || this._osx;
   },
 
@@ -2751,7 +2751,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @return bool `true' if the user's OS is some flavor of Linux.
    * @author putnam
    */
-   linux: function() {
+  linux: function() {
     return FB.UA._populate() || this._linux;
   },
 
@@ -2763,7 +2763,7 @@ FB.XD.Fragment.checkAndDispatch();
    *    ios OS.
    * @author beng
    */
-   ios: function() {
+  ios: function() {
     FB.UA._populate();
     return FB.UA.mobile() && this._ios;
   },
@@ -2773,7 +2773,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @return bool
    * @access public
    */
-   mobile: function() {
+  mobile: function() {
     FB.UA._populate();
     return !FB._inCanvas && this._mobile;
   },
@@ -2783,7 +2783,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @return bool
    * @access public
    */
-   nativeApp: function() {
+  nativeApp: function() {
     // Now native FB app generates UA like this:
     //
     // Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_2 like Mac OS X; en_IE)
@@ -2802,7 +2802,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @return bool
    * @access public
    */
-   android: function() {
+  android: function() {
     FB.UA._populate();
     return FB.UA.mobile() && this._android;
   },
@@ -2812,7 +2812,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @return bool
    * @access public
    */
-   iPad: function() {
+  iPad: function() {
     FB.UA._populate();
     return FB.UA.mobile() && this._iPad;
   },
@@ -2829,7 +2829,7 @@ FB.XD.Fragment.checkAndDispatch();
    *
    *  @author marcel
    */
-   _populate : function() {
+  _populate : function() {
     if (FB.UA._populated) {
       return;
     }
@@ -2848,7 +2848,7 @@ FB.XD.Fragment.checkAndDispatch();
     FB.UA._iPad = /\b(iPad)/.exec(navigator.userAgent);
     FB.UA._android = navigator.userAgent.match(/Android/i);
     FB.UA._mobile = ios || FB.UA._android ||
-    navigator.userAgent.match(/Mobile/i);
+      navigator.userAgent.match(/Mobile/i);
 
     if (agent) {
       FB.UA._ie      = agent[1] ? parseFloat(agent[1]) : NaN;
@@ -2927,7 +2927,7 @@ FB.XD.Fragment.checkAndDispatch();
  * @static
  * @access private
  */
- FB.provide('Arbiter', {
+FB.provide('Arbiter', {
   _canvasProxyUrl: 'connect/canvas_proxy.php',
 
   BEHAVIOR_EVENT: 'e',
@@ -2938,11 +2938,11 @@ FB.XD.Fragment.checkAndDispatch();
    * Sends a "Connect.Unsafe.{method}" Arbiter message to facebook using the
    * most efficient transport available.
    */
-   inform: function(method, params, relation, https, behavior) {
+  inform: function(method, params, relation, https, behavior) {
     // TODO(naitik) only enable for iframe page tabs for now
     if (FB.Canvas.isTabIframe() ||
-      (FB._inPlugin && window.postMessage) ||
-      (!FB._inCanvas && FB.UA.mobile() && window.postMessage)) {
+        (FB._inPlugin && window.postMessage) ||
+        (!FB._inCanvas && FB.UA.mobile() && window.postMessage)) {
       var msg = FB.JSON.stringify({
         method: method,
         params: params,
@@ -2965,7 +2965,7 @@ FB.XD.Fragment.checkAndDispatch();
     // infer it.
     // Question: why should https ever be passed as a parameter?
     https |= (window != window.parent &&
-      document.referrer.indexOf('https:') === 0);
+              document.referrer.indexOf('https:') === 0);
 
     // fallback static file based transport
     var url = (
@@ -2977,7 +2977,7 @@ FB.XD.Fragment.checkAndDispatch();
         behavior: behavior || FB.Arbiter.BEHAVIOR_PERSISTENT,
         relation: relation
       })
-      );
+    );
 
     var root = FB.Content.appendHidden('');
     FB.Content.insertIframe({
@@ -3016,7 +3016,7 @@ FB.XD.Fragment.checkAndDispatch();
  *           fb.arbiter
  *           fb.array
  *           fb.xd
- */
+*/
 
 /**
  * Things used by Canvas apps.
@@ -3035,7 +3035,7 @@ FB.XD.Fragment.checkAndDispatch();
  * @static
  * @access private
  */
- FB.provide('Canvas', {
+FB.provide('Canvas', {
   /*
    * The timer. We keep it around so we can shut if off
    */
@@ -3049,7 +3049,7 @@ FB.XD.Fragment.checkAndDispatch();
   /**
    * Keeps track of the last size and data about the parent canvas page
    */
-   _pageInfo: {
+  _pageInfo: {
     clientWidth: 0,
     clientHeight: 0,
     scrollLeft: 0,
@@ -3068,7 +3068,7 @@ FB.XD.Fragment.checkAndDispatch();
    * clientWidth, clientHeight, offsetLeft, and offsetTop
    *
    */
-   getPageInfo: function(appCallback) {
+  getPageInfo: function(appCallback) {
      var relation = 'top.frames[' + window.name + ']';
      var channelUrl = FB.XD.handler(function(data) {
        for (var i in FB.Canvas._pageInfo) {
@@ -3079,10 +3079,10 @@ FB.XD.Fragment.checkAndDispatch();
        appCallback && appCallback(FB.Canvas._pageInfo);
      }, relation, true);
      var params = {
-      channelUrl : channelUrl,
-      frame : window.name
-    };
-    FB.Arbiter.inform('getPageInfo', params, 'top');
+        channelUrl : channelUrl,
+        frame : window.name
+      };
+      FB.Arbiter.inform('getPageInfo', params, 'top');
   },
 
   /**
@@ -3092,7 +3092,7 @@ FB.XD.Fragment.checkAndDispatch();
    * call this function 200ms later, and the implementation may change, using it
    * is the only way to guarantee forward compatibility.
    */
-   hideFlashElement: function(elem) {
+  hideFlashElement: function(elem) {
     elem.style.visibility = 'hidden';
   },
 
@@ -3103,7 +3103,7 @@ FB.XD.Fragment.checkAndDispatch();
    * call this function 200ms later, and the implementation may change, using it
    * is the only way to guarantee forward compatibility.
    */
-   showFlashElement: function(elem) {
+  showFlashElement: function(elem) {
     elem.style.visibility = '';
   },
 
@@ -3114,32 +3114,32 @@ FB.XD.Fragment.checkAndDispatch();
    * wmode=window when they might occlude something.  Developers can
    * override this with options.hideFlashCallback.
    */
-   _hideFlashCallback: function(params) {
+  _hideFlashCallback: function(params) {
     var candidates = window.document.getElementsByTagName('object');
     for (var i = 0; i < candidates.length; i++) {
       var elem = candidates[i];
       if (elem.type.toLowerCase() != "application/x-shockwave-flash" &&
-        elem.classid.toUpperCase() != FB.Canvas._flashClassID) {
+          elem.classid.toUpperCase() != FB.Canvas._flashClassID) {
         continue;
-    }
-
-    var good = false;
-    for (var j = 0; j < elem.childNodes.length; j++) {
-      if (elem.childNodes[j].nodeName.toLowerCase() == "param" &&
-        elem.childNodes[j].name.toLowerCase() == "wmode") {
-        if (elem.childNodes[j].value.toLowerCase() == "opaque" ||
-          elem.childNodes[j].value.toLowerCase() == "transparent") {
-          good = true;
       }
-    }
-  }
-  if (!good) {
-    var rand = Math.random();
-    if (rand <= 1 / 1000) {
-      FB.api(FB._apiKey + '/occludespopups', 'post', {});
-    }
 
-    if (FB.Canvas._devHideFlashCallback) {
+      var good = false;
+      for (var j = 0; j < elem.childNodes.length; j++) {
+        if (elem.childNodes[j].nodeName.toLowerCase() == "param" &&
+            elem.childNodes[j].name.toLowerCase() == "wmode") {
+          if (elem.childNodes[j].value.toLowerCase() == "opaque" ||
+              elem.childNodes[j].value.toLowerCase() == "transparent") {
+            good = true;
+          }
+        }
+      }
+      if (!good) {
+        var rand = Math.random();
+        if (rand <= 1 / 1000) {
+          FB.api(FB._apiKey + '/occludespopups', 'post', {});
+        }
+
+        if (FB.Canvas._devHideFlashCallback) {
           // For each flash element, we give the application 200ms to do
           // something reasonable.  In this scenario we assume that the flash
           // object has inherited visibility, and restore to that afterward.
@@ -3149,14 +3149,14 @@ FB.XD.Fragment.checkAndDispatch();
             elem : elem
           };
           var fnToggle = FB.bind(function(devParams) {
-            if (devParams.state == 'opened') {
-              FB.Canvas.hideFlashElement(devParams.elem);
-            } else {
-              FB.Canvas.showFlashElement(devParams.elem);
-            }
-          },
-          this,
-          devArgs);
+              if (devParams.state == 'opened') {
+                FB.Canvas.hideFlashElement(devParams.elem);
+              } else {
+                FB.Canvas.showFlashElement(devParams.elem);
+              }
+            },
+            this,
+            devArgs);
           setTimeout(fnToggle, wait_ms);
           FB.Canvas._devHideFlashCallback(devArgs);
         } else {
@@ -3228,13 +3228,13 @@ FB.XD.Fragment.checkAndDispatch();
    *
    * @author ptarjan
    */
-   setSize: function(params) {
+  setSize: function(params) {
     // setInterval calls its function with an integer
     if (typeof params != "object") {
       params = {};
     }
     var minShrink = 0,
-    minGrow = 0;
+        minGrow = 0;
     params = params || {};
     if (params.width == null || params.height == null) {
       params = FB.copy(params, FB.Canvas._computeContentSize());
@@ -3253,15 +3253,15 @@ FB.XD.Fragment.checkAndDispatch();
       var oldHeight = FB.Canvas._lastSize[params.frame].height;
       var dHeight = params.height - oldHeight;
       if (FB.Canvas._lastSize[params.frame].width == params.width &&
-        (dHeight <= minGrow && dHeight >= -minShrink)) {
+          (dHeight <= minGrow && dHeight >= -minShrink)) {
         return false;
+      }
     }
-  }
-  FB.Canvas._lastSize[params.frame] = params;
+    FB.Canvas._lastSize[params.frame] = params;
 
-  FB.Arbiter.inform('setSize', params);
-  return true;
-},
+    FB.Arbiter.inform('setSize', params);
+    return true;
+  },
 
   /**
    * Tells Facebook to scroll your iframe.
@@ -3281,12 +3281,12 @@ FB.XD.Fragment.checkAndDispatch();
    *
    * @author gregschechte
    */
-   scrollTo: function(x, y) {
+  scrollTo: function(x, y) {
     FB.Arbiter.inform('scrollTo', {
-      frame: window.name || 'iframe_canvas',
-      x: x,
-      y: y
-    });
+        frame: window.name || 'iframe_canvas',
+        x: x,
+        y: y
+      });
   },
 
   /**
@@ -3321,7 +3321,7 @@ FB.XD.Fragment.checkAndDispatch();
    *
    * @author ptarjan
    */
-   setAutoGrow: function(onOrOff, interval) {
+  setAutoGrow: function(onOrOff, interval) {
     // I did this a few times, so I expect many users will too
     if (interval === undefined && typeof onOrOff == "number") {
       interval = onOrOff;
@@ -3331,7 +3331,7 @@ FB.XD.Fragment.checkAndDispatch();
     if (onOrOff === undefined || onOrOff) {
       if (FB.Canvas._timer === null) {
         FB.Canvas._timer =
-        window.setInterval(FB.Canvas.setSize,
+          window.setInterval(FB.Canvas.setSize,
                              interval || 100); // 100 ms is the default
       }
       FB.Canvas.setSize();
@@ -3346,7 +3346,7 @@ FB.XD.Fragment.checkAndDispatch();
   /**
    * @deprecated use setAutoGrow()
    */
-   setAutoResize: function(onOrOff, interval) {
+  setAutoResize: function(onOrOff, interval) {
     return FB.Canvas.setAutoGrow(onOrOff, interval);
   },
 
@@ -3357,7 +3357,7 @@ FB.XD.Fragment.checkAndDispatch();
    * parent frame will be able to handle async style ui calls.
    * @return {Boolean} as explained above
    */
-   isTabIframe: function() {
+  isTabIframe: function() {
     return (window.name.indexOf('app_runner_') === 0);
   },
 
@@ -3370,7 +3370,7 @@ FB.XD.Fragment.checkAndDispatch();
    * page began executing and when you called the function.
    * This information will then be logged for Facebook Insights.
    */
-   setDoneLoading : function(callback) {
+  setDoneLoading : function(callback) {
     FB.Canvas._passAppTtiMessage(callback, 'RecordIframeAppTti');
   },
 
@@ -3383,7 +3383,7 @@ FB.XD.Fragment.checkAndDispatch();
    * Which is the number of milliseconds between the moment the full canvas
    * page began executing and when you called the function.
    */
-   stopTimer : function(callback) {
+  stopTimer : function(callback) {
     FB.Canvas._passAppTtiMessage(callback, 'StopIframeAppTtiTimer');
   },
 
@@ -3415,10 +3415,10 @@ FB.XD.Fragment.checkAndDispatch();
    *
    * FB.Canvas.setUrlHandler(onUrl);
    */
-   setUrlHandler : function(callback) {
+  setUrlHandler : function(callback) {
     var channelUrl = FB.XD.handler(callback,
-     'top.frames[' + window.name + ']',
-     true);
+                                   'top.frames[' + window.name + ']',
+                                   true);
 
     FB.Arbiter.inform('setUrlHandler', channelUrl);
     FB.Event.listen(window, 'load', function() {
@@ -3431,7 +3431,7 @@ FB.XD.Fragment.checkAndDispatch();
    * periods of time that should not be measured, such as after a user clicks a
    * button.
    */
-   startTimer : function() {
+  startTimer : function() {
     FB.Canvas._passAppTtiMessage(null, 'StartIframeAppTtiTimer');
   },
 
@@ -3439,14 +3439,14 @@ FB.XD.Fragment.checkAndDispatch();
     var devCallback = null;
     if (callback) {
       devCallback = FB.XD.handler(callback,
-        'top.frames[' + window.name + ']', false);
+                                  'top.frames[' + window.name + ']', false);
     }
     FB.Arbiter.inform(message_name,
-      { frame: window.name || 'iframe_canvas',
-      time: (new Date()).getTime(),
-      appId: parseInt(FB._apiKey, 10),
-      channelUrl: devCallback
-    });
+                      { frame: window.name || 'iframe_canvas',
+                          time: (new Date()).getTime(),
+                          appId: parseInt(FB._apiKey, 10),
+                          channelUrl: devCallback
+                          });
   },
 
   /**
@@ -3491,16 +3491,16 @@ FB.XD.Fragment.checkAndDispatch();
    *
    * Patches and test cases are welcome.
    */
-   _computeContentSize: function() {
+  _computeContentSize: function() {
     var body = document.body,
-    docElement = document.documentElement,
-    right = 0,
-    bodyTop = Math.max(body.offsetTop, 0),
-    docTop = Math.max(docElement.offsetTop, 0),
-    bodyScroll = body.scrollHeight + bodyTop,
-    bodyOffset = body.offsetHeight + bodyTop,
-    docScroll = docElement.scrollHeight + docTop,
-    docOffset = docElement.offsetHeight + docTop;
+        docElement = document.documentElement,
+        right = 0,
+        bodyTop = Math.max(body.offsetTop, 0),
+        docTop = Math.max(docElement.offsetTop, 0),
+        bodyScroll = body.scrollHeight + bodyTop,
+        bodyOffset = body.offsetHeight + bodyTop,
+        docScroll = docElement.scrollHeight + docTop,
+        docOffset = docElement.offsetHeight + docTop;
     bottom = Math.max(bodyScroll, bodyOffset, docScroll, docOffset);
     if (body.offsetWidth < body.scrollWidth) {
       right = body.scrollWidth + body.offsetLeft;
@@ -3551,14 +3551,14 @@ FB.XD.Fragment.checkAndDispatch();
  * @static
  * @private
  */
- FB.provide('String', {
+FB.provide('String', {
   /**
    * Strip leading and trailing whitespace.
    *
    * @param s {String} the string to trim
    * @returns {String} the trimmed string
    */
-   trim: function(s) {
+  trim: function(s) {
     return s.replace(/^\s*|\s*$/g, '');
   },
 
@@ -3580,7 +3580,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @param arguments {...} placeholder arguments
    * @returns {String} the formatted string
    */
-   format: function(format) {
+  format: function(format) {
     if (!FB.String.format._formatRE) {
       FB.String.format._formatRE = /(\{[^\}^\{]+\})/g;
     }
@@ -3591,14 +3591,14 @@ FB.XD.Fragment.checkAndDispatch();
       FB.String.format._formatRE,
       function(str, m) {
         var
-        index = parseInt(m.substr(1), 10),
-        value = values[index + 1];
+          index = parseInt(m.substr(1), 10),
+          value = values[index + 1];
         if (value === null || value === undefined) {
           return '';
         }
         return value.toString();
       }
-      );
+    );
   },
 
   /**
@@ -3607,7 +3607,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @param value {String} string to escape
    * @return {String} the escaped string
    */
-   escapeHTML: function(value) {
+  escapeHTML: function(value) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(value));
     return div.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -3620,9 +3620,9 @@ FB.XD.Fragment.checkAndDispatch();
    * @param value {String} string to quote
    * @return {String} the quoted string
    */
-   quote: function(value) {
+  quote: function(value) {
     var
-    quotes = /["\\\x00-\x1f\x7f-\x9f]/g,
+      quotes = /["\\\x00-\x1f\x7f-\x9f]/g,
       subst = {    // table of character substitutions
         '\b': '\\b',
         '\t': '\\t',
@@ -3633,7 +3633,7 @@ FB.XD.Fragment.checkAndDispatch();
         '\\': '\\\\'
       };
 
-      return quotes.test(value) ?
+    return quotes.test(value) ?
       '"' + value.replace(quotes, function (a) {
         var c = subst[a];
         if (c) {
@@ -3643,8 +3643,8 @@ FB.XD.Fragment.checkAndDispatch();
         return '\\u00' + Math.floor(c/16).toString(16) + (c % 16).toString(16);
       }) + '"' :
       '"' + value + '"';
-    }
-  });
+  }
+});
 
 /**
  * Copyright Facebook Inc.
@@ -3677,7 +3677,7 @@ FB.XD.Fragment.checkAndDispatch();
  * @static
  * @private
  */
- FB.provide('Dom', {
+FB.provide('Dom', {
   /**
    * Check if the element contains a class name.
    *
@@ -3685,7 +3685,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @param className {String} the class name
    * @return {Boolean}
    */
-   containsCss: function(dom, className) {
+  containsCss: function(dom, className) {
     var cssClassWithSpace = ' ' + dom.className + ' ';
     return cssClassWithSpace.indexOf(' ' + className + ' ') >= 0;
   },
@@ -3696,7 +3696,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @param dom {DOMElement} the element
    * @param className {String} the class name
    */
-   addCss: function(dom, className) {
+  addCss: function(dom, className) {
     if (!FB.Dom.containsCss(dom, className)) {
       dom.className = dom.className + ' ' + className;
     }
@@ -3708,7 +3708,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @param dom {DOMElement} the element
    * @param className {String} the class name
    */
-   removeCss: function(dom, className) {
+  removeCss: function(dom, className) {
     if (FB.Dom.containsCss(dom, className)) {
       dom.className = dom.className.replace(className, '');
       FB.Dom.removeCss(dom, className); // in case of repetition
@@ -3726,16 +3726,16 @@ FB.XD.Fragment.checkAndDispatch();
    * @param {String} tagName (optional) Type of tag to look for, default "*"
    * @return {Array}
    */
-   getByClass: function(className, dom, tagName) {
+  getByClass: function(className, dom, tagName) {
     dom = dom || document.body;
     tagName = tagName || '*';
     if (dom.querySelectorAll) {
       return FB.Array.toArray(
         dom.querySelectorAll(tagName + '.' + className)
-        );
+      );
     }
     var all = dom.getElementsByTagName(tagName),
-    els = [];
+        els = [];
     for (var i = 0, len = all.length; i < len; i++) {
       if (this.containsCss(all[i], className)) {
         els[els.length] = all[i];
@@ -3753,37 +3753,37 @@ FB.XD.Fragment.checkAndDispatch();
    * @param dom {DOMElement} the element
    * @param styleProp {String} the property name
    */
-   getStyle: function (dom, styleProp) {
+  getStyle: function (dom, styleProp) {
     var y = false, s = dom.style;
     if (dom.currentStyle) { // camelCase (e.g. 'marginTop')
       FB.Array.forEach(styleProp.match(/\-([a-z])/g), function(match) {
         styleProp = styleProp.replace(match, match.substr(1,1).toUpperCase());
       });
-    y = dom.currentStyle[styleProp];
+      y = dom.currentStyle[styleProp];
     } else { // dashes (e.g. 'margin-top')
-    FB.Array.forEach(styleProp.match(/[A-Z]/g), function(match) {
-      styleProp = styleProp.replace(match, '-'+ match.toLowerCase());
-    });
-    if (window.getComputedStyle) {
-      y = document.defaultView
-      .getComputedStyle(dom,null).getPropertyValue(styleProp);
+      FB.Array.forEach(styleProp.match(/[A-Z]/g), function(match) {
+        styleProp = styleProp.replace(match, '-'+ match.toLowerCase());
+      });
+      if (window.getComputedStyle) {
+        y = document.defaultView
+         .getComputedStyle(dom,null).getPropertyValue(styleProp);
         // special handling for IE
         // for some reason it doesn't return '0%' for defaults. so needed to
         // translate 'top' and 'left' into '0px'
         if (styleProp == 'background-position-y' ||
-          styleProp == 'background-position-x') {
+            styleProp == 'background-position-x') {
           if (y == 'top' || y == 'left') { y = '0px'; }
+        }
       }
     }
-  }
-  if (styleProp == 'opacity') {
-    if (dom.filters && dom.filters.alpha) {
-      return y;
+    if (styleProp == 'opacity') {
+      if (dom.filters && dom.filters.alpha) {
+        return y;
+      }
+      return y * 100;
     }
-    return y * 100;
-  }
-  return y;
-},
+    return y;
+  },
 
   /**
    * Sets the style for the element to value
@@ -3795,7 +3795,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @param styleProp {String} the property name
    * @param value {String} the css value to set this property to
    */
-   setStyle: function(dom, styleProp, value) {
+  setStyle: function(dom, styleProp, value) {
     var s = dom.style;
     if (styleProp == 'opacity') {
       if (value >= 100) { value = 99.999; } // fix for Mozilla < 1.5b2
@@ -3806,19 +3806,19 @@ FB.XD.Fragment.checkAndDispatch();
       if (dom.filters) {
         if (dom.filters.alpha == undefined) {
          dom.filter = "alpha(opacity=" + value + ")";
-       } else {
-        dom.filters.alpha.opacity = value;
+        } else {
+          dom.filters.alpha.opacity = value;
+        }
       }
-    }
-  } else { s[styleProp] = value; }
-},
+    } else { s[styleProp] = value; }
+  },
 
   /**
    * Dynamically add a script tag.
    *
    * @param src {String} the url for the script
    */
-   addScript: function(src) {
+  addScript: function(src) {
     var script = document.createElement('script');
     script.type = "text/javascript";
     script.src = src;
@@ -3831,7 +3831,7 @@ FB.XD.Fragment.checkAndDispatch();
    * @param styles {String} the styles
    * @param names {Array} the component names that the styles represent
    */
-   addCssRules: function(styles, names) {
+  addCssRules: function(styles, names) {
     if (!FB.Dom._cssRules) {
       FB.Dom._cssRules = {};
     }
@@ -3851,15 +3851,15 @@ FB.XD.Fragment.checkAndDispatch();
     }
 
 //#JSCOVERAGE_IF
-if (!FB.UA.ie()) {
-  var style = document.createElement('style');
-  style.type = 'text/css';
-  style.textContent = styles;
-  document.getElementsByTagName('head')[0].appendChild(style);
-} else {
-  try {
-    document.createStyleSheet().cssText = styles;
-  } catch (exc) {
+    if (!FB.UA.ie()) {
+      var style = document.createElement('style');
+      style.type = 'text/css';
+      style.textContent = styles;
+      document.getElementsByTagName('head')[0].appendChild(style);
+    } else {
+      try {
+        document.createStyleSheet().cssText = styles;
+      } catch (exc) {
         // major problem on IE : You can only create 31 stylesheet objects with
         // this method. We will have to add the styles into an existing
         // stylesheet.
@@ -3875,11 +3875,11 @@ if (!FB.UA.ie()) {
    *
    * @returns {Object} with the width and height
    */
-   getViewportInfo: function() {
+  getViewportInfo: function() {
     // W3C compliant, or fallback to body
     var root = (document.documentElement && document.compatMode == 'CSS1Compat')
-    ? document.documentElement
-    : document.body;
+      ? document.documentElement
+      : document.body;
     return {
       scrollTop  : root.scrollTop,
       scrollLeft : root.scrollLeft,
@@ -3894,7 +3894,7 @@ if (!FB.UA.ie()) {
    *
    * @param {Function} the function to invoke when ready
    */
-   ready: function(fn) {
+  ready: function(fn) {
     if (FB.Dom._isReady) {
       fn && fn();
     } else {
@@ -3908,9 +3908,9 @@ if (!FB.UA.ie()) {
    * @param {DOMElement} the element
    * @return {Object} with properties x and y
    */
-   getPosition: function(node) {
+  getPosition: function(node) {
     var x = 0,
-    y = 0;
+        y = 0;
     do {
       x += node.offsetLeft;
       y += node.offsetTop;
@@ -3940,9 +3940,9 @@ if (!FB.UA.ie()) {
   if (document.addEventListener) {
     document.addEventListener('DOMContentLoaded', domReady, false);
   // Bad citizens.
-} else if (document.attachEvent) {
-  document.attachEvent('onreadystatechange', domReady);
-}
+  } else if (document.attachEvent) {
+    document.attachEvent('onreadystatechange', domReady);
+  }
 
   // Bad citizens.
   // If IE is used and page is not in a frame, continuously check to see if
@@ -4003,14 +4003,14 @@ if (!FB.UA.ie()) {
  * @static
  * @access private
  */
- FB.provide('Intl', (function() {
+FB.provide('Intl', (function() {
   /**
    * Regular expression snippet containing all the characters that we
    * count as sentence-final punctuation.
    */
-   var _punctCharClass = (
+  var _punctCharClass = (
     '[' +
-    '.!?' +
+      '.!?' +
       '\u3002' +  // Chinese/Japanese period
       '\uFF01' +  // Fullwidth exclamation point
       '\uFF1F' +  // Fullwidth question mark
@@ -4020,8 +4020,8 @@ if (!FB.UA.ie()) {
       '\u1801' +  // Mongolian ellipsis
       '\u0E2F' +  // Thai ellipsis
       '\uFF0E' +  // Fullwidth full stop
-      ']'
-      );
+    ']'
+  );
 
   /**
    * Checks whether a string ends in sentence-final punctuation. This logic is
@@ -4029,7 +4029,7 @@ if (!FB.UA.ie()) {
    * the fact that we consider a string like "foo." to end with a period even
    * though there's a quote mark afterward.
    */
-   function _endsInPunct(str) {
+  function _endsInPunct(str) {
     if (typeof str != 'string') {
       return false;
     }
@@ -4037,8 +4037,8 @@ if (!FB.UA.ie()) {
     return str.match(new RegExp(
       _punctCharClass +
       '[' +
-      ')"' +
-"'" +
+        ')"' +
+        "'" +
         // JavaScript doesn't support Unicode character
         // properties in regexes, so we have to list
         // all of these individually. This is an
@@ -4068,9 +4068,9 @@ if (!FB.UA.ie()) {
         '\uFF09' +  // Fullwidth right parenthesis
         '\uFF3D' +  // Fullwidth right square bracket
         '\s' +
-        ']*$'
-        ));
-}
+      ']*$'
+    ));
+  }
 
   /**
    * i18n string formatting
@@ -4078,7 +4078,7 @@ if (!FB.UA.ie()) {
    * @param str {String} the string id
    * @param args {Object} the replacement tokens
    */
-   function _substituteTokens(str, args) {
+  function _substituteTokens(str, args) {
     // Does the token substitution for tx() but without the string lookup.
     // Used for in-place substitutions in translation mode.
     if (args !== undefined) {
@@ -4086,7 +4086,7 @@ if (!FB.UA.ie()) {
         FB.log(
           'The second arg to FB.Intl.tx() must be an Object for ' +
           'FB.Intl.tx(' + str + ', ...)'
-          );
+        );
       } else {
         var regexp;
         for (var key in args) {
@@ -4098,8 +4098,8 @@ if (!FB.UA.ie()) {
               // Replace both the token and the sentence-final punctuation
               // after it, if any.
               regexp = new RegExp('\{' + key + '\}' +
-                _punctCharClass + '*',
-                'g');
+                                    _punctCharClass + '*',
+                                  'g');
             } else {
               regexp = new RegExp('\{' + key + '\}', 'g');
             }
@@ -4118,7 +4118,7 @@ if (!FB.UA.ie()) {
    * @param str {String} the string id
    * @param args {Object} the replacement tokens
    */
-   function tx(str, args) {
+  function tx(str, args) {
     // Fail silently if the string table isn't defined. This behaviour is used
     // when a developer chooses the host the library themselves, rather than
     // using the one served from facebook.
@@ -4173,7 +4173,7 @@ if (!FB.UA.ie()) {
  * @class FB
  * @static
  */
- FB.provide('', {
+FB.provide('', {
   /**
    * Bind a function to a given context and arguments.
    *
@@ -4184,16 +4184,16 @@ if (!FB.UA.ie()) {
    * @param {...} arguments additional arguments to be bound to the function
    * @returns {Function} the bound function
    */
-   bind: function() {
+  bind: function() {
     var
-    args    = Array.prototype.slice.call(arguments),
-    fn      = args.shift(),
-    context = args.shift();
+      args    = Array.prototype.slice.call(arguments),
+      fn      = args.shift(),
+      context = args.shift();
     return function() {
       return fn.apply(
         context,
         args.concat(Array.prototype.slice.call(arguments))
-        );
+      );
     };
   },
 
@@ -4208,7 +4208,7 @@ if (!FB.UA.ie()) {
    * @param constructor {function} class constructor
    * @param proto {object} instance methods for class
    */
-   Class: function(name, constructor, proto) {
+  Class: function(name, constructor, proto) {
     if (FB.CLASSES[name]) {
       return FB.CLASSES[name];
     }
@@ -4239,7 +4239,7 @@ if (!FB.UA.ie()) {
    * @param {function} constructor class constructor
    * @param {object} proto instance methods for class
    */
-   subclass: function(name, baseName, constructor, proto) {
+  subclass: function(name, baseName, constructor, proto) {
     if (FB.CLASSES[name]) {
       return FB.CLASSES[name];
     }
@@ -4259,7 +4259,7 @@ if (!FB.UA.ie()) {
         }
       },
       proto
-      );
+    );
   },
 
   CLASSES: {}
@@ -4270,7 +4270,7 @@ if (!FB.UA.ie()) {
  * @static
  * @private
  */
- FB.provide('Type', {
+FB.provide('Type', {
   isType: function(obj, type) {
     while (obj) {
       if (obj.constructor === type || obj === type) {
@@ -4310,7 +4310,7 @@ if (!FB.UA.ie()) {
  * @class FB.Obj
  * @private
  */
- FB.Class('Obj', null,
+FB.Class('Obj', null,
   FB.copy({
     /**
      * Set property on an object and fire property changed event if changed.
@@ -4327,8 +4327,8 @@ if (!FB.UA.ie()) {
          this.fire(name, value);
        }
      }
-   }, FB.EventProvider)
-  );
+  }, FB.EventProvider)
+);
 
 /**
  * @provides fb.dialog
@@ -4378,14 +4378,14 @@ if (!FB.UA.ie()) {
  * @class FB.Dialog
  * @public
  */
- FB.subclass(
+FB.subclass(
   'Dialog',
   'Obj',
   /**
    * constructor
    * @param id
    */
-   function(id) {
+  function(id) {
     this.id = id;
     if (!FB.Dialog._dialogs) {
       FB.Dialog._dialogs = {};
@@ -4397,14 +4397,14 @@ if (!FB.UA.ie()) {
   // Members
   {
   }
-  );
+);
 
- FB.provide('Dialog', {
+FB.provide('Dialog', {
   /**
    *
    */
-   _dialogs: null,
-   _lastYOffset: 0,
+  _dialogs: null,
+  _lastYOffset: 0,
 
   /**
    * The loader element.
@@ -4412,7 +4412,7 @@ if (!FB.UA.ie()) {
    * @access private
    * @type DOMElement
    */
-   _loaderEl: null,
+  _loaderEl: null,
 
   /**
    * A la Snowbox overlay underneath the dialog on iPad.
@@ -4420,7 +4420,7 @@ if (!FB.UA.ie()) {
    * @access private
    * @type DOMElement
    */
-   _overlayEl: null,
+  _overlayEl: null,
 
   /**
    * The stack of active dialogs.
@@ -4428,7 +4428,7 @@ if (!FB.UA.ie()) {
    * @access private
    * @type Array
    */
-   _stack: [],
+  _stack: [],
 
   /**
    * The currently visible dialog.
@@ -4436,7 +4436,7 @@ if (!FB.UA.ie()) {
    * @access private
    * @type DOMElement
    */
-   _active: null,
+  _active: null,
 
   /**
    * The state of the popstate listener. Prevents multiple listeners from
@@ -4445,14 +4445,14 @@ if (!FB.UA.ie()) {
    * @access private
    * @type bool
    */
-   _popStateListenerOn: false,
+  _popStateListenerOn: false,
 
   /**
    * Hides open dialog on popstate event
    *
    * @access private
    */
-   _hideOnPopState: function(e) {
+  _hideOnPopState: function(e) {
     FB.Dialog.hide(FB.Dialog._stack.pop());
   },
 
@@ -4462,7 +4462,7 @@ if (!FB.UA.ie()) {
    * @param id {string} dialog id
    * @return {Dialog} a dialog object
    */
-   get: function(id) {
+  get: function(id) {
     return FB.Dialog._dialogs[id];
   },
 
@@ -4476,7 +4476,7 @@ if (!FB.UA.ie()) {
    * @param node {DOMElement} a child node of the dialog
    * @return {DOMElement} the root dialog element if found
    */
-   _findRoot: function(node) {
+  _findRoot: function(node) {
     while (node) {
       if (FB.Dom.containsCss(node, 'fb_dialog')) {
         return node;
@@ -4490,15 +4490,15 @@ if (!FB.UA.ie()) {
     width = width ? width : 460;
     return FB.Dialog.create({
       content: (
-        '<div class="dialog_title">' +
-        '  <a id="fb_dialog_loader_close">' +
-        '    <div class="fb_dialog_close_icon"></div>' +
-        '  </a>' +
-        '  <span>Facebook</span>' +
-        '  <div style="clear:both;"></div>' +
-        '</div>' +
-        '<div class="dialog_content"></div>' +
-        '<div class="dialog_footer"></div>'),
+      '<div class="dialog_title">' +
+      '  <a id="fb_dialog_loader_close">' +
+      '    <div class="fb_dialog_close_icon"></div>' +
+      '  </a>' +
+      '  <span>Facebook</span>' +
+      '  <div style="clear:both;"></div>' +
+      '</div>' +
+      '<div class="dialog_content"></div>' +
+      '<div class="dialog_footer"></div>'),
       width: width
     });
   },
@@ -4510,14 +4510,14 @@ if (!FB.UA.ie()) {
     // Copied from e.g. facebook.com/dialog/feed as rendered
     // for a mobile user agent.
     var chrome = FB.UA.nativeApp() ?
-    '' :
-    ('<table>' +
+      '' :
+      ('<table>' +
       '  <tbody>' +
       '    <tr>' +
       '      <td class="header_left">' +
       '        <label class="touchable_button">' +
       '          <input type="submit" value="' +
-      FB.Intl.tx._("Cancel") + '"' +
+                   FB.Intl.tx._("Cancel") + '"' +
       '            id="fb_dialog_loader_close"/>' +
       '        </label>' +
       '      </td>' +
@@ -4534,7 +4534,7 @@ if (!FB.UA.ie()) {
       classes: 'loading' + (FB.UA.iPad() ? ' centered' : ''),
       content: (
         '<div class="dialog_header">' +
-        chrome +
+          chrome +
         '</div>')
     });
   },
@@ -4571,7 +4571,7 @@ if (!FB.UA.ie()) {
    *
    * @param cb {Function} optional callback for the "X" action
    */
-   showLoader: function(cb, width) {
+  showLoader: function(cb, width) {
     FB.Dialog._showIPadOverlay();
 
     if (!FB.Dialog._loaderEl) {
@@ -4609,7 +4609,7 @@ if (!FB.UA.ie()) {
    *
    * @access private
    */
-   _hideLoader: function() {
+  _hideLoader: function() {
     if (FB.Dialog._loaderEl && FB.Dialog._loaderEl == FB.Dialog._active) {
       FB.Dialog._loaderEl.style.top = '-10000px';
     }
@@ -4622,7 +4622,7 @@ if (!FB.UA.ie()) {
    * @access private
    * @param el {DOMElement} the dialog node
    */
-   _makeActive: function(el) {
+  _makeActive: function(el) {
     FB.Dialog._setDialogSizes();
     FB.Dialog._lowerActive();
     FB.Dialog._active = el;
@@ -4642,7 +4642,7 @@ if (!FB.UA.ie()) {
    * @access private
    * @param node {DOMElement} the dialog node
    */
-   _lowerActive: function() {
+  _lowerActive: function() {
     if (!FB.Dialog._active) {
       return;
     }
@@ -4656,7 +4656,7 @@ if (!FB.UA.ie()) {
    * @access private
    * @param node {DOMElement} the dialog node
    */
-   _removeStacked: function(dialog) {
+  _removeStacked: function(dialog) {
     FB.Dialog._stack = FB.Array.filter(FB.Dialog._stack, function(node) {
       return node != dialog;
     });
@@ -4667,7 +4667,7 @@ if (!FB.UA.ie()) {
    *
    * @access private
    */
-   _centerActive: function(pageInfo) {
+  _centerActive: function(pageInfo) {
     var dialog = FB.Dialog._active;
     if (!dialog) {
       return;
@@ -4695,7 +4695,7 @@ if (!FB.UA.ie()) {
     var top = (view.height - height) / 2;
     if (pageInfo) {
       top = pageInfo.scrollTop - pageInfo.offsetTop +
-      (pageInfo.clientHeight - height) / 2;
+        (pageInfo.clientHeight - height) / 2;
     }
 
     // clamp to min and max
@@ -4769,7 +4769,7 @@ if (!FB.UA.ie()) {
   /**
    * This adapt the position and orientation of the dialogs.
    */
-   _handleOrientationChange: function(e) {
+  _handleOrientationChange: function(e) {
     // Normally on Android, screen.availWidth/availHeight/width/height reflect
     // values corresponding to the current orientation. In other words,
     // width/height changes depending on orientation. However,
@@ -4793,7 +4793,7 @@ if (!FB.UA.ie()) {
         // Resize the width of any iframes still on the page
         if (document.getElementById(id)) {
           document.getElementById(id).style.width =
-          FB.UIServer.getDefaultSize().width + 'px';
+            FB.UIServer.getDefaultSize().width + 'px';
         }
       }
     }
@@ -4802,7 +4802,7 @@ if (!FB.UA.ie()) {
   /**
    * Add some logic to fire on orientation change.
    */
-   _addOrientationHandler: function() {
+  _addOrientationHandler: function() {
     if (!FB.UA.mobile()) {
       return;
     }
@@ -4810,8 +4810,8 @@ if (!FB.UA.ie()) {
     // while other Android devices fire resize. Still other Android devices
     // seem to fire neither.
     var event_name = "onorientationchange" in window ?
-    'orientationchange' :
-    'resize';
+      'orientationchange' :
+      'resize';
 
     FB.Dialog._availScreenWidth = screen.availWidth;
     FB.Event.listen(window, event_name, FB.Dialog._handleOrientationChange);
@@ -4835,13 +4835,13 @@ if (!FB.UA.ie()) {
    *
    * @return {DOMElement} the dialog content root
    */
-   create: function(opts) {
+  create: function(opts) {
     opts = opts || {};
 
     var
-    dialog      = document.createElement('div'),
-    contentRoot = document.createElement('div'),
-    className   = 'fb_dialog';
+      dialog      = document.createElement('div'),
+      contentRoot = document.createElement('div'),
+      className   = 'fb_dialog';
 
     // optional close icon
     if (opts.closeIcon && opts.onClose) {
@@ -4855,56 +4855,56 @@ if (!FB.UA.ie()) {
 
     // handle rounded corners j0nx
 //#JSCOVERAGE_IF
-if (FB.UA.ie()) {
-  className += ' fb_dialog_legacy';
-  FB.Array.forEach(
-    [
-    'vert_left',
-    'vert_right',
-    'horiz_top',
-    'horiz_bottom',
-    'top_left',
-    'top_right',
-    'bottom_left',
-    'bottom_right'
-    ],
-    function(name) {
-      var span = document.createElement('span');
-      span.className = 'fb_dialog_' + name;
-      dialog.appendChild(span);
+    if (FB.UA.ie()) {
+      className += ' fb_dialog_legacy';
+      FB.Array.forEach(
+        [
+          'vert_left',
+          'vert_right',
+          'horiz_top',
+          'horiz_bottom',
+          'top_left',
+          'top_right',
+          'bottom_left',
+          'bottom_right'
+        ],
+        function(name) {
+          var span = document.createElement('span');
+          span.className = 'fb_dialog_' + name;
+          dialog.appendChild(span);
+        }
+      );
+    } else {
+      className += (FB.UA.mobile())
+        ? ' fb_dialog_mobile'
+        : ' fb_dialog_advanced';
     }
-    );
-} else {
-  className += (FB.UA.mobile())
-  ? ' fb_dialog_mobile'
-  : ' fb_dialog_advanced';
-}
 
-if (opts.content) {
-  FB.Content.append(opts.content, contentRoot);
-}
-dialog.className = className;
-var width = parseInt(opts.width, 10);
-if (!isNaN(width)) {
-  dialog.style.width = width + 'px';
-}
-contentRoot.className = 'fb_dialog_content';
+    if (opts.content) {
+      FB.Content.append(opts.content, contentRoot);
+    }
+    dialog.className = className;
+    var width = parseInt(opts.width, 10);
+    if (!isNaN(width)) {
+      dialog.style.width = width + 'px';
+    }
+    contentRoot.className = 'fb_dialog_content';
 
-dialog.appendChild(contentRoot);
-if (FB.UA.mobile()) {
-  var padding = document.createElement('div');
-  padding.className = 'fb_dialog_padding';
-  dialog.appendChild(padding);
-}
+    dialog.appendChild(contentRoot);
+    if (FB.UA.mobile()) {
+      var padding = document.createElement('div');
+      padding.className = 'fb_dialog_padding';
+      dialog.appendChild(padding);
+    }
 
-FB.Content.append(dialog);
+    FB.Content.append(dialog);
 
-if (opts.visible) {
-  FB.Dialog.show(dialog);
-}
+    if (opts.visible) {
+      FB.Dialog.show(dialog);
+    }
 
-return contentRoot;
-},
+    return contentRoot;
+  },
 
   /**
    * Raises the given iframe dialog. Any active dialogs are automatically
@@ -4915,7 +4915,7 @@ return contentRoot;
    * @access protected
    * @param dialog {DOMElement} a child element of the dialog
    */
-   show: function(dialog) {
+  show: function(dialog) {
     var root = FB.Dialog._findRoot(dialog);
     if (root) {
       FB.Dialog._removeStacked(root);
@@ -4939,7 +4939,7 @@ return contentRoot;
    * @access protected
    * @param dialog {DOMElement} a child element of the dialog
    */
-   hide: function(dialog) {
+  hide: function(dialog) {
     var root = FB.Dialog._findRoot(dialog);
     if (root == FB.Dialog._active) {
       FB.Dialog._lowerActive();
@@ -4961,7 +4961,7 @@ return contentRoot;
    * @access protected
    * @param dialog {DOMElement} a child element of the dialog
    */
-   remove: function(dialog) {
+  remove: function(dialog) {
     dialog = FB.Dialog._findRoot(dialog);
     if (dialog) {
       var is_active = FB.Dialog._active == dialog;
@@ -4997,7 +4997,7 @@ return contentRoot;
    * @access public
    * @param dialog {DOMElement} a child element of the dialog
    */
-   isActive: function(node) {
+  isActive: function(node) {
     var root = FB.Dialog._findRoot(node);
     return root && root === FB.Dialog._active;
   }
@@ -5038,7 +5038,7 @@ return contentRoot;
  * @static
  * @access private
  */
- FB.provide('', {
+FB.provide('', {
   /**
    * Method for triggering UI interaction with Facebook as iframe dialogs or
    * popups, like publishing to the stream, sharing links.
@@ -5095,7 +5095,7 @@ return contentRoot;
    * @param cb {Function} Optional callback function to handle the result. Not
    * all methods may have a response.
    */
-   ui: function(params, cb) {
+  ui: function(params, cb) {
     params = FB.copy({}, params);
     if (!params.method) {
       FB.log('"method" is a required parameter for FB.ui().');
@@ -5106,43 +5106,44 @@ return contentRoot;
     // If the nativeInterface arg is specified then call out to the nativeInterface 
     // which uses the native app rather than using the iframe / popup web
     if (FB._nativeInterface) {
-      switch (params.method) {
-        case 'auth.login':
-        FB._nativeInterface.login(params, cb, function(e) {alert('Cordova Facebook Connect plugin fail on auth.login!' + e);});
-        break;
-        case 'permissions.request':
-        FB._nativeInterface.login(params, cb, function(e) {alert('Cordova Facebook Connect plugin fail on permissions.request!' + e);});
-        break;
-        case 'permissions.oauth':
-        FB._nativeInterface.login(params, cb, function(e) {alert('Cordova Facebook Connect plugin fail on permissions.oauth!' + e);});
-        break;
-        case 'auth.logout':
-        FB._nativeInterface.logout(cb, function(e) {alert('Cordova Facebook Connect plugin fail on auth.logout!');});
-        break;
-        case 'auth.status':
-        FB._nativeInterface.getLoginStatus(cb, function(e) {alert('Cordova Facebook Connect plugin fail on auth.status!');});
-        break;
-        case 'login.status':
-        FB._nativeInterface.getLoginStatus(cb, function(e) {alert('Cordova Facebook Connect plugin fail on login.status!');});
-        break;
-        case 'feed':
-        FB._nativeInterface.dialog(params, cb, function(e) {alert('Cordova Facebook Connect plugin fail on feed!');});
-        break;
-        case 'apprequests':
-        FB._nativeInterface.dialog(params, cb, function(e) {alert('Cordova Facebook Connect plugin fail on apprequests!');});
-        break;
-      }
-      return;
+        var alertTitle = 'Something Went Wrong\n\n';
+        switch (params.method) {
+            case 'auth.login':
+                FB._nativeInterface.login(params, cb, function(e) {alert(alertTitle + e);});
+                break;
+            case 'permissions.request':
+                FB._nativeInterface.login(params, cb, function(e) {alert(alertTitle + e);});
+                break;
+            case 'permissions.oauth':
+                FB._nativeInterface.login(params, cb, function(e) {alert(alertTitle + e);});
+                break;
+            case 'auth.logout':
+                FB._nativeInterface.logout(cb, function(e) {alert(alertTitle + e);});
+                break;
+            case 'auth.status':
+                FB._nativeInterface.getLoginStatus(cb, function(e) {alert(alertTitle + e);});
+                break;
+            case 'login.status':
+                FB._nativeInterface.getLoginStatus(cb, function(e) {alert(alertTitle + e);});
+                break;
+            case 'feed':
+                FB._nativeInterface.dialog(params, cb, function(e) {alert(alertTitle + e);});
+                break;
+            case 'apprequests':
+                FB._nativeInterface.dialog(params, cb, function(e) {alert(alertTitle + e);});
+            break;
+        }
+        return;
     }
     
     // process popup-only permissions
     if ((params.method == 'permissions.request' ||
-     params.method == 'permissions.oauth') &&
-      (params.display == 'iframe' || params.display == 'dialog')) {
+         params.method == 'permissions.oauth') &&
+        (params.display == 'iframe' || params.display == 'dialog')) {
       var perms;
-    var requested_perms;
-    perms = params.scope;
-    requested_perms = perms.split(/\s|,/g);
+      var requested_perms;
+      perms = params.scope;
+      requested_perms = perms.split(/\s|,/g);
       // OAuth2 spec says scope should be space delimited, but
       // we previously accepted comma delimited strings.  We'll accept both.
       for (var i = 0; i < requested_perms.length; i++) {
@@ -5167,23 +5168,23 @@ return contentRoot;
     var displayName = call.params.display;
     if (displayName === 'dialog') { // TODO remove once all dialogs are on
                                    // uiserver
-                                   displayName = 'iframe';
-                                 } else if (displayName === 'none') {
-                                  displayName = 'hidden';
-                                }
+      displayName = 'iframe';
+    } else if (displayName === 'none') {
+      displayName = 'hidden';
+    }
 
-                                var displayFn = FB.UIServer[displayName];
-                                if (!displayFn) {
-                                  FB.log('"display" must be one of "popup", ' +
-                                   '"dialog", "iframe", "touch", "async", "hidden", or "none"');
-                                  return null;
-                                }
+    var displayFn = FB.UIServer[displayName];
+    if (!displayFn) {
+      FB.log('"display" must be one of "popup", ' +
+             '"dialog", "iframe", "touch", "async", "hidden", or "none"');
+      return null;
+    }
 
-                                displayFn(call);
+    displayFn(call);
 
-                                return call.dialog;
-                              }
-                            });
+    return call.dialog;
+  }
+});
 
 /**
  * Internal UI functions.
@@ -5192,11 +5193,11 @@ return contentRoot;
  * @static
  * @access private
  */
- FB.provide('UIServer', {
+FB.provide('UIServer', {
   /**
    * UI Methods will be defined in this namespace.
    */
-   Methods: {},
+  Methods: {},
   // Child iframes or popup windows.
   _loadedNodes   : {},
   _defaultCb     : {},
@@ -5211,18 +5212,18 @@ return contentRoot;
    * 1) display=dialog -> display=iframe. Most of the old Connect stuff uses
    *    dialog, but UI Server uses iframe.
    * 2) Renaming of channel_url parameter to channel.
-*/
-genericTransform: function(call) {
-  if (call.params.display == 'dialog' || call.params.display == 'iframe') {
-    call.params.display = 'iframe';
-    call.params.channel = FB.UIServer._xdChannelHandler(
-      call.id,
-      'parent.parent'
+   */
+  genericTransform: function(call) {
+    if (call.params.display == 'dialog' || call.params.display == 'iframe') {
+      call.params.display = 'iframe';
+      call.params.channel = FB.UIServer._xdChannelHandler(
+        call.id,
+        'parent.parent'
       );
-  }
+    }
 
-  return call;
-},
+    return call;
+  },
 
   /**
    * Prepares a generic UI call. Some regular API call also go through
@@ -5233,17 +5234,17 @@ genericTransform: function(call) {
    * @param cb {Function} the response callback
    * @returns {Object} the call data
    */
-   prepareCall: function(params, cb) {
+  prepareCall: function(params, cb) {
     var
-    name   = params.method.toLowerCase(),
-    method = FB.copy({}, FB.UIServer.Methods[name]),
-    id     = FB.guid(),
+      name   = params.method.toLowerCase(),
+      method = FB.copy({}, FB.UIServer.Methods[name]),
+      id     = FB.guid(),
       // TODO(naitik) don't want to force login status over HTTPS just yet. all
       // other UI Server interactions will be forced over HTTPS,
       // Methods can choose to not use https by setting noHttps=true
       forceHTTPS = (method.noHttps !== true) &&
-      (FB._https ||
-        (name !== 'auth.status' && name != 'login.status'));
+                   (FB._https ||
+                    (name !== 'auth.status' && name != 'login.status'));
       FB.UIServer._forceHTTPS = forceHTTPS;
 
     // default stuff
@@ -5276,8 +5277,8 @@ genericTransform: function(call) {
 
     // optional method transform
     var transform = method.transform
-    ? method.transform
-    : FB.UIServer.genericTransform;
+      ? method.transform
+      : FB.UIServer.genericTransform;
     if (transform) {
       call = transform(call);
 
@@ -5292,21 +5293,21 @@ genericTransform: function(call) {
     var getXdRelationFn = method.getXdRelation || FB.UIServer.getXdRelation;
     var relation = getXdRelationFn(call.params);
     if (!(call.id in FB.UIServer._defaultCb) &&
-      !('next' in call.params) &&
-      !('redirect_uri' in call.params)) {
+        !('next' in call.params) &&
+        !('redirect_uri' in call.params)) {
       call.params.next = FB.UIServer._xdResult(
         call.cb,
         call.id,
         relation,
         true // isDefault
-        );
-  }
-  if (relation === 'parent') {
-    call.params.channel_url = FB.UIServer._xdChannelHandler(
-      id,
-      'parent.parent'
       );
-  }
+    }
+    if (relation === 'parent') {
+      call.params.channel_url = FB.UIServer._xdChannelHandler(
+        id,
+        'parent.parent'
+      );
+    }
 
     // Encode the params as a query string or in the fragment
     call = FB.UIServer.prepareParams(call);
@@ -5338,20 +5339,20 @@ genericTransform: function(call) {
       // To overcome the QS length limitation on some browsers
       // (the fb native app is an exception because it doesn't
       // doesn't support POST for dialogs).
-if (!FB.UA.nativeApp() &&
-  FB.UIServer.urlTooLongForIE(call.url + '?' + encodedQS)) {
-  call.post = true;
-} else if (encodedQS) {
-  call.url += '?' + encodedQS;
-}
-}
+      if (!FB.UA.nativeApp() &&
+          FB.UIServer.urlTooLongForIE(call.url + '?' + encodedQS)) {
+        call.post = true;
+      } else if (encodedQS) {
+        call.url += '?' + encodedQS;
+      }
+    }
 
-return call;
-},
+    return call;
+  },
 
-urlTooLongForIE: function(fullURL) {
-  return fullURL.length > 2000;
-},
+  urlTooLongForIE: function(fullURL) {
+    return fullURL.length > 2000;
+  },
 
   /**
    * Determine the display mode for the call.
@@ -5360,16 +5361,16 @@ urlTooLongForIE: function(fullURL) {
    * @param params {Object} the developer supplied parameters
    * @return {String} the display mode
    */
-   getDisplayMode: function(method, params) {
+  getDisplayMode: function(method, params) {
     if (params.display === 'hidden' ||
-      params.display === 'none') {
+        params.display === 'none') {
       return params.display;
-  }
+    }
 
-  if (FB.Canvas.isTabIframe() &&
-    params.display !== 'popup') {
-    return 'async';
-}
+    if (FB.Canvas.isTabIframe() &&
+        params.display !== 'popup') {
+      return 'async';
+    }
 
     // For mobile, we should use touch display mode
     if (FB.UA.mobile() || params.display === 'touch') {
@@ -5378,15 +5379,15 @@ urlTooLongForIE: function(fullURL) {
 
     // cannot use an iframe "dialog" if an access token is not available
     if (!FB.getAccessToken() &&
-      params.display == 'dialog' &&
-      !method.loggedOutIframe) {
+        params.display == 'dialog' &&
+        !method.loggedOutIframe) {
       FB.log('"dialog" mode can only be used when the user is connected.');
-    return 'popup';
-  }
+      return 'popup';
+    }
 
-  if (method.connectDisplay && !FB._inCanvas) {
-    return method.connectDisplay;
-  }
+    if (method.connectDisplay && !FB._inCanvas) {
+      return method.connectDisplay;
+    }
 
     // TODO change "dialog" to "iframe" once moved to uiserver
     return params.display || (FB.getAccessToken() ? 'dialog' : 'popup');
@@ -5398,19 +5399,19 @@ urlTooLongForIE: function(fullURL) {
    * @param params {Object} the call params
    * @return {String} the relation string
    */
-   getXdRelation: function(params) {
+  getXdRelation: function(params) {
     var display = params.display;
     if (display === 'popup' || display === 'touch') {
       return 'opener';
     }
     if (display === 'dialog' || display === 'iframe' ||
-      display === 'hidden' || display === 'none') {
+        display === 'hidden' || display === 'none') {
       return 'parent';
-  }
-  if (display === 'async') {
-    return 'parent.frames[' + window.name + ']';
-  }
-},
+    }
+    if (display === 'async') {
+      return 'parent.frames[' + window.name + ']';
+    }
+  },
 
   /**
    * Open a popup window with the given url and dimensions and place it at the
@@ -5419,20 +5420,20 @@ urlTooLongForIE: function(fullURL) {
    * @access private
    * @param call {Object} the call data
    */
-   popup: function(call) {
+  popup: function(call) {
     // we try to place it at the center of the current window
     var
-    _screenX   = typeof window.screenX      != 'undefined'
-    ? window.screenX
-    : window.screenLeft,
-    screenY    = typeof window.screenY      != 'undefined'
-    ? window.screenY
-    : window.screenTop,
-    outerWidth = typeof window.outerWidth   != 'undefined'
-    ? window.outerWidth
-    : document.documentElement.clientWidth,
-    outerHeight = typeof window.outerHeight != 'undefined'
-    ? window.outerHeight
+      _screenX   = typeof window.screenX      != 'undefined'
+        ? window.screenX
+        : window.screenLeft,
+      screenY    = typeof window.screenY      != 'undefined'
+        ? window.screenY
+        : window.screenTop,
+      outerWidth = typeof window.outerWidth   != 'undefined'
+        ? window.outerWidth
+        : document.documentElement.clientWidth,
+      outerHeight = typeof window.outerHeight != 'undefined'
+        ? window.outerHeight
         : (document.documentElement.clientHeight - 22), // 22= IE toolbar height
 
       // Mobile popups should never specify width/height features since it
@@ -5444,18 +5445,18 @@ urlTooLongForIE: function(fullURL) {
       top      = parseInt(screenY + ((outerHeight - height) / 2.5), 10),
       features = [];
 
-      if (width !== null) {
-        features.push('width=' + width);
-      }
-      if (height !== null) {
-        features.push('height=' + height);
-      }
-      features.push('left=' + left);
-      features.push('top=' + top);
-      features.push('scrollbars=1');
-      if (call.name == 'permissions.request' ||
+    if (width !== null) {
+      features.push('width=' + width);
+    }
+    if (height !== null) {
+      features.push('height=' + height);
+    }
+    features.push('left=' + left);
+    features.push('top=' + top);
+    features.push('scrollbars=1');
+    if (call.name == 'permissions.request' ||
         call.name == 'permissions.oauth') {
-        features.push('location=1,toolbar=0');
+      features.push('location=1,toolbar=0');
     }
     features = features.join(',');
 
@@ -5496,7 +5497,7 @@ urlTooLongForIE: function(fullURL) {
 
   getLoadedNode: function(call) {
     var id = typeof call == 'object' ? call.id : call,
-    node = FB.UIServer._loadedNodes[id];
+        node = FB.UIServer._loadedNodes[id];
     return node ? node.node : null;
   },
 
@@ -5506,7 +5507,7 @@ urlTooLongForIE: function(fullURL) {
    * @access private
    * @param call {Object} the call data
    */
-   hidden: function(call) {
+  hidden: function(call) {
     call.className = 'FB_UI_Hidden';
     call.root = FB.Content.appendHidden('');
     FB.UIServer._insertIframe(call);
@@ -5518,7 +5519,7 @@ urlTooLongForIE: function(fullURL) {
    * @access private
    * @param call {Object} the call data
    */
-   iframe: function(call) {
+  iframe: function(call) {
     call.className = 'FB_UI_Dialog';
     var onClose = function() {
       FB.UIServer._triggerDefault(call.id);
@@ -5542,7 +5543,7 @@ urlTooLongForIE: function(fullURL) {
    * @access private
    * @param call {Object} the call data
    */
-   touch: function(call) {
+  touch: function(call) {
     if (call.params && call.params.in_iframe) {
       // Cached dialog was already created. Still show loader while it runs
       // JS to adapt its content to the FB.ui params.
@@ -5582,7 +5583,7 @@ urlTooLongForIE: function(fullURL) {
    * @access private
    * @param call {Object} the call data
    */
-   async: function(call) {
+  async: function(call) {
     call.frame = window.name;
     delete call.url;
     delete call.size;
@@ -5621,7 +5622,7 @@ urlTooLongForIE: function(fullURL) {
         return {
           width: width,
           height: Math.max(height,
-           (isLandscape ? screen.width : screen.height))
+                         (isLandscape ? screen.width : screen.height))
         };
       }
     }
@@ -5634,7 +5635,7 @@ urlTooLongForIE: function(fullURL) {
    * @access private
    * @param call {Object} the call data
    */
-   _insertIframe: function(call) {
+  _insertIframe: function(call) {
     // the dialog may be cancelled even before we have a valid iframe node
     // giving us a race condition. if this happens, the call.id will be removed
     // from the _frames nodes, and we won't add the node back in.
@@ -5683,7 +5684,7 @@ urlTooLongForIE: function(fullURL) {
    *
    * @access private
    */
-   _handleResizeMessage: function(frame, data) {
+  _handleResizeMessage: function(frame, data) {
     var node = FB.UIServer.getLoadedNode(frame);
     if (!node) {
       return;
@@ -5712,11 +5713,11 @@ urlTooLongForIE: function(fullURL) {
    *
    * @param id {String} the call id
    */
-   _triggerDefault: function(id) {
+  _triggerDefault: function(id) {
     FB.UIServer._xdRecv(
       { frame: id },
       FB.UIServer._defaultCb[id] || function() {}
-      );
+    );
   },
 
   /**
@@ -5726,20 +5727,20 @@ urlTooLongForIE: function(fullURL) {
    *
    * @access private
    */
-   _popupMonitor: function() {
+  _popupMonitor: function() {
     // check all open windows
     var found;
     for (var id in FB.UIServer._loadedNodes) {
       // ignore prototype properties, and ones without a default callback
       if (FB.UIServer._loadedNodes.hasOwnProperty(id) &&
-        id in FB.UIServer._defaultCb) {
+          id in FB.UIServer._defaultCb) {
         var node = FB.UIServer._loadedNodes[id];
-      if (node.type != 'popup') {
-        continue;
-      }
-      win = node.node;
+        if (node.type != 'popup') {
+          continue;
+        }
+        win = node.node;
 
-      try {
+        try {
           // found a closed window
           if (win.closed) {
             FB.UIServer._triggerDefault(id);
@@ -5757,7 +5758,7 @@ urlTooLongForIE: function(fullURL) {
       FB.UIServer._popupInterval = window.setInterval(
         FB.UIServer._popupMonitor,
         100
-        );
+      );
     } else if (!found && FB.UIServer._popupInterval) {
       // shutdown if we have nothing to monitor but it's running
       window.clearInterval(FB.UIServer._popupInterval);
@@ -5774,7 +5775,7 @@ urlTooLongForIE: function(fullURL) {
    * @param relation {String} the frame relation
    * @return {String} the handler url
    */
-   _xdChannelHandler: function(frame, relation) {
+  _xdChannelHandler: function(frame, relation) {
     var forceHTTPS = (FB.UIServer._forceHTTPS &&
       FB.UA.ie() !== 7);
     return FB.XD.handler(function(data) {
@@ -5808,7 +5809,7 @@ urlTooLongForIE: function(fullURL) {
    * @param isDefault {Boolean}  is this the default callback for the frame
    * @return         {String}   the xd url bound to the callback
    */
-   _xdNextHandler: function(cb, frame, relation, isDefault) {
+  _xdNextHandler: function(cb, frame, relation, isDefault) {
     if (isDefault) {
       FB.UIServer._defaultCb[frame] = cb;
     }
@@ -5827,7 +5828,7 @@ urlTooLongForIE: function(fullURL) {
    * @param data {Object} the message parameters
    * @param cb {Function} the callback function
    */
-   _xdRecv: function(data, cb) {
+  _xdRecv: function(data, cb) {
     var frame = FB.UIServer.getLoadedNode(data.frame);
     if (frame) {
       // iframe
@@ -5878,15 +5879,15 @@ urlTooLongForIE: function(fullURL) {
    * @param isDefault {Boolean}  is this the default callback for the frame
    * @return          {String}   the xd url bound to the callback
    */
-   _xdResult: function(cb, frame, target, isDefault) {
+  _xdResult: function(cb, frame, target, isDefault) {
     return (
       FB.UIServer._xdNextHandler(function(params) {
         cb && cb(params.result &&
-         params.result != FB.UIServer._resultToken &&
-         FB.JSON.parse(params.result));
+                 params.result != FB.UIServer._resultToken &&
+                 FB.JSON.parse(params.result));
       }, frame, target, isDefault) +
       '&result=' + encodeURIComponent(FB.UIServer._resultToken)
-      );
+    );
   }
 });
 
@@ -5923,7 +5924,7 @@ urlTooLongForIE: function(fullURL) {
  * @static
  * @access private
  */
- FB.provide('', {
+FB.provide('', {
   /**
    * Find out the current status from the server, and get an authResponse if
    * the user is connected.
@@ -6000,7 +6001,7 @@ urlTooLongForIE: function(fullURL) {
    * @param cb {Function} The callback function.
    * @param force {Boolean} Force reloading the login status (default `false`).
    */
-   getLoginStatus: function(cb, force) {
+  getLoginStatus: function(cb, force) {
     if (!FB._apiKey) {
       FB.log('FB.getLoginStatus() called before calling FB.init().');
       return;
@@ -6011,7 +6012,7 @@ urlTooLongForIE: function(fullURL) {
     if (cb) {
       if (!force && FB.Auth._loadState == 'loaded') {
         cb({ status: FB._userStatus,
-         authResponse: FB._authResponse});
+             authResponse: FB._authResponse});
         return;
       } else {
         FB.Event.subscribe('FB.loginStatus', cb);
@@ -6048,7 +6049,7 @@ urlTooLongForIE: function(fullURL) {
    *                 the amount of time before it expires, and the
    *                 signed request (or null if there's no active access token).
    */
-   getAuthResponse: function() {
+  getAuthResponse: function() {
     return FB._authResponse;
   },
 
@@ -6059,7 +6060,7 @@ urlTooLongForIE: function(fullURL) {
    * @access public
    * @return {String} the access token, if available, or null if not.
    */
-   getAccessToken: function() {
+  getAccessToken: function() {
     return (FB._authResponse && FB._authResponse.accessToken) || null;
   },
 
@@ -6071,7 +6072,7 @@ urlTooLongForIE: function(fullURL) {
    * @access public
    * @return {Integer} the ID of the logged in, connected user.
    */
-   getUserID: function() {
+  getUserID: function() {
     return FB._userID;
   },
 
@@ -6139,19 +6140,19 @@ urlTooLongForIE: function(fullURL) {
    *                          |         | [Extended permissions]
    *                          |         | (/docs/authentication/permissions).
    */
-   login: function(cb, opts) {
+  login: function(cb, opts) {
     if (opts && opts.perms && !opts.scope) {
       opts.scope = opts.perms;
       delete opts.perms;
       FB.log('OAuth2 specification states that \'perms\' ' +
-       'should now be called \'scope\'.  Please update.');
+             'should now be called \'scope\'.  Please update.');
     }
     FB.ui(FB.copy({
-      method: 'permissions.oauth',
-      display: 'popup',
-      domain: location.hostname
-    }, opts || {}),
-    cb);
+        method: 'permissions.oauth',
+        display: 'popup',
+        domain: location.hostname
+      }, opts || {}),
+      cb);
   },
 
   /**
@@ -6170,7 +6171,7 @@ urlTooLongForIE: function(fullURL) {
    * @access public
    * @param cb {Function} The callback function.
    */
-   logout: function(cb) {
+  logout: function(cb) {
     FB.ui({ method: 'auth.logout', display: 'hidden' }, cb);
   }
 });
@@ -6182,7 +6183,7 @@ urlTooLongForIE: function(fullURL) {
  * @static
  * @access private
  */
- FB.provide('Auth', {
+FB.provide('Auth', {
   // pending callbacks for FB.getLoginStatus() calls
   _callbacks: [],
   _xdStorePath: 'xd_localstorage/',
@@ -6191,27 +6192,27 @@ urlTooLongForIE: function(fullURL) {
    * Fetch a fresh login status from the server. This should not ordinarily
    * be called directly; use FB.getLoginStatus instead.
    */
-   fetchLoginStatus: function(lsCb) {
+  fetchLoginStatus: function(lsCb) {
     // CORDOVA PATCH
     if (FB.UA.mobile() && window.postMessage && window.localStorage && !FB._nativeInterface) {
-     FB.Auth.staticAuthCheck(lsCb);
-   } else {
-    FB.ui({
-      method: 'login.status',
-      display: 'none',
-      domain: location.hostname
-    },
-    lsCb
-    );
-  }
-},
+           FB.Auth.staticAuthCheck(lsCb);
+    } else {
+      FB.ui({
+          method: 'login.status',
+          display: 'none',
+          domain: location.hostname
+        },
+        lsCb
+      );
+    }
+  },
 
   /**
    * Perform auth check using static endpoint first, then use
    * login_status as backup when static endpoint does not fetch any
    * results.
    */
-   staticAuthCheck: function(lsCb) {
+  staticAuthCheck: function(lsCb) {
     var domain =  FB.getDomain('https_staticfb');
     FB.Content.insertIframe({
       root: FB.Content.appendHidden(''),
@@ -6246,18 +6247,18 @@ urlTooLongForIE: function(fullURL) {
 
   _staticAuthHandler: function(cb, response) {
     if (response && response.data && response.data.status &&
-      response.data.status == 'connected') {
+        response.data.status == 'connected') {
       var r;
-    var status = response.data.status;
+      var status = response.data.status;
 
-    if (response.data.https == 1) {
-      FB._https = true;
-    }
+      if (response.data.https == 1) {
+        FB._https = true;
+      }
 
-    var authResponse = response.data.authResponse || null;
-    r = FB.Auth.setAuthResponse(authResponse, status);
-    cb && cb(r);
-  } else {
+      var authResponse = response.data.authResponse || null;
+      r = FB.Auth.setAuthResponse(authResponse, status);
+      cb && cb(r);
+    } else {
       // finally make the call to login status
       FB.ui({ method: 'login.status', display: 'none' }, cb);
     }
@@ -6276,7 +6277,7 @@ urlTooLongForIE: function(fullURL) {
    *                              dictionary object surrounding the two
    *                              incoming values.
    */
-   setAuthResponse: function(authResponse, status) {
+  setAuthResponse: function(authResponse, status) {
     var userID = 0;
     if (authResponse) {
       // if there's an auth record, then there are a few ways we might
@@ -6287,7 +6288,7 @@ urlTooLongForIE: function(fullURL) {
         userID = authResponse.userID;
       } else if (authResponse.signedRequest) {
         var parsedSignedRequest =
-        FB.Auth.parseSignedRequest(authResponse.signedRequest);
+          FB.Auth.parseSignedRequest(authResponse.signedRequest);
         if (parsedSignedRequest && parsedSignedRequest.user_id) {
           userID = parsedSignedRequest.user_id;
         }
@@ -6295,11 +6296,11 @@ urlTooLongForIE: function(fullURL) {
     }
 
     var
-    login = !FB._userID && authResponse,
-    logout = FB._userID && !authResponse,
-    both = authResponse && FB._userID != userID,
-    authResponseChange = login || logout || both,
-    statusChange = status != FB._userStatus;
+      login = !FB._userID && authResponse,
+      logout = FB._userID && !authResponse,
+      both = authResponse && FB._userID != userID,
+      authResponseChange = login || logout || both,
+      statusChange = status != FB._userStatus;
 
     var response = {
       authResponse : authResponse,
@@ -6392,7 +6393,7 @@ urlTooLongForIE: function(fullURL) {
    * @param method            {String}   the name of the method invoking this
    * @return                  {String}   the xd url bound to the callback
    */
-   xdHandler: function(cb, frame, target, authResponse, method) {
+  xdHandler: function(cb, frame, target, authResponse, method) {
     return FB.UIServer._xdNextHandler(
       FB.Auth.xdResponseWrapper(cb, authResponse, method),
       frame,
@@ -6434,12 +6435,12 @@ urlTooLongForIE: function(fullURL) {
    * @param method       {String}   the name of the method invoking this
    * @return             {Function} the wrapped xd handler function
    */
-   xdResponseWrapper: function(cb, authResponse, method) {
+  xdResponseWrapper: function(cb, authResponse, method) {
     return function(params) {
       if (params.access_token) {
         // Whatever this is a response to, it succeeded
         var parsedSignedRequest =
-        FB.Auth.parseSignedRequest(params.signed_request);
+          FB.Auth.parseSignedRequest(params.signed_request);
         authResponse = {
           accessToken: params.access_token,
           userID: parsedSignedRequest.user_id,
@@ -6452,20 +6453,20 @@ urlTooLongForIE: function(fullURL) {
             ? 0 // make this a session cookie if it's for offline access
             : (new Date()).getTime() + authResponse.expiresIn * 1000;
 
-            var baseDomain = FB.Cookie._domain;
-            if (!baseDomain && params.base_domain) {
+          var baseDomain = FB.Cookie._domain;
+          if (!baseDomain && params.base_domain) {
             // if no base domain was set, and we got a base domain back
             // from the our side, lets use this and prepend . to also
             // cover subdomains (this will actually be added anyway by
             // the browser).
-baseDomain = '.' + params.base_domain;
-}
-FB.Cookie.setSignedRequestCookie(params.signed_request,
- expirationTime,
- baseDomain);
-}
-FB.Auth.setAuthResponse(authResponse, 'connected');
-} else if (!FB._authResponse && authResponse) {
+            baseDomain = '.' + params.base_domain;
+          }
+          FB.Cookie.setSignedRequestCookie(params.signed_request,
+                                           expirationTime,
+                                           baseDomain);
+        }
+        FB.Auth.setAuthResponse(authResponse, 'connected');
+      } else if (!FB._authResponse && authResponse) {
         // Should currently not be hit since authResponse is a copy of
         // FB._authResponse
 
@@ -6513,7 +6514,7 @@ FB.Auth.setAuthResponse(authResponse, 'connected');
    * @return {Object} small JS object housing an authorization
    *         code and the user id.
    */
-   parseSignedRequest: function(signed_request) {
+  parseSignedRequest: function(signed_request) {
     if (!signed_request) {
       return null;
     }
@@ -6534,7 +6535,7 @@ FB.Auth.setAuthResponse(authResponse, 'connected');
    *
    * @param {String}
    */
-   base64URLDecode: function(input) {
+  base64URLDecode: function(input) {
     // +'s and /'s are replaced, by Facebook, with urlencode-safe
     // characters - and _, respectively.  We could just changed the
     // key string, but better to clarify this and then go with the
@@ -6551,7 +6552,7 @@ FB.Auth.setAuthResponse(authResponse, 'connected');
       }
     }
     var keyStr =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var output = "";
     var chr1, chr2, chr3 = "";
     var enc1, enc2, enc3, enc4 = "";
@@ -6583,12 +6584,12 @@ FB.provide('UIServer.Methods', {
   'permissions.oauth': {
     url       : 'dialog/oauth',
     size      : { width: (FB.UA.mobile() ? null : 627),
-      height: (FB.UA.mobile() ? null : 326) },
-      transform : function(call) {
-        if (!FB._apiKey) {
-          FB.log('FB.login() called before FB.init().');
-          return;
-        }
+                  height: (FB.UA.mobile() ? null : 326) },
+    transform : function(call) {
+      if (!FB._apiKey) {
+        FB.log('FB.login() called before FB.init().');
+        return;
+      }
 
       // if an access token is already available and no additional
       // params are being requested (via a scope attribute within the params)
@@ -6596,13 +6597,13 @@ FB.provide('UIServer.Methods', {
       if (FB._authResponse && !call.params.scope) {
         FB.log('FB.login() called when user is already connected.');
         call.cb && call.cb({ status: FB._userStatus,
-         authResponse: FB._authResponse });
+                             authResponse: FB._authResponse });
         return;
       }
 
       var
-      cb = call.cb,
-      id = call.id;
+        cb = call.cb,
+        id = call.id;
       delete call.cb;
       FB.copy(
         call.params, {
@@ -6632,9 +6633,9 @@ FB.provide('UIServer.Methods', {
         FB.log('FB.logout() called without an access token.');
       } else {
         call.params.next = FB.Auth.xdHandler(call.cb,
-         call.id,
-         'parent',
-         FB._authResponse);
+                                             call.id,
+                                             'parent',
+                                             FB._authResponse);
         return call;
       }
     }
@@ -6644,15 +6645,15 @@ FB.provide('UIServer.Methods', {
     url       : 'dialog/oauth',
     transform : function(call) {
       var
-      cb = call.cb,
-      id = call.id;
+        cb = call.cb,
+        id = call.id;
       delete call.cb;
       FB.copy(call.params, {
         client_id : FB._apiKey,
         redirect_uri : FB.Auth.xdHandler(cb,
-         id,
-         'parent',
-         FB._authResponse),
+                                         id,
+                                         'parent',
+                                         FB._authResponse),
         origin : FB.Auth._getContextType(),
         response_type : 'token,signed_request,code',
         domain: location.hostname
@@ -6692,11 +6693,11 @@ FB.provide('UIServer.Methods', {
  * @static
  * @access public
  */
- FB.provide('CanvasInsights', {
+FB.provide('CanvasInsights', {
   /**
    * Deprecated - use FB.Canvas.setDoneLoading
    */
-   setDoneLoading : function(callback) {
+  setDoneLoading : function(callback) {
     FB.Canvas.setDoneLoading(callback);
   }
 });
@@ -6731,14 +6732,14 @@ FB.provide('UIServer.Methods', {
  * @static
  * @access private
  */
- FB.provide('Cookie', {
+FB.provide('Cookie', {
   /**
    * Holds the base_domain property to match the Cookie domain.
    *
    * @access private
    * @type String
    */
-   _domain: null,
+  _domain: null,
 
   /**
    * Indicate if Cookie support should be enabled.
@@ -6746,7 +6747,7 @@ FB.provide('UIServer.Methods', {
    * @access private
    * @type Boolean
    */
-   _enabled: false,
+  _enabled: false,
 
   /**
    * Enable or disable Cookie support.
@@ -6754,7 +6755,7 @@ FB.provide('UIServer.Methods', {
    * @access private
    * @param val {Boolean} true to enable, false to disable
    */
-   setEnabled: function(val) {
+  setEnabled: function(val) {
     FB.Cookie._enabled = !!val;
     if (typeof val == 'string') {
       FB.Cookie._domain = val;
@@ -6767,7 +6768,7 @@ FB.provide('UIServer.Methods', {
    * @access private
    * @returns {Boolean} true if Cookie support is enabled
    */
-   getEnabled: function() {
+  getEnabled: function() {
     return FB.Cookie._enabled;
   },
 
@@ -6777,14 +6778,14 @@ FB.provide('UIServer.Methods', {
    * @access private
    * @return {Object} the meta data for for the connect implementation
    */
-   loadMeta: function() {
+  loadMeta: function() {
     var
       // note, we have the opening quote for the value in the regex, but do
       // not have a closing quote. this is because the \b already handles it.
       cookie = document.cookie.match('\\bfbm_' + FB._apiKey + '=([^;]*)\\b'),
       meta;
 
-      if (cookie) {
+    if (cookie) {
       // url encoded session stored as "sub-cookies"
       meta = FB.QS.decode(cookie[1]);
       if (!FB.Cookie._domain) {
@@ -6801,9 +6802,9 @@ FB.provide('UIServer.Methods', {
    *
    * @return {String} the cached signed request, or null if one can't be found.
    */
-   loadSignedRequest: function() {
+  loadSignedRequest: function() {
     var cookie =
-    document.cookie.match('\\bfbsr_' + FB._apiKey + '=([^;]*)\\b');
+      document.cookie.match('\\bfbsr_' + FB._apiKey + '=([^;]*)\\b');
     if (!cookie) {
       return null;
     }
@@ -6822,11 +6823,11 @@ FB.provide('UIServer.Methods', {
    * @param {Integer} The time at which the cookie should expire.
    * @param {String} The domain for which this cookie should be set.
    */
-   setSignedRequestCookie: function(signed_request_cookie, expiration_time,
-     base_domain) {
+  setSignedRequestCookie: function(signed_request_cookie, expiration_time,
+       base_domain) {
     if (!signed_request_cookie) {
       throw new Error('Value passed to FB.Cookie.setSignedRequestCookie ' +
-        'was empty.');
+                      'was empty.');
     }
 
     if (!FB.Cookie.getEnabled()) {
@@ -6842,14 +6843,14 @@ FB.provide('UIServer.Methods', {
     }
     FB.Cookie._domain = base_domain;
     FB.Cookie.setRaw('fbsr_', signed_request_cookie, expiration_time,
-      base_domain);
+        base_domain);
   },
 
   /**
    * Clears the signed request cookie normally set by
    * setSignedRequestCookie above.
    */
-   clearSignedRequestCookie: function() {
+  clearSignedRequestCookie: function() {
     if (!FB.Cookie.getEnabled()) {
       return;
     }
@@ -6866,24 +6867,24 @@ FB.provide('UIServer.Methods', {
    * @param ts     {Number} a unix timestamp denoting expiration
    * @param domain {String} optional domain for cookie
    */
-   setRaw: function(prefix, val, ts, domain) {
+  setRaw: function(prefix, val, ts, domain) {
     // Start by clearing potentially overlapping cookies
     if (domain) {
       // No domain set (will become example.com)
       document.cookie =
-      prefix + FB._apiKey + '=; expires=Wed, 04 Feb 2004 08:00:00 GMT;';
+        prefix + FB._apiKey + '=; expires=Wed, 04 Feb 2004 08:00:00 GMT;';
       // This domain, (will become .example.com)
       document.cookie =
-      prefix + FB._apiKey + '=; expires=Wed, 04 Feb 2004 08:00:00 GMT;' +
-      'domain=' + location.hostname + ';';
+        prefix + FB._apiKey + '=; expires=Wed, 04 Feb 2004 08:00:00 GMT;' +
+        'domain=' + location.hostname + ';';
     }
 
     var expires = new Date(ts).toGMTString();
     document.cookie =
-    prefix + FB._apiKey + '=' + val +
-    (val && ts === 0 ? '' : '; expires=' + expires) +
-    '; path=/' +
-    (domain ? '; domain=' + domain : '');
+      prefix + FB._apiKey + '=' + val +
+      (val && ts === 0 ? '' : '; expires=' + expires) +
+      '; path=/' +
+      (domain ? '; domain=' + domain : '');
   }
 });
 
@@ -6918,7 +6919,7 @@ FB.provide('UIServer.Methods', {
  * @static
  * @private
  */
- FB.provide('Frictionless', {
+FB.provide('Frictionless', {
 
   // mapping of user id to boolean indicating whether that recipient can receive
   // frictionless requests
@@ -6929,22 +6930,22 @@ FB.provide('UIServer.Methods', {
   /**
    * Requests the frictionless request recipient list via a graph api call.
    */
-   _updateRecipients: function() {
+  _updateRecipients: function() {
     FB.Frictionless._allowedRecipients = {};
     FB.api('/me/apprequestformerrecipients', function(response) {
       if (!response || response.error) {
         return;
       }
       FB.Array.forEach(response.data, function(recipient) {
-        FB.Frictionless._allowedRecipients[recipient.recipient_id] = true;
-      }, false);
+          FB.Frictionless._allowedRecipients[recipient.recipient_id] = true;
+        }, false);
     });
   },
 
   /**
    * Subscribes to login event and updates recipients when it fire.
    */
-   init: function() {
+  init: function() {
     FB.Frictionless._useFrictionless = true;
     FB.getLoginStatus(function(response) {
       if (response.status == 'connected') {
@@ -6965,7 +6966,7 @@ FB.provide('UIServer.Methods', {
    * @param cb {Function} the user callback function to wrap
    * @return {Function} the wrapped callback function
    */
-   _processRequestResponse: function(cb, hidden) {
+  _processRequestResponse: function(cb, hidden) {
     return function(params) {
       var updated = params && params.updated_frictionless;
       if (FB.Frictionless._useFrictionless && updated) {
@@ -6995,7 +6996,7 @@ FB.provide('UIServer.Methods', {
    * @param user_ids {String|Number|Array} the user ids to test
    * @return {Boolean} whether all user ids allow frictionless requests
    */
-   isAllowed: function(user_ids) {
+  isAllowed: function(user_ids) {
     if (!user_ids) {
       return false;
     }
@@ -7011,9 +7012,9 @@ FB.provide('UIServer.Methods', {
     var allowed = true;
     var has_user_ids = false;
     FB.Array.forEach(user_ids, function(user_id) {
-      allowed = allowed && FB.Frictionless._allowedRecipients[user_id];
-      has_user_ids = true;
-    }, false);
+        allowed = allowed && FB.Frictionless._allowedRecipients[user_id];
+        has_user_ids = true;
+      }, false);
     return allowed && has_user_ids;
   }
 });
@@ -7051,7 +7052,7 @@ FB.provide('UIServer.Methods', {
  * @static
  * @access public
  */
- FB.provide('Canvas.Prefetcher', {
+FB.provide('Canvas.Prefetcher', {
   _sampleRate : 0,
   _appIdsBlacklist : [],
   _links : [],
@@ -7063,7 +7064,7 @@ FB.provide('UIServer.Methods', {
    * Add a url for a resource that was used on this page load, but which did not
    * appear in the DOM (and thus Facebook could not detect it automatically).
    */
-   addStaticResource: function(url) {
+  addStaticResource: function(url) {
     if (!FB._inCanvas || !FB._apiKey) {
       return;
     }
@@ -7084,35 +7085,35 @@ FB.provide('UIServer.Methods', {
    *
    * Returns: true on success.
    */
-   setCollectionMode: function(mode) {
-    if (!FB._inCanvas || !FB._apiKey) {
-      return false;
+  setCollectionMode: function(mode) {
+      if (!FB._inCanvas || !FB._apiKey) {
+        return false;
+      }
+      if (mode != FB.Canvas.Prefetcher.COLLECT_AUTOMATIC &&
+          mode != FB.Canvas.Prefetcher.COLLECT_MANUAL) {
+        return false;
+      }
+      FB.Canvas.Prefetcher._collectionMode = mode;
+    },
+
+  _maybeSample : function() {
+    if (!FB._inCanvas || !FB._apiKey || !FB.Canvas.Prefetcher._sampleRate) {
+      return;
     }
-    if (mode != FB.Canvas.Prefetcher.COLLECT_AUTOMATIC &&
-      mode != FB.Canvas.Prefetcher.COLLECT_MANUAL) {
-      return false;
-  }
-  FB.Canvas.Prefetcher._collectionMode = mode;
-},
 
-_maybeSample : function() {
-  if (!FB._inCanvas || !FB._apiKey || !FB.Canvas.Prefetcher._sampleRate) {
-    return;
-  }
+    var rand = Math.random();
+    if (rand > 1 / FB.Canvas.Prefetcher._sampleRate) {
+      return;
+    }
 
-  var rand = Math.random();
-  if (rand > 1 / FB.Canvas.Prefetcher._sampleRate) {
-    return;
-  }
-
-  if (FB.Canvas.Prefetcher._appIdsBlacklist == '*') {
-    return;
-  }
-  if (FB.Array.indexOf(
-    FB.Canvas.Prefetcher._appIdsBlacklist,
-    parseInt(FB._apiKey, 10)) != -1) {
-    return;
-}
+    if (FB.Canvas.Prefetcher._appIdsBlacklist == '*') {
+      return;
+    }
+    if (FB.Array.indexOf(
+          FB.Canvas.Prefetcher._appIdsBlacklist,
+          parseInt(FB._apiKey, 10)) != -1) {
+      return;
+    }
     // We are definitely taking a sample.  Wait 30 seconds to take it.
     window.setTimeout(FB.Canvas.Prefetcher._sample, 30000);
   },
@@ -7127,21 +7128,21 @@ _maybeSample : function() {
 
     // Application wants control over what resources are flushed
     if (FB.Canvas.Prefetcher._collectionMode ==
-      FB.Canvas.Prefetcher.COLLECT_AUTOMATIC) {
+        FB.Canvas.Prefetcher.COLLECT_AUTOMATIC) {
       FB.Array.forEach(resourceFieldsByTag, function(propertyName, tagName) {
-        FB.Array.forEach(
-          window.document.getElementsByTagName(tagName), function(tag) {
-            if (tag[propertyName]) {
-              FB.Canvas.Prefetcher._links.push(tag[propertyName]);
-            }
-          });
-      });
-  }
+          FB.Array.forEach(
+            window.document.getElementsByTagName(tagName), function(tag) {
+              if (tag[propertyName]) {
+                FB.Canvas.Prefetcher._links.push(tag[propertyName]);
+              }
+            });
+        });
+    }
 
     // Hit API with a JSON array of links to resources
     var payload = FB.JSON.stringify(FB.Canvas.Prefetcher._links);
     FB.api(FB._apiKey + '/staticresources', 'post',
-     { urls: payload, is_https: FB._https });
+           { urls: payload, is_https: FB._https });
 
     FB.Canvas.Prefetcher._links = [];
   }
@@ -7153,7 +7154,7 @@ _maybeSample : function() {
  * @static
  * @access public
  */
- FB.provide('Canvas.EarlyFlush', {
+FB.provide('Canvas.EarlyFlush', {
   addResource: function(url) {
     return FB.Canvas.Prefetcher.addStaticResource(url);
   },
@@ -7202,7 +7203,7 @@ _maybeSample : function() {
  * @static
  * @access public
  */
- FB.provide('', {
+FB.provide('', {
 
   // set by CONNECT_FB_INIT_CONFIG
   initSitevars : {},
@@ -7299,7 +7300,7 @@ _maybeSample : function() {
    * authResponse         | Object  | Use specified access token record      | *Optional* | `null`
    * hideFlashCallback    | function | (Canvas Only) callback for each flash element when popups overlay the page | *Optional* | `null`
    */
-   init: function(options) {
+  init: function(options) {
     // only need to list values here that do not already have a falsy default.
     // this is why cookie/authResponse are not listed here.
     options = FB.copy(options || {}, {
@@ -7321,41 +7322,41 @@ _maybeSample : function() {
     // token to turn it on. this allows for easier debugging of third party
     // sites even if logging has been turned off.
     if (!options.logging &&
-      window.location.toString().indexOf('fb_debug=1') < 0) {
+        window.location.toString().indexOf('fb_debug=1') < 0) {
       FB._logging = false;
-  }
+    }
 
-  FB.XD.init(options.channelUrl);
+    FB.XD.init(options.channelUrl);
 
-  if (FB.UA.mobile() && FB.TemplateUI &&
-    FB.TemplateData && FB.TemplateData._enabled &&
-    options.useCachedDialogs !== false) {
-    FB.TemplateUI.init();
-  FB.Event.subscribe('auth.statusChange', FB.TemplateData.update);
-}
+    if (FB.UA.mobile() && FB.TemplateUI &&
+        FB.TemplateData && FB.TemplateData._enabled &&
+        options.useCachedDialogs !== false) {
+      FB.TemplateUI.init();
+      FB.Event.subscribe('auth.statusChange', FB.TemplateData.update);
+    }
 
-if (options.reportTemplates) {
-  FB.reportTemplates = true;
-}
+    if (options.reportTemplates) {
+      FB.reportTemplates = true;
+    }
 
-if (options.frictionlessRequests) {
-  FB.Frictionless.init();
-}
+    if (options.frictionlessRequests) {
+      FB.Frictionless.init();
+    }
 
-if (FB._apiKey) {
+    if (FB._apiKey) {
       // enable cookie support if told to do so
       FB.Cookie.setEnabled(options.cookie);
 
-      if (options.authResponse) {
+    if (options.authResponse) {
         FB.Auth.setAuthResponse(options.authResponse,
-          'connected');
+                                'connected');
       } else {
         // we don't have an access token yet, but we might have a user
         // ID based on a signed request in the cookie.
         var signedRequest = FB.Cookie.loadSignedRequest();
         var parsedSignedRequest = FB.Auth.parseSignedRequest(signedRequest);
         FB._userID =
-        (parsedSignedRequest && parsedSignedRequest.user_id) || 0;
+          (parsedSignedRequest && parsedSignedRequest.user_id) || 0;
         FB.Cookie.loadMeta();
       }
 
@@ -7433,21 +7434,21 @@ if (FB._apiKey) {
  * Handler for UI dialogs that can be created as iframe dialog
  * on mobile browser.
  */
- FB.provide('UIServer.MobileIframableMethod', {
+FB.provide('UIServer.MobileIframableMethod', {
   transform: function(call) {
     // For mobile display on mobile browsers that support
     // postMessage, we use iframe dialog if the app has
     // access token
     if (call.params.display === 'touch' &&
-      call.params.access_token &&
-      window.postMessage
-      ) {
+        call.params.access_token &&
+        window.postMessage
+       ) {
       // Prepare for iframe by adding an channel parameter
       // for resizing and add in_iframe parameter
       call.params.channel = FB.UIServer._xdChannelHandler(
         call.id,
         'parent'
-        );
+      );
       // No iframe for modal dialogs in the native app
       if (!FB.UA.nativeApp()) {
         call.params.in_iframe = 1;
@@ -7474,7 +7475,7 @@ if (FB._apiKey) {
 /**
  * Simple UI methods. Consider putting complex UI methods in their own modules.
  */
- FB.provide('UIServer.Methods', {
+FB.provide('UIServer.Methods', {
   'stream.share': {
     size      : { width: 650, height: 340 },
     url       : 'sharer.php',
@@ -7510,17 +7511,17 @@ if (FB._apiKey) {
       // instead, if you can figure it out.
       var relation = FB.UIServer.getXdRelation(call.params);
       var next = FB.UIServer._xdResult(
-        call.cb,
-        call.id,
-        relation,
+          call.cb,
+          call.id,
+          relation,
           true // isDefault
-          );
+        );
       call.params.next = FB.getDomain(FB._https ? 'https_www' : 'www') +
-      "login.php?" + FB.QS.encode({
-        api_key: FB._apiKey,
-        next: next,
-        skip_api_login: 1
-      });
+        "login.php?" + FB.QS.encode({
+            api_key: FB._apiKey,
+            next: next,
+            skip_api_login: 1
+        });
 
       return call;
     }
@@ -7531,7 +7532,7 @@ if (FB._apiKey) {
       call = FB.UIServer.MobileIframableMethod.transform(call);
 
       call.params.frictionless = FB.Frictionless &&
-      FB.Frictionless._useFrictionless;
+        FB.Frictionless._useFrictionless;
       if (call.params.frictionless) {
 
         if (FB.Frictionless.isAllowed(call.params.to)) {
@@ -7548,7 +7549,7 @@ if (FB._apiKey) {
         call.cb = FB.Frictionless._processRequestResponse(
           call.cb,
           call.hideLoader
-          );
+        );
       }
       return call;
     },
@@ -7593,7 +7594,7 @@ if (FB._apiKey) {
  * @static
  * @access private
  */
- FB.provide('', {
+FB.provide('', {
   /**
    * NOTE: You should use FB.ui() instead.
    *
@@ -7614,7 +7615,7 @@ if (FB._apiKey) {
    * @access private
    * @param u {String} the url (defaults to current URL)
    */
-   share: function(u) {
+  share: function(u) {
     FB.log('FB.share() has been deprecated. Please use FB.ui() instead.');
     FB.ui({
       display : 'popup',
@@ -7702,7 +7703,7 @@ if (FB._apiKey) {
    * @param post {Object} the post object
    * @param cb {Function} called with the result of the action
    */
-   publish: function(post, cb) {
+  publish: function(post, cb) {
     FB.log('FB.publish() has been deprecated. Please use FB.ui() instead.');
     post = post || {};
     FB.ui(FB.copy({
@@ -7721,7 +7722,7 @@ if (FB._apiKey) {
    * @param id {String} the id of the target user
    * @param cb {Function} called with the result of the action
    */
-   addFriend: function(id, cb) {
+  addFriend: function(id, cb) {
     FB.log('FB.addFriend() has been deprecated. Please use FB.ui() instead.');
     FB.ui({
       display : 'popup',
@@ -7768,13 +7769,13 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
  * @class FB.XFBML
  * @static
  */
- FB.provide('XFBML', {
+FB.provide('XFBML', {
   /**
    * The time allowed for all tags to finish rendering.
    *
    * @type Number
    */
-   _renderTimeout: 30000,
+  _renderTimeout: 30000,
 
   /**
    * Finds elements that will become plugins.
@@ -7785,10 +7786,10 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * @param localName {String} the unqualified tag name
    * @return {Array}
    */
-   getElements: function(dom, xmlns, localName) {
+  getElements: function(dom, xmlns, localName) {
     var arr = FB.Array,
-    xfbmlDoms = FB.XFBML._getDomElements(dom, xmlns, localName),
-    html5Doms = FB.Dom.getByClass(xmlns + '-' + localName, dom, 'div');
+        xfbmlDoms = FB.XFBML._getDomElements(dom, xmlns, localName),
+        html5Doms = FB.Dom.getByClass(xmlns + '-' + localName, dom, 'div');
 
     xfbmlDoms = arr.toArray(xfbmlDoms);
     html5Doms = arr.toArray(html5Doms);
@@ -7799,7 +7800,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
       // let's throw it out unless
       // the child is just one (1) empty text node (nodeType 3)
       return !el.hasChildNodes() ||
-      (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3);
+             (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3);
     });
 
     return arr.merge(xfbmlDoms, html5Doms);
@@ -7842,7 +7843,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * @param dom {DOMElement} (optional) root DOM node, defaults to body
    * @param cb {Function} (optional) invoked when elements are rendered
    */
-   parse: function(dom, cb) {
+  parse: function(dom, cb) {
     dom = dom || document.body;
 
     // We register this function on each tag's "render" event. This allows us
@@ -7852,10 +7853,10 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
     // we've kicked off all the tag processing. This ensures that we do not hit
     // count=0 before we're actually done queuing up all the tags.
     var
-    count = 1,
-    onTagDone = function() {
-      count--;
-      if (count === 0) {
+      count = 1,
+      onTagDone = function() {
+        count--;
+        if (count === 0) {
           // Invoke the user specified callback for this specific parse() run.
           cb && cb();
 
@@ -7865,8 +7866,8 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
         }
       };
 
-      var cachedDomElements = {};
-      if (FB.XFBML._widgetPipeIsEnabled()) {
+    var cachedDomElements = {};
+    if (FB.XFBML._widgetPipeIsEnabled()) {
       // first count the number of XFBML tags in the page that would benefit
       // from a transition to use Widget Pipe.  We do this, because we only
       // want to engage widget pipe if the overhead is counterbalanced by the
@@ -7898,7 +7899,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
           dom,
           tagInfo.xmlns,
           tagInfo.localName
-          );
+        );
       }
 
       for (var i=0; i < xfbmlDoms.length; i++) {
@@ -7917,7 +7918,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
         FB.log(
           count + ' XFBML tags failed to render in ' +
           FB.XFBML._renderTimeout + 'ms.'
-          );
+        );
       }
     }, FB.XFBML._renderTimeout);
     // Call once to handle count=1 as described above.
@@ -7945,7 +7946,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * - localName
    * - className
    */
-   registerTag: function(tagInfo) {
+  registerTag: function(tagInfo) {
     FB.XFBML._tagInfos.push(tagInfo);
   },
 
@@ -7958,13 +7959,13 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    *         threshold.
    */
 
-   shouldUseWidgetPipe: function() {
+  shouldUseWidgetPipe: function() {
     if (!FB.XFBML._widgetPipeIsEnabled()) {
       return false;
     }
 
     var aboveThreshold =
-    FB.XFBML._widgetPipeEnabledTagCount > 1;
+      FB.XFBML._widgetPipeEnabledTagCount > 1;
     return aboveThreshold;
   },
 
@@ -7974,11 +7975,11 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * @param el {HTMLElement} DOM element
    * @param attr {String} Attribute name
    */
-   getBoolAttr: function(el, attr) {
+  getBoolAttr: function(el, attr) {
     attr = FB.XFBML.getAttr(el, attr);
     return (attr && FB.Array.indexOf(
-      ['true', '1', 'yes', 'on'],
-      attr.toLowerCase()) > -1);
+              ['true', '1', 'yes', 'on'],
+              attr.toLowerCase()) > -1);
   },
 
   /**
@@ -7989,7 +7990,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * @param el {HTMLElement} DOM element
    * @param attr {String} Attribute name
    */
-   getAttr: function(el, attr) {
+  getAttr: function(el, attr) {
     return (
       el.getAttribute(attr) ||
       el.getAttribute(attr.replace(/_/g, '-')) ||
@@ -8002,7 +8003,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
       el.getAttribute('data-' + attr.replace(/-/g, '')) ||
       el.getAttribute('data-' + attr.replace(/_/g, '')) ||
       null
-      );
+    );
   },
 
   //////////////// Private methods ////////////////////////////////////////////
@@ -8015,7 +8016,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * @param tagInfo {Object} the tag information
    * @param cb {Function} the function to bind to the "render" event for the tag
    */
-   _processElement: function(dom, tagInfo, cb) {
+  _processElement: function(dom, tagInfo, cb) {
     // Check if element for the dom already exists
     var element = dom._element;
     if (element) {
@@ -8041,13 +8042,13 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
           renderInIframe = FB.XFBML.getBoolAttr(dom, 'render-in-iframe');
           mode = FB.XFBML.getAttr(dom, 'mode');
           showFaces = (addToTimeline && mode != 'button') ||
-          FB.XFBML.getBoolAttr(dom, 'show-faces');
+                      FB.XFBML.getBoolAttr(dom, 'show-faces');
           showLoginFace = FB.XFBML.getBoolAttr(dom, 'show-login-face');
           isLogin = addToTimeline ||
-          renderInIframe ||
-          showFaces ||
-          showLoginFace ||
-          FB.XFBML.getBoolAttr(dom, 'oneclick');
+                    renderInIframe ||
+                    showFaces ||
+                    showLoginFace ||
+                    FB.XFBML.getBoolAttr(dom, 'oneclick');
           if (isLogin && !addToTimeline) {
             // override to be facepile-ish for an app id
             fn = FB.XFBML.Login;
@@ -8059,13 +8060,13 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
           showFaces = !!showFaces;
           showLoginFace = !!showLoginFace;
           var extraParams = {show_faces: showFaces,
-           show_login_face: showLoginFace,
-           add_to_profile: addToTimeline,
-           mode: mode};
+                             show_login_face: showLoginFace,
+                             add_to_profile: addToTimeline,
+                             mode: mode};
 
           // For now we support both the perms and scope attribute
           var scope = FB.XFBML.getAttr(dom, 'scope') ||
-          FB.XFBML.getAttr(dom, 'perms');
+            FB.XFBML.getAttr(dom, 'perms');
           if (scope) {
             extraParams.scope = scope;
           }
@@ -8093,7 +8094,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * @param localName {String} the unqualified tag name
    * @return {DOMElementCollection}
    */
-   _getDomElements: function(dom, xmlns, localName) {
+  _getDomElements: function(dom, xmlns, localName) {
     // Different browsers behave slightly differently in handling tags
     // with custom namespace.
     var fullName = xmlns + ':' + localName;
@@ -8140,36 +8141,36 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    *
    * NOTE: Keep the list alpha sorted.
    */
-   _tagInfos: [
-   { localName: 'activity',        className: 'FB.XFBML.Activity'        },
-   { localName: 'add-profile-tab', className: 'FB.XFBML.AddProfileTab'   },
-   { localName: 'add-to-timeline', className: 'FB.XFBML.AddToTimeline'   },
-   { localName: 'bookmark',        className: 'FB.XFBML.Bookmark'        },
-   { localName: 'comments',        className: 'FB.XFBML.Comments'        },
-   { localName: 'comments-count',  className: 'FB.XFBML.CommentsCount'   },
-   { localName: 'connect-bar',     className: 'FB.XFBML.ConnectBar'      },
-   { localName: 'fan',             className: 'FB.XFBML.Fan'             },
-   { localName: 'like',            className: 'FB.XFBML.Like',
-   supportsWidgetPipe: true                                            },
-   { localName: 'like-box',        className: 'FB.XFBML.LikeBox'         },
-   { localName: 'live-stream',     className: 'FB.XFBML.LiveStream'      },
-   { localName: 'login',           className: 'FB.XFBML.Login'           },
-   { localName: 'login-button',    className: 'FB.XFBML.LoginButton'     },
-   { localName: 'facepile',        className: 'FB.XFBML.Facepile'        },
-   { localName: 'friendpile',      className: 'FB.XFBML.Friendpile'      },
-   { localName: 'name',            className: 'FB.XFBML.Name'            },
-   { localName: 'profile-pic',     className: 'FB.XFBML.ProfilePic'      },
-   { localName: 'question',        className: 'FB.XFBML.Question'        },
-   { localName: 'recommendations', className: 'FB.XFBML.Recommendations' },
-   { localName: 'recommendations-bar',
-   className: 'FB.XFBML.RecommendationsBar' },
-   { localName: 'registration',    className: 'FB.XFBML.Registration'    },
-   { localName: 'send',            className: 'FB.XFBML.Send'            },
-   { localName: 'serverfbml',      className: 'FB.XFBML.ServerFbml'      },
-   { localName: 'share-button',    className: 'FB.XFBML.ShareButton'     },
-   { localName: 'social-context',  className: 'FB.XFBML.SocialContext'   },
-   { localName: 'subscribe',       className: 'FB.XFBML.Subscribe'       }
-   ],
+  _tagInfos: [
+    { localName: 'activity',        className: 'FB.XFBML.Activity'        },
+    { localName: 'add-profile-tab', className: 'FB.XFBML.AddProfileTab'   },
+    { localName: 'add-to-timeline', className: 'FB.XFBML.AddToTimeline'   },
+    { localName: 'bookmark',        className: 'FB.XFBML.Bookmark'        },
+    { localName: 'comments',        className: 'FB.XFBML.Comments'        },
+    { localName: 'comments-count',  className: 'FB.XFBML.CommentsCount'   },
+    { localName: 'connect-bar',     className: 'FB.XFBML.ConnectBar'      },
+    { localName: 'fan',             className: 'FB.XFBML.Fan'             },
+    { localName: 'like',            className: 'FB.XFBML.Like',
+      supportsWidgetPipe: true                                            },
+    { localName: 'like-box',        className: 'FB.XFBML.LikeBox'         },
+    { localName: 'live-stream',     className: 'FB.XFBML.LiveStream'      },
+    { localName: 'login',           className: 'FB.XFBML.Login'           },
+    { localName: 'login-button',    className: 'FB.XFBML.LoginButton'     },
+    { localName: 'facepile',        className: 'FB.XFBML.Facepile'        },
+    { localName: 'friendpile',      className: 'FB.XFBML.Friendpile'      },
+    { localName: 'name',            className: 'FB.XFBML.Name'            },
+    { localName: 'profile-pic',     className: 'FB.XFBML.ProfilePic'      },
+    { localName: 'question',        className: 'FB.XFBML.Question'        },
+    { localName: 'recommendations', className: 'FB.XFBML.Recommendations' },
+    { localName: 'recommendations-bar',
+      className: 'FB.XFBML.RecommendationsBar' },
+    { localName: 'registration',    className: 'FB.XFBML.Registration'    },
+    { localName: 'send',            className: 'FB.XFBML.Send'            },
+    { localName: 'serverfbml',      className: 'FB.XFBML.ServerFbml'      },
+    { localName: 'share-button',    className: 'FB.XFBML.ShareButton'     },
+    { localName: 'social-context',  className: 'FB.XFBML.SocialContext'   },
+    { localName: 'subscribe',       className: 'FB.XFBML.Subscribe'       }
+  ],
 
   // the number of widget-pipe-compatible tags we found in the DOM
   _widgetPipeEnabledTagCount: 0,
@@ -8178,9 +8179,9 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * Returns true if and only if we're willing to try out WidgetPipe
    * in hopes of increasing plugin parallelization.
    */
-   _widgetPipeIsEnabled: function() {
+  _widgetPipeIsEnabled: function() {
     return FB.widgetPipeEnabledApps &&
-    FB.widgetPipeEnabledApps[FB._apiKey] !== undefined;
+      FB.widgetPipeEnabledApps[FB._apiKey] !== undefined;
   }
 });
 
@@ -8193,9 +8194,9 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
 (function() {
   try {
     if (document.namespaces && !document.namespaces.item.fb) {
-     document.namespaces.add('fb');
-   }
- } catch(e) {
+       document.namespaces.add('fb');
+    }
+  } catch(e) {
     // introspection doesn't yield any identifiable information to scope
   }
 }());
@@ -8231,7 +8232,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
  * @class FB.XFBML
  * @static
  */
- FB.provide('XFBML', {
+FB.provide('XFBML', {
   /**
    * NOTE: This method is deprecated. You should instead set the innerHTML
    * yourself and call FB.XFBML.parse() on the DOMElement after.
@@ -8253,7 +8254,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * @param {String} markup XFBML markup. It may contain reguarl
    *         HTML markup as well.
    */
-   set: function(dom, markup, cb) {
+  set: function(dom, markup, cb) {
     FB.log('FB.XFBML.set() has been deprecated.');
     dom.innerHTML = markup;
     FB.XFBML.parse(dom, cb);
@@ -8287,15 +8288,15 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
  *
  * @class FB.Waitable
  */
- FB.subclass('Waitable', 'Obj',
+FB.subclass('Waitable', 'Obj',
   /**
    * Construct a Waitable object.
    *
    * @access private
    * @constructor
    */
-   function() {},
-   {
+  function() {},
+  {
   /**
    * Set value property of the data object. This will
    * cause "value" event to be fire on the object. Any callback functions
@@ -8305,7 +8306,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * @private
    * @param {Object} value new value for the Waitable
    */
-   set: function(value) {
+  set: function(value) {
     this.setProperty('value', value);
   },
 
@@ -8316,7 +8317,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * @access private
    * @param ex {Exception} the exception object
    */
-   error: function(ex) {
+  error: function(ex) {
     this.fire("error", ex);
   },
 
@@ -8345,7 +8346,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    * will be invoked if there is an error in getting the value. The errorHandler
    * takes an optional Error object.
    */
-   wait: function(callback, errorHandler) {
+  wait: function(callback, errorHandler) {
     // register error handler first incase the monitor call causes an exception
     if (errorHandler) {
       this.subscribe('error', errorHandler);
@@ -8418,7 +8419,7 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
  * @access public
  * @extends FB.Waitable
  */
- FB.subclass('Data.Query', 'Waitable',
+FB.subclass('Data.Query', 'Waitable',
   function() {
     if (!FB.Data.Query._c) {
       FB.Data.Query._c = 1;
@@ -8432,16 +8433,16 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    *
    * @params args
    */
-   parse: function(args) {
+  parse: function(args) {
     var
-    fql = FB.String.format.apply(null, args),
+      fql = FB.String.format.apply(null, args),
       re = (/^select (.*?) from (\w+)\s+where (.*)$/i).exec(fql); // Parse it
-      this.fields = this._toFields(re[1]);
-      this.table = re[2];
-      this.where = this._parseWhere(re[3]);
+    this.fields = this._toFields(re[1]);
+    this.table = re[2];
+    this.where = this._parseWhere(re[3]);
 
-      for (var i=1; i < args.length; i++) {
-        if (FB.Type.isType(args[i], FB.Data.Query)) {
+    for (var i=1; i < args.length; i++) {
+      if (FB.Type.isType(args[i], FB.Data.Query)) {
         // Indicate this query can not be merged because
         // others depend on it.
         args[i].hasDependency = true;
@@ -8456,27 +8457,27 @@ FB.UIServer.Methods['auth.login'] = FB.UIServer.Methods['permissions.request'];
    *
    * @return {String} FQL statement for this query
    */
-   toFql: function() {
+  toFql: function() {
     var s = 'select ' + this.fields.join(',') + ' from ' +
-    this.table + ' where ';
+            this.table + ' where ';
     switch (this.where.type) {
       case 'unknown':
-      s += this.where.value;
-      break;
+        s += this.where.value;
+        break;
       case 'index':
-      s += this.where.key + '=' + this._encode(this.where.value);
-      break;
+        s += this.where.key + '=' + this._encode(this.where.value);
+        break;
       case 'in':
-      if (this.where.value.length == 1) {
-        s += this.where.key + '=' +  this._encode(this.where.value[0]);
-      } else {
-        s += this.where.key + ' in (' +
-          FB.Array.map(this.where.value, this._encode).join(',') + ')';
-}
-break;
-}
-return s;
-},
+        if (this.where.value.length == 1) {
+          s += this.where.key + '=' +  this._encode(this.where.value[0]);
+        } else {
+          s += this.where.key + ' in (' +
+            FB.Array.map(this.where.value, this._encode).join(',') + ')';
+        }
+        break;
+    }
+    return s;
+  },
 
   /**
    * Encode a given value for use in a query string.
@@ -8484,7 +8485,7 @@ return s;
    * @param value {Object} the value to encode
    * @returns {String} the encoded value
    */
-   _encode: function(value) {
+  _encode: function(value) {
     return typeof(value) == 'string' ? FB.String.quote(value) : value;
   },
 
@@ -8495,7 +8496,7 @@ return s;
    *
    * @returns {String} the name
    */
-   toString: function() {
+  toString: function() {
     return '#' + this.name;
   },
 
@@ -8511,7 +8512,7 @@ return s;
    * @param s {String} the field selection string
    * @returns {Array} the fields
    */
-   _toFields: function(s) {
+  _toFields: function(s) {
     return FB.Array.map(s.split(','), FB.String.trim);
   },
 
@@ -8521,14 +8522,14 @@ return s;
    * @param s {String} the where clause
    * @returns {Object} parsed where clause
    */
-   _parseWhere: function(s) {
+  _parseWhere: function(s) {
     // First check if the where is of pattern
     // key = XYZ
     var
-    re = (/^\s*(\w+)\s*=\s*(.*)\s*$/i).exec(s),
-    result,
-    value,
-    type = 'unknown';
+      re = (/^\s*(\w+)\s*=\s*(.*)\s*$/i).exec(s),
+      result,
+      value,
+      type = 'unknown';
     if (re) {
       // Now check if XYZ is either an number or string.
       value = re[2];
@@ -8606,7 +8607,7 @@ return s;
  * @access public
  * @static
  */
- FB.provide('Data', {
+FB.provide('Data', {
   /**
    * Performs a parameterized FQL query and returns a [FB.Data.query](FB.Data.query)
    * object which can be waited on for the asynchronously fetched data.
@@ -8679,7 +8680,7 @@ return s;
    * @return {FB.Data.Query}
    * An async query object that contains query result.
    */
-   query: function(template, data) {
+  query: function(template, data) {
     var query = new FB.Data.Query().parse(arguments);
     FB.Data.queue.push(query);
     FB.Data._waitToProcess();
@@ -8751,10 +8752,10 @@ return s;
    * @return {FB.Waitable} A Waitable object that will be set with the return
    * value of callback function.
    */
-   waitOn: function(dependencies, callback) {
+  waitOn: function(dependencies, callback) {
     var
-    result = new FB.Waitable(),
-    count = dependencies.length;
+      result = new FB.Waitable(),
+      count = dependencies.length;
 
     // For developer convenience, we allow the callback
     // to be a string of javascript expression
@@ -8788,7 +8789,7 @@ return s;
    * @param item {FB.Waitable|Object} potential Waitable object
    * @returns {Object} the value
    */
-   _getValue: function(item) {
+  _getValue: function(item) {
     return FB.Type.isType(item, FB.Waitable) ? item.value : item;
   },
 
@@ -8803,7 +8804,7 @@ return s;
    * @param value {Object} the key value
    * @returns {FB.Data.Query} the query object
    */
-   _selectByIndex: function(fields, table, name, value) {
+  _selectByIndex: function(fields, table, name, value) {
     var query = new FB.Data.Query();
     query.fields = fields;
     query.table = table;
@@ -8817,7 +8818,7 @@ return s;
    * Set up a short timer to ensure that we process all requests at once. If
    * the timer is already set then ignore.
    */
-   _waitToProcess: function() {
+  _waitToProcess: function() {
     if (FB.Data.timer < 0) {
       FB.Data.timer = setTimeout(FB.Data._process, 10);
     }
@@ -8826,12 +8827,12 @@ return s;
   /**
    * Process the current queue.
    */
-   _process: function() {
+  _process: function() {
     FB.Data.timer = -1;
 
     var
-    mqueries = {},
-    q = FB.Data.queue;
+      mqueries = {},
+      q = FB.Data.queue;
     FB.Data.queue = [];
 
     for (var i=0; i < q.length; i++) {
@@ -8863,14 +8864,14 @@ return s;
           });
         }
       }
-      );
+    );
   },
 
   /**
    * Check if y can be merged into x
    * @private
    */
-   _mergeIndexQuery: function(item, mqueries) {
+  _mergeIndexQuery: function(item, mqueries) {
     var key = item.where.key,
     value = item.where.value;
 
@@ -9000,7 +9001,7 @@ window.setTimeout(function() {
  * });
  *
  */
- FB.provide('Native', {
+FB.provide('Native', {
   NATIVE_READY_EVENT: 'fbNativeReady',
 
   /**
@@ -9009,12 +9010,12 @@ window.setTimeout(function() {
    *
    * (This is necessary since native JS injection happens asynchronously)
    */
-   onready: function(func) {
+  onready: function(func) {
     // Check that we're within a native container
     if (!FB.UA.nativeApp()) {
       FB.log('FB.Native.onready only works when the page is rendered ' +
-       'in a WebView of the native Facebook app. Test if this is the ' +
-       'case calling FB.UA.nativeApp()');
+             'in a WebView of the native Facebook app. Test if this is the ' +
+             'case calling FB.UA.nativeApp()');
       return;
     }
 
@@ -9034,7 +9035,7 @@ window.setTimeout(function() {
       // wait for an event to fire.
       var nativeReadyCallback = function(evt) {
         window.removeEventListener(FB.Native.NATIVE_READY_EVENT,
-          nativeReadyCallback);
+            nativeReadyCallback);
         FB.Native.onready(func);
       };
       window.addEventListener(FB.Native.NATIVE_READY_EVENT,
@@ -9070,7 +9071,7 @@ window.setTimeout(function() {
 /**
  * Implementation of the payment flow UI initiation
  */
- FB.provide('UIServer.Methods', {
+FB.provide('UIServer.Methods', {
   'pay.prompt': {
     transform : function(call) {
       var handler = FB.XD.handler(function(msg) {
@@ -9085,7 +9086,7 @@ window.setTimeout(function() {
   }
 });
 
- FB.provide('UIServer.Methods', {
+FB.provide('UIServer.Methods', {
   'pay': {
     size      : { width: 555, height: 120 },
     noHttps   : true,
@@ -9136,7 +9137,7 @@ window.setTimeout(function() {
  * @static
  * @private
  */
- FB.provide('Helper', {
+FB.provide('Helper', {
   /**
    * Check if an id is an user id, instead of a page id
    *
@@ -9146,20 +9147,20 @@ window.setTimeout(function() {
    * @param {uid} id
    * @returns {Boolean} true if the given id is a user id
    */
-   isUser: function(id) {
+  isUser: function(id) {
     return id < 2200000000 ||
       (id >= 100000000000000 &&  // 100T is first 64-bit UID
        id <= 100099999989999) || // 100T + 3,333,333*30,000 - 1)
       (id >= 89000000000000 &&   // DBTYPE_TEST2: see flib/core/fbid/hash.php
        id <= 89999999999999);
-    },
+  },
 
   /**
    * Return the current user's UID if available.
    *
    * @returns {String|Number} returns the current user's UID or null
    */
-   getLoggedInUser: function() {
+  getLoggedInUser: function() {
     return FB.getUserID(); // pass the buck to the auth response
   },
 
@@ -9169,7 +9170,7 @@ window.setTimeout(function() {
    * @param s {String} the string
    * @return {String} the string with an uppercase first character
    */
-   upperCaseFirstChar: function(s) {
+  upperCaseFirstChar: function(s) {
     if (s.length > 0) {
       return s.substr(0, 1).toUpperCase() + s.substr(1);
     }
@@ -9186,9 +9187,9 @@ window.setTimeout(function() {
    * @param href {String} Custom href.
    * @returns {String} the anchor tag markup
    */
-   getProfileLink: function(userInfo, html, href) {
+  getProfileLink: function(userInfo, html, href) {
     href = href || (userInfo ? FB.getDomain('www') + 'profile.php?id=' +
-      userInfo.uid : null);
+                    userInfo.uid : null);
     if (href) {
       html = '<a class="fb_link" href="' + href + '">' + html + '</a>';
     }
@@ -9203,7 +9204,7 @@ window.setTimeout(function() {
    * @param scope {Object}
    * @param args {Array}
    */
-   invokeHandler: function(handler, scope, args) {
+  invokeHandler: function(handler, scope, args) {
     if (handler) {
       if (typeof handler === 'string') {
         eval(handler);
@@ -9221,7 +9222,7 @@ window.setTimeout(function() {
    * @param evenName {String}
    * @param eventRaiser {Object}
    */
-   fireEvent: function(eventName, eventSource) {
+  fireEvent: function(eventName, eventSource) {
     var href = eventSource._attr.href;
     eventSource.fire(eventName, href); // dynamically attached
     FB.Event.fire(eventName, href, eventSource); // global
@@ -9232,7 +9233,7 @@ window.setTimeout(function() {
    *
    * From http://stackoverflow.com/questions/359788
    */
-   executeFunctionByName: function(functionName /*, args */) {
+  executeFunctionByName: function(functionName /*, args */) {
     var args = Array.prototype.slice.call(arguments, 1);
     var namespaces = functionName.split(".");
     var func = namespaces.pop();
@@ -9280,7 +9281,7 @@ window.setTimeout(function() {
  * @static
  * @access private
  */
- FB.provide('TemplateData', {
+FB.provide('TemplateData', {
   _initialized: false,
   _version: 0,
   _response: null,
@@ -9292,10 +9293,10 @@ window.setTimeout(function() {
 
   enabled: function() {
     return FB.TemplateData._enabled &&
-    FB.TemplateData._initialized &&
-    FB.TemplateData.supportsLocalStorage() &&
-    FB._userStatus == 'connected' &&
-    FB.TemplateData.getResponse();
+      FB.TemplateData._initialized &&
+      FB.TemplateData.supportsLocalStorage() &&
+      FB._userStatus == 'connected' &&
+      FB.TemplateData.getResponse();
   },
 
   supportsLocalStorage: function() {
@@ -9313,24 +9314,24 @@ window.setTimeout(function() {
    *   - it was set soon enough
    *   - the version is up to date
    */
-   _isStale: function(response) {
+  _isStale: function(response) {
     if (!response || !response.version ||
-      response.version != FB.TemplateData._version ||
-      response.currentUserID != FB.getUserID()) {
+        response.version != FB.TemplateData._version ||
+        response.currentUserID != FB.getUserID()) {
       return true;
-  }
-  var currentTime = Math.round((new Date()).getTime());
-  return (currentTime - response.setAt) / 1000.0 >
-  FB.TemplateData._localStorageTimeout;
-},
+    }
+    var currentTime = Math.round((new Date()).getTime());
+    return (currentTime - response.setAt) / 1000.0 >
+           FB.TemplateData._localStorageTimeout;
+  },
 
-getResponse: function() {
-  var self = FB.TemplateData;
-  try {
-    self._response = self._response ||
-    (self.supportsLocalStorage() &&
-     FB.JSON.parse(localStorage.FB_templateDataResponse || "null"));
-  } catch (e) {
+  getResponse: function() {
+    var self = FB.TemplateData;
+    try {
+      self._response = self._response ||
+        (self.supportsLocalStorage() &&
+         FB.JSON.parse(localStorage.FB_templateDataResponse || "null"));
+    } catch (e) {
       // Catch possible bad data in localStorage
       self._response = null;
     }
@@ -9351,7 +9352,7 @@ getResponse: function() {
    * Returns the data in FB_templateDataResponse or {}
    * if one hasn't been loaded yet.
    */
-   getData: function() {
+  getData: function() {
     var response = FB.TemplateData.getResponse();
     return response ? response.data : {};
   },
@@ -9363,26 +9364,26 @@ getResponse: function() {
     FB.TemplateData._initialized = true;
     FB.TemplateData._version = version;
     if (FB.TemplateData.supportsLocalStorage() &&
-      !('FB_templateDataResponse' in localStorage)) {
+        !('FB_templateDataResponse' in localStorage)) {
       FB.TemplateData.clear();
-  }
-},
+    }
+  },
 
-clear: function() {
-  FB.TemplateData.saveResponse(null);
-},
+  clear: function() {
+    FB.TemplateData.saveResponse(null);
+  },
 
   /**
    * Called on auth.statusChange.
    * Updates the state of this module as appropriate.
    * Assumes init() has been called.
    */
-   update: function(loginStatusResponse) {
+  update: function(loginStatusResponse) {
     if (FB._userStatus != 'connected') {
       FB.TemplateData.clear();
     }
     if (FB._userStatus == 'connected' &&
-      !FB.TemplateData.getResponse()) {
+        !FB.TemplateData.getResponse()) {
       FB.api({ method: 'dialog.template_data'}, function(response) {
         if ('error_code' in response) {
           // Something went wrong
@@ -9393,10 +9394,10 @@ clear: function() {
           currentUserID: FB.getUserID(),
           setAt: (new Date()).getTime(),
           version: FB.TemplateData._version};
-          FB.TemplateData.saveResponse(data);
-        });
+        FB.TemplateData.saveResponse(data);
+      });
+    }
   }
-}
 });
 
 /**
@@ -9430,25 +9431,25 @@ clear: function() {
  * @class FB.TemplateUI
  * @access private
  */
- FB.subclass('TemplateUI', 'Obj',
+FB.subclass('TemplateUI', 'Obj',
 // Constructor
 function(method, isPreload) {
   this.method = method;
   var in_iframe = FB.UA.nativeApp() ? 0 : 1;
   var query_params =
-  {display: 'touch',
-  preview_template: 1,
-  in_iframe: in_iframe,
-  locale: FB._locale,
-  v: FB.TemplateUI._version,
-  user_agent: navigator.userAgent
-};
+   {display: 'touch',
+    preview_template: 1,
+    in_iframe: in_iframe,
+    locale: FB._locale,
+    v: FB.TemplateUI._version,
+    user_agent: navigator.userAgent
+   };
 
-if (window.devicePixelRatio) {
-  query_params.m_pixel_ratio = window.devicePixelRatio;
-}
+  if (window.devicePixelRatio) {
+    query_params.m_pixel_ratio = window.devicePixelRatio;
+  }
 
-var query_string = FB.QS.encode(query_params);
+  var query_string = FB.QS.encode(query_params);
 
   // Create a dialog that points to akamai cached template
   // ui dialog, then hide the dialog, so that it may be used
@@ -9503,7 +9504,7 @@ var query_string = FB.QS.encode(query_params);
    * @access private
    * @param call {Object} call parameters
    */
-   use: function(call) {
+  use: function(call) {
     if (!this.cachedCall.root) {
       FB.UIServer.touch(this.cachedCall);
       // Check if there is an iframe that was used to preload
@@ -9543,7 +9544,7 @@ var query_string = FB.QS.encode(query_params);
     FB.copy(template_params, call.params);
     FB.copy(template_params, FB.TemplateData.getData()[this.method]);
     template_params.frictionless =
-    FB.TemplateUI.isFrictionlessAppRequest(this.method, template_params);
+      FB.TemplateUI.isFrictionlessAppRequest(this.method, template_params);
     template_params.common = FB.TemplateData.getData().common;
     template_params.method = this.method;
     this.setParams(template_params);
@@ -9561,17 +9562,17 @@ var query_string = FB.QS.encode(query_params);
    * @access private
    * @param params {Object} data parametes
    */
-   setParams: function(params) {
+  setParams: function(params) {
     // We need to wait until the iframe send callback cb
     // for getParams
     this.monitor('getParamsCb', this.bind(function() {
       if (this.getParamsCb) {
         var dialogWindow = frames[this.cachedCall.frameName] ||
-        FB.UIServer.getLoadedNode(this.cachedCall);
+          FB.UIServer.getLoadedNode(this.cachedCall);
         dialogWindow.postMessage(FB.JSON.stringify(
           {params: params,
            cb:     this.getParamsCb
-         }), '*');
+          }), '*');
         return true;
       }
     }));
@@ -9590,7 +9591,7 @@ FB.provide('TemplateUI', {
   /**
    * Initialization function.
    */
-   init: function() {
+  init: function() {
     FB.TemplateData.init(FB.TemplateUI._version);
     FB.TemplateUI.initCache();
   },
@@ -9600,7 +9601,7 @@ FB.provide('TemplateUI', {
    * @param method {string} method name
    * @param call   {call}   call parameters
    */
-   useCachedUI: function(method, call) {
+  useCachedUI: function(method, call) {
     try {
       // Ensure the relevant iframe is rendered. Usually a no-op.
       FB.TemplateUI.populateCache();
@@ -9623,7 +9624,7 @@ FB.provide('TemplateUI', {
    * FB.TemplateUI._cache. Called at init time and after
    * a cached iframe is closed.
    */
-   populateCache: function(isPreload) {
+  populateCache: function(isPreload) {
     if (!FB.TemplateData.enabled() || !FB.UA.mobile()) {
       return;
     }
@@ -9643,7 +9644,7 @@ FB.provide('TemplateUI', {
    * on application
    * 2. If the template data is not ready, we need to wait for it.
    */
-   initCache: function() {
+  initCache: function() {
     FB.TemplateUI._timer = setInterval(function() {
       FB.TemplateUI.populateCache(true);
     }, 2000);
@@ -9654,11 +9655,11 @@ FB.provide('TemplateUI', {
    * when possible, though some of their features can't be or aren't
    * implemented with templates yet.
    */
-   supportsTemplate: function(method, call) {
+  supportsTemplate: function(method, call) {
     return FB.TemplateData.enabled() &&
-    FB.TemplateUI.paramsAllowTemplate(method, call.params) &&
-    call.params.display === 'touch' &&
-    FB.UA.mobile();
+      FB.TemplateUI.paramsAllowTemplate(method, call.params) &&
+      call.params.display === 'touch' &&
+      FB.UA.mobile();
   },
 
   /**
@@ -9673,10 +9674,10 @@ FB.provide('TemplateUI', {
    * @param app_params {Object} the FB.ui parameters
    * @return           {Boolean} whether the call can use a template dialog
    */
-   paramsAllowTemplate: function(method, app_params) {
+  paramsAllowTemplate: function(method, app_params) {
     var bad_params =
-    {feed:        {to: 1, attachment: 1, source: 1},
-    apprequests: {}};
+      {feed:        {to: 1, attachment: 1, source: 1},
+       apprequests: {}};
     if (!(method in bad_params)) {
       return false;
     }
@@ -9690,7 +9691,7 @@ FB.provide('TemplateUI', {
 
   isFrictionlessAppRequest: function(method, app_params) {
     return method === 'apprequests' && FB.Frictionless &&
-    FB.Frictionless._useFrictionless;
+      FB.Frictionless._useFrictionless;
   },
 
   /**
@@ -9703,10 +9704,10 @@ FB.provide('TemplateUI', {
    * @return           {Boolean} true if a regular call would
    *                             write to the DB on the first request
    */
-   willWriteOnGet: function(method, app_params) {
+  willWriteOnGet: function(method, app_params) {
     return FB.TemplateUI.isFrictionlessAppRequest(method, app_params) &&
-    app_params.to &&
-    FB.Frictionless.isAllowed(app_params.to);
+      app_params.to &&
+      FB.Frictionless.isAllowed(app_params.to);
   }
 
 });
@@ -9734,13 +9735,13 @@ FB.provide('TemplateUI', {
 /**
  * URI Handling
  */
- FB.provide('URI', {
+FB.provide('URI', {
 
   /**
    * Resolve a relative URL to an absolute URL.  An absolute URL will resolve to
    * itself.  The empty string resolves to the current window location.
    */
-   resolve: function(uri) {
+  resolve: function(uri) {
     if (!uri) { // IE handles this case poorly, so we will be explicit about it
       return window.location.href;
     }
@@ -9781,7 +9782,7 @@ FB.provide('TemplateUI', {
  * @access private
  * @class FB.XFBML.Element
  */
- FB.Class('XFBML.Element',
+FB.Class('XFBML.Element',
   /**
    * Create a new Element.
    *
@@ -9789,7 +9790,7 @@ FB.provide('TemplateUI', {
    * @constructor
    * @param dom {DOMElement} the DOMElement for the tag
    */
-   function(dom) {
+  function(dom) {
     this.dom = dom;
   },
 
@@ -9806,7 +9807,7 @@ FB.provide('TemplateUI', {
    * @param transform {Function} Optional function to transform found value.
    * @return {Object} final value
    */
-   getAttribute: function(name, defaultValue, transform) {
+  getAttribute: function(name, defaultValue, transform) {
     var value = FB.XFBML.getAttr(this.dom, name);
     return value ? (transform ? transform(value) : value) : defaultValue;
   },
@@ -9818,7 +9819,7 @@ FB.provide('TemplateUI', {
    * @param name {String} Name of the attribute.
    * @param defaultValue {Object} Default value if attribute isn't set.
    */
-   _getBoolAttribute: function(name, defaultValue) {
+  _getBoolAttribute: function(name, defaultValue) {
     if (FB.XFBML.getAttr(this.dom, name) === null) {
       return defaultValue;
     }
@@ -9832,7 +9833,7 @@ FB.provide('TemplateUI', {
    * @param name {String} Name of the attribute.
    * @param defaultValue {Object} Default value if attribute isn't set.
    */
-   _getPxAttribute: function(name, defaultValue) {
+  _getPxAttribute: function(name, defaultValue) {
     return this.getAttribute(name, defaultValue, function(s) {
       var size = parseInt(s.replace('px', ''), 10);
       if (isNaN(size)) {
@@ -9853,7 +9854,7 @@ FB.provide('TemplateUI', {
    * @param defaultValue {Object} Default value
    * @param allowed {Array} List of allowed values.
    */
-   _getAttributeFromList: function(name, defaultValue, allowed) {
+  _getAttributeFromList: function(name, defaultValue, allowed) {
     return this.getAttribute(name, defaultValue, function(s) {
       s = s.toLowerCase();
       if (FB.Array.indexOf(allowed, s) > -1) {
@@ -9870,7 +9871,7 @@ FB.provide('TemplateUI', {
    * @access private
    * @returns {Boolean} true if element is valid
    */
-   isValid: function() {
+  isValid: function() {
     for (var dom = this.dom; dom; dom = dom.parentNode) {
       if (dom == document.body) {
         return true;
@@ -9883,7 +9884,7 @@ FB.provide('TemplateUI', {
    *
    * @access private
    */
-   clear: function() {
+  clear: function() {
     this.dom.innerHTML = '';
   }
 }, FB.EventProvider));
@@ -9923,41 +9924,41 @@ FB.provide('TemplateUI', {
  * @extends FB.XFBML.Element
  * @private
  */
- FB.subclass('XFBML.IframeWidget', 'XFBML.Element', null, {
+FB.subclass('XFBML.IframeWidget', 'XFBML.Element', null, {
   /**
    * The name that should be used for the 'name' attribute of
    * the iframe.  Normally null, which means that it can be auto-generated
    * without any regard for convention, but it can be set by the
    * subclass if the name is important.
    */
-   _iframeName: null,
+  _iframeName: null,
 
   /**
    * Indicate if the loading animation should be shown while the iframe is
    * loading.
    */
-   _showLoader: true,
+  _showLoader: true,
 
   /**
    * Indicate if the widget should be reprocessed when the user enters or
    * leaves the "unknown" state. (Logs in/out of facebook, but not the
    * application.)
-*/
-_refreshOnAuthChange: false,
+   */
+  _refreshOnAuthChange: false,
 
   /**
    * Indicates if the widget should be reprocessed on auth.statusChange events.
    * This is the default for XFBML Elements, but is usually undesirable for
    * Iframe Widgets.
    */
-   _allowReProcess: false,
+  _allowReProcess: false,
 
   /**
    * Indicates if the widget should be loaded from a static response cached
    * version the CDN, only needed for high performance widgets that need to
    * minimize TTI.
    */
-   _fetchPreCachedLoader: false,
+  _fetchPreCachedLoader: false,
 
   /**
    * Indicates when the widget will be made visible.
@@ -9966,14 +9967,14 @@ _refreshOnAuthChange: false,
    *   resize: when the first resize message is received
    *   immediate: when there is any HTML.
    */
-   _visibleAfter: 'load',
+  _visibleAfter: 'load',
 
   /**
    * Indicates whether or not the widget should be rendered using
    * WidgetPipe.  The default is false, but this same field should
    * be set to true if the IframeWidget subclass has WidgetPipe support.
    */
-   _widgetPipeEnabled: false,
+  _widgetPipeEnabled: false,
 
   /////////////////////////////////////////////////////////////////////////////
   // Methods the implementation MUST override
@@ -9990,7 +9991,7 @@ _refreshOnAuthChange: false,
    *
    * @return {Object} an object containing a **name** and **params**.
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     throw new Error('Inheriting class needs to implement getUrlBits().');
   },
 
@@ -10008,7 +10009,7 @@ _refreshOnAuthChange: false,
    *
    * @return {Boolean} true to continue processing, false to halt it
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     return true;
   },
 
@@ -10016,7 +10017,7 @@ _refreshOnAuthChange: false,
    * This is useful for setting up event handlers and such which should not be
    * run again if the widget is reprocessed.
    */
-   oneTimeSetup: function() {},
+  oneTimeSetup: function() {},
 
   /**
    * Implemented by the inheriting class to return the initial size for the
@@ -10026,7 +10027,7 @@ _refreshOnAuthChange: false,
    *
    * @return {Object} object with a width and height as Numbers (pixels assumed)
    */
-   getSize: function() {},
+  getSize: function() {},
 
   /**
    * Generates and returns a unique frame name for this particular
@@ -10039,25 +10040,25 @@ _refreshOnAuthChange: false,
    *
    * @return {String} the name given to the iframe.
    */
-   getIframeName: function() {
+  getIframeName: function() {
     if (!this._iframeName &&
-      this._widgetPipeEnabled &&
-      FB.XFBML.shouldUseWidgetPipe()) {
+        this._widgetPipeEnabled &&
+        FB.XFBML.shouldUseWidgetPipe()) {
       this._iframeName = this.generateWidgetPipeIframeName();
-    FB.XFBML.IframeWidget.allWidgetPipeIframes[this._iframeName] = this;
-    if (FB.XFBML.IframeWidget.masterWidgetPipeIframe === null) {
-      FB.XFBML.IframeWidget.masterWidgetPipeIframe = this;
+      FB.XFBML.IframeWidget.allWidgetPipeIframes[this._iframeName] = this;
+      if (FB.XFBML.IframeWidget.masterWidgetPipeIframe === null) {
+        FB.XFBML.IframeWidget.masterWidgetPipeIframe = this;
+      }
     }
-  }
 
-  return this._iframeName;
-},
+    return this._iframeName;
+  },
 
   /**
    * Implemented by a subclass that wants to attach a title as an attribute
    * to the top-level iframe tag.
    */
-   getIframeTitle: function() {},
+  getIframeTitle: function() {},
 
   /////////////////////////////////////////////////////////////////////////////
   // Public methods the implementation CAN use
@@ -10068,24 +10069,24 @@ _refreshOnAuthChange: false,
    *
    * @return {String} the channel URL
    */
-   getChannelUrl: function() {
+  getChannelUrl: function() {
     if (!this._channelUrl) {
       // parent.parent => the message will be going from cdn => fb => app (with
       // cdn being the deepest frame, and app being the top frame)
-var self = this;
-this._channelUrl = FB.XD.handler(function(message) {
-  self.fire('xd.' + message.type, message);
-}, 'parent.parent', true);
-}
-return this._channelUrl;
-},
+      var self = this;
+      this._channelUrl = FB.XD.handler(function(message) {
+        self.fire('xd.' + message.type, message);
+      }, 'parent.parent', true);
+    }
+    return this._channelUrl;
+  },
 
   /**
    * Returns the iframe node (if it has already been created).
    *
    * @return {DOMElement} the iframe DOM element
    */
-   getIframeNode: function() {
+  getIframeNode: function() {
     // not caching to allow for the node to change over time without needing
     // house-keeping for the cached reference.
     return this.dom.getElementsByTagName('iframe')[0];
@@ -10099,7 +10100,7 @@ return this._channelUrl;
    * will not necessarily work if called from inside an `iframe.onload` event
    * handler.
    */
-   arbiterInform: function(event, message, behavior) {
+  arbiterInform: function(event, message, behavior) {
     if (this.loaded) {
       this._arbiterInform(event, message, behavior);
     } else {
@@ -10113,7 +10114,7 @@ return this._channelUrl;
    * This is an internal helper to deal with synchronization to prevent race
    * conditions in arbiterInform.  Clients should use arbiterInform.
    */
-   _arbiterInform: function(event, message, behavior) {
+  _arbiterInform: function(event, message, behavior) {
     var relation = 'parent.frames["' + this.getIframeNode().name + '"]';
     FB.Arbiter.inform(
       event, message, relation, window.location.protocol == 'https:', behavior);
@@ -10123,7 +10124,7 @@ return this._channelUrl;
    * Returns the default domain that should be used for all
    * plugins served from our web tier.
    */
-   getDefaultWebDomain: function() {
+  getDefaultWebDomain: function() {
     return 'www';
   },
 
@@ -10131,7 +10132,7 @@ return this._channelUrl;
    * Returns the default domain that should be used for all
    * plugins served from our Akamai tier.
    */
-   getDefaultStaticDomain: function() {
+  getDefaultStaticDomain: function() {
     return 'cdn';
   },
 
@@ -10145,7 +10146,7 @@ return this._channelUrl;
    *
    * @param force {Boolean} force reprocessing of the node
    */
-   process: function(force) {
+  process: function(force) {
     // guard agains reprocessing if needed
     if (this._done) {
       if (!this._allowReProcess && !force) {
@@ -10208,7 +10209,7 @@ return this._channelUrl;
    * @return {String} the name that should be given to the widget-pipe
    *         enabled iframe.
    */
-   generateWidgetPipeIframeName: function() {
+  generateWidgetPipeIframeName: function() {
     FB.XFBML.IframeWidget.widgetPipeIframeCount++;
     return 'fb_iframe_' + FB.XFBML.IframeWidget.widgetPipeIframeCount;
   },
@@ -10223,7 +10224,7 @@ return this._channelUrl;
    *
    * @return {String} the fully qualified, properly encoded URL
    */
-   getFullyQualifiedURL: function() {
+  getFullyQualifiedURL: function() {
     if (FB.XFBML.shouldUseWidgetPipe() && this._widgetPipeEnabled) {
       return this._getWidgetPipeShell();
     }
@@ -10260,14 +10261,14 @@ return this._channelUrl;
    *         this iframe that the content is ready.
    */
 
-   _getWidgetPipeShell: function() {
+  _getWidgetPipeShell: function() {
     return FB.getDomain('www') + 'common/widget_pipe_shell.php';
   },
 
   /**
    * Internal one time setup logic.
    */
-   _oneTimeSetup: function() {
+  _oneTimeSetup: function() {
     // the XD messages we want to handle. it is safe to subscribe to these even
     // if they will not get used.
     this.subscribe('xd.resize', FB.bind(this._handleResizeMsg, this));
@@ -10299,7 +10300,7 @@ return this._channelUrl;
   /**
    * Make the iframe visible and remove the loader.
    */
-   _makeVisible: function() {
+  _makeVisible: function() {
     this._removeLoader();
     FB.Dom.removeCss(this.dom, 'fb_hide_iframes');
     this.fire('render');
@@ -10314,7 +10315,7 @@ return this._channelUrl;
    * This misses the case where the user switched logins without the
    * application knowing about it. Unfortunately this is not possible/allowed.
    */
-   _setupAuthRefresh: function() {
+  _setupAuthRefresh: function() {
     FB.getLoginStatus(FB.bind(function(response) {
       var lastStatus = response.status;
       FB.Event.subscribe('auth.statusChange', FB.bind(function(response) {
@@ -10333,7 +10334,7 @@ return this._channelUrl;
   /**
    * Invoked by the iframe when it wants to be resized.
    */
-   _handleResizeMsg: function(message) {
+  _handleResizeMsg: function(message) {
     if (!this.isValid()) {
       return;
     }
@@ -10349,7 +10350,7 @@ return this._channelUrl;
   /**
    * Add the loader.
    */
-   _addLoader: function() {
+  _addLoader: function() {
     if (!this._loaderDiv) {
       FB.Dom.addCss(this.dom, 'fb_iframe_widget_loader');
       this._loaderDiv = document.createElement('div');
@@ -10361,7 +10362,7 @@ return this._channelUrl;
   /**
    * Remove the loader.
    */
-   _removeLoader: function() {
+  _removeLoader: function() {
     if (this._loaderDiv) {
       FB.Dom.removeCss(this.dom, 'fb_iframe_widget_loader');
       if (this._loaderDiv.parentNode) {
@@ -10377,7 +10378,7 @@ return this._channelUrl;
    *
    * @return {Object} the params object
    */
-   _getQS: function() {
+  _getQS: function() {
     return FB.copy({
       api_key      : FB._apiKey,
       locale       : FB._locale,
@@ -10391,10 +10392,10 @@ return this._channelUrl;
    *
    * @return {String} the url
    */
-   _getURL: function() {
+  _getURL: function() {
     var
-    domain = this.getDefaultWebDomain(),
-    static_path = '';
+      domain = this.getDefaultWebDomain(),
+      static_path = '';
 
     if (this._fetchPreCachedLoader) {
       domain = this.getDefaultStaticDomain();
@@ -10402,13 +10403,13 @@ return this._channelUrl;
     }
 
     return FB.getDomain(domain) + 'plugins/' + static_path +
-    this.getUrlBits().name + '.php';
+           this.getUrlBits().name + '.php';
   },
 
   /**
    * Will do the POST request to the iframe.
    */
-   _postRequest: function() {
+  _postRequest: function() {
     FB.Content.submitToTarget({
       url    : this._getURL(),
       target : this.getIframeNode().name,
@@ -10429,7 +10430,7 @@ FB.provide('XFBML.IframeWidget', {
     }
 
     var widgetPipeDescriptions =
-    FB.XFBML.IframeWidget._groupWidgetPipeDescriptions();
+      FB.XFBML.IframeWidget._groupWidgetPipeDescriptions();
     var widgetPipeParams = {
       widget_pipe: FB.JSON.stringify(widgetPipeDescriptions),
       href: window.location,
@@ -10444,7 +10445,7 @@ FB.provide('XFBML.IframeWidget', {
     // we need a dedicated span within the first fb:like tag to house the
     // iframe that fetches all of the plugin data.
     var masterWidgetPipeSpan =
-    masterWidgetPipeDom.appendChild(document.createElement('span'));
+      masterWidgetPipeDom.appendChild(document.createElement('span'));
     FB.Content.insertIframe({
       url: 'about:blank',
       root: masterWidgetPipeSpan,
@@ -10504,18 +10505,18 @@ FB.provide('XFBML.IframeWidget', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.Activity', 'XFBML.IframeWidget', null, {
+FB.subclass('XFBML.Activity', 'XFBML.IframeWidget', null, {
   _visibleAfter: 'load',
 
   /**
    * Refresh the iframe on auth.statusChange events.
    */
-   _refreshOnAuthChange: true,
+  _refreshOnAuthChange: true,
 
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     this._attr = {
       border_color    : this.getAttribute('border-color'),
       colorscheme     : this.getAttribute('color-scheme'),
@@ -10539,7 +10540,7 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return { width: this._attr.width, height: this._attr.height };
   },
 
@@ -10548,7 +10549,7 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'activity', params: this._attr };
   }
 });
@@ -10585,7 +10586,7 @@ FB.provide('XFBML.IframeWidget', {
  * @extends  FB.XFBML.Element
  * @private
  */
- FB.subclass('XFBML.ButtonElement', 'XFBML.Element', null, {
+FB.subclass('XFBML.ButtonElement', 'XFBML.Element', null, {
   _allowedSizes: ['icon', 'small', 'medium', 'large', 'xlarge'],
 
   /////////////////////////////////////////////////////////////////////////////
@@ -10595,7 +10596,7 @@ FB.provide('XFBML.IframeWidget', {
   /**
    * Invoked when the button is clicked.
    */
-   onClick: function() {
+  onClick: function() {
     throw new Error('Inheriting class needs to implement onClick().');
   },
 
@@ -10613,7 +10614,7 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @return {Boolean} true to continue processing, false to halt it
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     return true;
   },
 
@@ -10623,7 +10624,7 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @return {String} the HTML markup for the button
    */
-   getButtonMarkup: function() {
+  getButtonMarkup: function() {
     return this.getOriginalHTML();
   },
 
@@ -10636,7 +10637,7 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @return {String} the original innerHTML
    */
-   getOriginalHTML: function() {
+  getOriginalHTML: function() {
     return this._originalHTML;
   },
 
@@ -10647,7 +10648,7 @@ FB.provide('XFBML.IframeWidget', {
   /**
    * Processes this tag.
    */
-   process: function() {
+  process: function() {
     if (!('_originalHTML' in this)) {
       this._originalHTML = FB.String.trim(this.dom.innerHTML);
     }
@@ -10659,9 +10660,9 @@ FB.provide('XFBML.IframeWidget', {
     }
 
     var
-    size = this._getAttributeFromList('size', 'medium', this._allowedSizes),
-    className = '',
-    markup    = '';
+      size = this._getAttributeFromList('size', 'medium', this._allowedSizes),
+      className = '',
+      markup    = '';
 
     if (size == 'icon') {
       className = 'fb_button_simple';
@@ -10674,9 +10675,9 @@ FB.provide('XFBML.IframeWidget', {
     if (markup !== '') {
       this.dom.innerHTML = (
         '<a class="' + className + '">' +
-        '<span class="fb_button_text">' + markup + '</span>' +
+          '<span class="fb_button_text">' + markup + '</span>' +
         '</a>'
-        );
+      );
       // the firstChild is the anchor tag we just setup above
       this.dom.firstChild.onclick = FB.bind(this.onClick, this);
     }
@@ -10715,21 +10716,21 @@ FB.provide('XFBML.IframeWidget', {
  * @extends  FB.XFBML.ButtonElement
  * @private
  */
- FB.subclass('XFBML.AddProfileTab', 'XFBML.ButtonElement', null, {
+FB.subclass('XFBML.AddProfileTab', 'XFBML.ButtonElement', null, {
   /**
    * Should return the button markup. The default behaviour is to return the
    * original innerHTML of the element.
    *
    * @return {String} the HTML markup for the button
    */
-   getButtonMarkup: function() {
+  getButtonMarkup: function() {
     return FB.Intl.tx._("Add Profile Tab on Facebook");
   },
 
   /**
    * The ButtonElement base class will invoke this when the button is clicked.
    */
-   onClick: function() {
+  onClick: function() {
     FB.ui({ method: 'profile.addtab' }, this.bind(function(result) {
       if (result.tab_added) {
         FB.Helper.invokeHandler(this.getAttribute('on-add'), this);
@@ -10765,14 +10766,14 @@ FB.provide('XFBML.IframeWidget', {
  * @extends FB.XFBML.Facepile
  * @private
  */
- FB.subclass('XFBML.Facepile', 'XFBML.IframeWidget', null, {
+FB.subclass('XFBML.Facepile', 'XFBML.IframeWidget', null, {
   _visibleAfter: 'load',
   _extraParams: {},
 
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     this._attr = {
       href: this.getAttribute('href'),
       channel: this.getChannelUrl(),
@@ -10784,7 +10785,7 @@ FB.provide('XFBML.IframeWidget', {
       ref: this.getAttribute('ref'),
       size: this.getAttribute('size', 'small'),
       extended_social_context:
-      this.getAttribute('extended_social_context', false),
+        this.getAttribute('extended_social_context', false),
       // inner html will become the login button text,
       // if specified
       login_text: this.dom.innerHTML
@@ -10804,7 +10805,7 @@ FB.provide('XFBML.IframeWidget', {
   /**
    * Sets extra parameters that will be passed to the widget's url.
    */
-   setExtraParams: function(val) {
+  setExtraParams: function(val) {
     this._extraParams = val;
   },
 
@@ -10812,7 +10813,7 @@ FB.provide('XFBML.IframeWidget', {
   /**
    * Setup event handlers.
    */
-   oneTimeSetup: function() {
+  oneTimeSetup: function() {
     // this widget's internal state is tied to the "connected" status. it
     // doesn't care about the difference between "unknown" and "notConnected".
     var lastStatus = FB._userStatus;
@@ -10831,10 +10832,10 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     // made height to 90 to accommodate large profile pic sizes
     if (this._attr.size == 'large') {
-      return { width: this._attr.width, height: 90 };
+        return { width: this._attr.width, height: 90 };
     }
     return { width: this._attr.width, height: 70 };
   },
@@ -10844,7 +10845,7 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'facepile', params: this._attr };
   }
 });
@@ -10876,7 +10877,7 @@ FB.provide('XFBML.IframeWidget', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.AddToTimeline', 'XFBML.Facepile', null, {
+FB.subclass('XFBML.AddToTimeline', 'XFBML.Facepile', null, {
   _visibleAfter: 'load',
 
   /**
@@ -10886,7 +10887,7 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return { width: 300, height: 250 };
   },
 
@@ -10895,7 +10896,7 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'add_to_timeline', params: this._attr };
   }
 });
@@ -10931,21 +10932,21 @@ FB.provide('XFBML.IframeWidget', {
  * @extends  FB.XFBML.ButtonElement
  * @private
  */
- FB.subclass('XFBML.Bookmark', 'XFBML.ButtonElement', null, {
+FB.subclass('XFBML.Bookmark', 'XFBML.ButtonElement', null, {
   /**
    * Should return the button markup. The default behaviour is to return the
    * original innerHTML of the element.
    *
    * @return {String} the HTML markup for the button
    */
-   getButtonMarkup: function() {
+  getButtonMarkup: function() {
     return FB.Intl.tx._("Bookmark on Facebook");
   },
 
   /**
    * The ButtonElement base class will invoke this when the button is clicked.
    */
-   onClick: function() {
+  onClick: function() {
     FB.ui({ method: 'bookmark.add' }, this.bind(function(result) {
       if (result.bookmarked) {
         FB.Helper.invokeHandler(this.getAttribute('on-add'), this);
@@ -10981,18 +10982,18 @@ FB.provide('XFBML.IframeWidget', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.Comments', 'XFBML.IframeWidget', null, {
+FB.subclass('XFBML.Comments', 'XFBML.IframeWidget', null, {
   _visibleAfter: 'immediate',
 
   /**
    * Refresh the iframe on auth.statusChange events.
    */
-   _refreshOnAuthChange: true,
+  _refreshOnAuthChange: true,
 
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     // query parameters to the comments iframe
     var attr = {
       channel_url : this.getChannelUrl(),
@@ -11006,10 +11007,10 @@ FB.provide('XFBML.IframeWidget', {
     };
 
     if (FB.initSitevars.enableMobileComments &&
-      FB.UA.mobile() &&
-      attr.mobile !== false) {
+        FB.UA.mobile() &&
+        attr.mobile !== false) {
       attr.mobile = true;
-  }
+    }
 
     // legacy comments box params
     if (!attr.href) {
@@ -11039,33 +11040,33 @@ FB.provide('XFBML.IframeWidget', {
 
       if (attr.migrated) {
         attr.href =
-        'http://www.facebook.com/plugins/comments_v1.php?' +
-        'app_id=' + FB._apiKey +
-        '&xid=' + encodeURIComponent(attr.xid) +
-        '&url=' + encodeURIComponent(attr.url);
+          'http://www.facebook.com/plugins/comments_v1.php?' +
+          'app_id=' + FB._apiKey +
+          '&xid=' + encodeURIComponent(attr.xid) +
+          '&url=' + encodeURIComponent(attr.url);
       }
     } else {
       // allows deep linking of comments by surfacing linked comments
       var fb_comment_id = this.getAttribute('fb_comment_id');
       if (!fb_comment_id) {
         fb_comment_id =
-        FB.QS.decode(
-          document.URL.substring(
-            document.URL.indexOf('?') + 1)).fb_comment_id;
+          FB.QS.decode(
+            document.URL.substring(
+              document.URL.indexOf('?') + 1)).fb_comment_id;
         if (fb_comment_id && fb_comment_id.indexOf('#') > 0) {
           // strip out the hash if we managed to pick it up
           fb_comment_id =
-          fb_comment_id.substring(0,
-            fb_comment_id.indexOf('#'));
+            fb_comment_id.substring(0,
+                                    fb_comment_id.indexOf('#'));
         }
       }
 
       if (fb_comment_id) {
         attr.fb_comment_id = fb_comment_id;
         this.subscribe('render',
-         FB.bind(function() {
-           window.location.hash = this.getIframeNode().id;
-         }, this));
+                       FB.bind(function() {
+                           window.location.hash = this.getIframeNode().id;
+                         }, this));
       }
     }
 
@@ -11076,13 +11077,13 @@ FB.provide('XFBML.IframeWidget', {
   /**
    * Setup event handlers.
    */
-   oneTimeSetup: function() {
+  oneTimeSetup: function() {
     this.subscribe('xd.addComment',
-     FB.bind(this._handleCommentMsg, this));
+                   FB.bind(this._handleCommentMsg, this));
     this.subscribe('xd.commentCreated',
-     FB.bind(this._handleCommentCreatedMsg, this));
+                   FB.bind(this._handleCommentCreatedMsg, this));
     this.subscribe('xd.commentRemoved',
-     FB.bind(this._handleCommentRemovedMsg, this));
+                   FB.bind(this._handleCommentRemovedMsg, this));
   },
 
   /**
@@ -11090,7 +11091,7 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     if (this._attr.mobile) {
       return { width: '100%', height: 160 };
     }
@@ -11102,7 +11103,7 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'comments', params: this._attr };
   },
 
@@ -11114,7 +11115,7 @@ FB.provide('XFBML.IframeWidget', {
    * of comments plugins are rendered for logged out users, we
    * just always load the comments plugin over https.
    */
-   getDefaultWebDomain: function() {
+  getDefaultWebDomain: function() {
     if (this._attr.mobile) {
       return 'https_m';
     } else {
@@ -11130,7 +11131,7 @@ FB.provide('XFBML.IframeWidget', {
    *
    * @param message {Object} the message received via XD
    */
-   _handleCommentMsg: function(message) {
+  _handleCommentMsg: function(message) {
     //TODO (naitik) what should we be giving the developers here? is there a
     //              comment_id they can get?
     if (!this.isValid()) {
@@ -11208,11 +11209,11 @@ FB.provide('XFBML.IframeWidget', {
  * @extends  FB.XFBML.Element
  * @private
  */
- FB.subclass('XFBML.CommentsCount', 'XFBML.Element', null, {
+FB.subclass('XFBML.CommentsCount', 'XFBML.Element', null, {
   /**
    * Processes this tag.
    */
-   process: function() {
+  process: function() {
     this._href = this.getAttribute('href', window.location.href);
 
     this._count = FB.Data._selectByIndex(
@@ -11220,7 +11221,7 @@ FB.provide('XFBML.IframeWidget', {
       'link_stat',
       'url',
       this._href
-      );
+    );
 
     FB.Dom.addCss(this.dom, 'fb_comments_count_zero');
 
@@ -11239,7 +11240,7 @@ FB.provide('XFBML.IframeWidget', {
           this.fire('render');
         },
         this)
-      );
+    );
   }
 });
 
@@ -11270,7 +11271,7 @@ FB.provide('XFBML.IframeWidget', {
  * @static
  * @private
  */
- FB.provide('Anim', {
+FB.provide('Anim', {
   /**
    * Animate Transformable Element
    *
@@ -11284,16 +11285,16 @@ FB.provide('XFBML.IframeWidget', {
    * @param callback {Function} the callback function to call after the
    *                            animation is complete
    */
-   ate: function(dom, props, duration, callback) {
+  ate: function(dom, props, duration, callback) {
     duration = !isNaN(parseFloat(duration)) && duration >= 0 ? duration : 750;
     var
-    frame_speed = 40,
-    from        = {},
-    to          = {},
-    begin       = null,
-    s           = dom.style,
-    timer       = setInterval(FB.bind(function() {
-      if (!begin) { begin = new Date().getTime(); }
+      frame_speed = 40,
+      from        = {},
+      to          = {},
+      begin       = null,
+      s           = dom.style,
+      timer       = setInterval(FB.bind(function() {
+        if (!begin) { begin = new Date().getTime(); }
         // percent done
         var pd = 1;
         if (duration != 0) {
@@ -11321,23 +11322,23 @@ FB.provide('XFBML.IframeWidget', {
              *   backgroundPosition: '? 4px' => moves y to 4 and leaves x alone
              *   backgroundPosition: '7px ?' => moves x to 7 and leaves y alone
              */
-             if (isNaN(to[prop][i].numPart) && to[prop][i].textPart == '?') {
+            if (isNaN(to[prop][i].numPart) && to[prop][i].textPart == '?') {
               next = pair.numPart + pair.textPart;
             /* check for a non animate-able part
              * this includes colors (for now), positions, anything with out a #,
              * etc.
              */
-           } else if (isNaN(pair.numPart)) {
-            next = pair.textPart;
+            } else if (isNaN(pair.numPart)) {
+              next = pair.textPart;
             // yay it's animate-able!
-          } else {
-            next +=
+            } else {
+              next +=
                 (pair.numPart + // orig value
                  Math.ceil((to[prop][i].numPart - pair.numPart) *
-                  Math.sin(Math.PI/2 * pd))) +
+                            Math.sin(Math.PI/2 * pd))) +
                 to[prop][i].textPart + ' '; // text part and trailing space
-              }
-            });
+            }
+          });
           // update with new value
           FB.Dom.setStyle(dom, prop, next);
         }, this));
@@ -11346,7 +11347,7 @@ FB.provide('XFBML.IframeWidget', {
           if (callback) { callback(dom); }
         }
       }, this), frame_speed);
-},
+  },
 
   /*
    * Parses a CSS statment into it's parts
@@ -11362,7 +11363,7 @@ FB.provide('XFBML.IframeWidget', {
    *         [numPart: 2,   textPart: 'em'],
    *         [numPart: NaN, textPart: 'none']]
    */
-   _parseCSS: function(css) {
+  _parseCSS: function(css) {
     var ret = [];
     FB.Array.forEach(css.split(' '), function(peice) {
       var num = parseInt(peice, 10);
@@ -11406,7 +11407,7 @@ FB.provide('XFBML.IframeWidget', {
  * @static
  * @access private
  */
- FB.provide('Insights', {
+FB.provide('Insights', {
   /**
    * This method should be called once by each page where you want to track
    * impressions.
@@ -11422,13 +11423,13 @@ FB.provide('XFBML.IframeWidget', {
    * @param params {Object} parameters for the impression
    * @param cb {Function} optional - called with the result of the action
    */
-   impression: function(params, cb) {
+  impression: function(params, cb) {
     // no http or https so browser will use protocol of current page
     // see http://www.faqs.org/rfcs/rfc1808.html
     var g = FB.guid(),
-    u = "//ah8.facebook.com/impression.php/" + g + "/",
-    i = new Image(1, 1),
-    s = [];
+        u = "//ah8.facebook.com/impression.php/" + g + "/",
+        i = new Image(1, 1),
+        s = [];
 
     if (!params.api_key && FB._apiKey) {
       params.api_key = FB._apiKey;
@@ -11486,7 +11487,7 @@ FB.provide('XFBML.IframeWidget', {
  * @extends  FB.XFBML.Element
  * @private
  */
- FB.subclass('XFBML.ConnectBar', 'XFBML.Element', null, {
+FB.subclass('XFBML.ConnectBar', 'XFBML.Element', null, {
   _initialHeight: null,
   _initTopMargin: 0,
   _picFieldName: 'pic_square',
@@ -11499,7 +11500,7 @@ FB.provide('XFBML.IframeWidget', {
   /**
    * Processes this tag.
    */
-   process: function() {
+  process: function() {
     // Wait for status to be known
     FB.getLoginStatus(this.bind(function(resp) {
       FB.Event.monitor('auth.statusChange', this.bind(function() {
@@ -11528,12 +11529,12 @@ FB.provide('XFBML.IframeWidget', {
    * load the data for the bar and render it firing all the events in the
    * process
    */
-   _showBar: function() {
+  _showBar: function() {
     var q1 = FB.Data._selectByIndex(['first_name', 'profile_url',
-      this._picFieldName],
-      'user', 'uid', this._uid);
+                                      this._picFieldName],
+                                    'user', 'uid', this._uid);
     var q2 = FB.Data._selectByIndex(['display_name'], 'application',
-      'api_key', FB._apiKey);
+                                    'api_key', FB._apiKey);
     FB.Data.waitOn([q1, q2], FB.bind(function(data) {
       data[0][0].site_name = data[1][0].display_name;
       if (!this._displayed) {
@@ -11555,7 +11556,7 @@ FB.provide('XFBML.IframeWidget', {
   /**
    * If the bar is rendered, hide it and fire the no render events
    */
-   _noRender: function() {
+  _noRender: function() {
     if (this._displayed) {
       this._displayed = false;
       this._closeConnectBar();
@@ -11572,9 +11573,9 @@ FB.provide('XFBML.IframeWidget', {
   /**
    * Given this name, site name, and profile pic url render the connect bar
    */
-   _renderConnectBar: function(info) {
+  _renderConnectBar: function(info) {
     var bar = document.createElement('div'),
-    container = document.createElement('div');
+        container = document.createElement('div');
     // TODO(alpjor) add rtl support
     bar.className = 'fb_connect_bar';
     container.className = 'fb_reset fb_connect_bar_container';
@@ -11582,27 +11583,27 @@ FB.provide('XFBML.IframeWidget', {
     document.body.appendChild(container);
     this._container = container;
     this._initialHeight = Math.round(
-      parseFloat(FB.Dom.getStyle(container, 'height')) +
-      parseFloat(FB.Dom.getStyle(container, 'borderBottomWidth')));
+              parseFloat(FB.Dom.getStyle(container, 'height')) +
+              parseFloat(FB.Dom.getStyle(container, 'borderBottomWidth')));
     bar.innerHTML = FB.String.format(
       '<div class="fb_buttons">' +
-      '<a href="#" class="fb_bar_close">' +
-      '<img src="{1}" alt="{2}" title="{2}"/>' +
-      '</a>' +
+        '<a href="#" class="fb_bar_close">' +
+          '<img src="{1}" alt="{2}" title="{2}"/>' +
+        '</a>' +
       '</div>' +
       '<a href="{7}" class="fb_profile" target="_blank">' +
-      '<img src="{3}" alt="{4}" title="{4}"/>' +
+        '<img src="{3}" alt="{4}" title="{4}"/>' +
       '</a>' +
       '{5}' +
       ' <span>' +
-      '<a href="{8}" class="fb_learn_more" target="_blank">{6}</a> &ndash; ' +
-      '<a href="#" class="fb_no_thanks">{0}</a>' +
+        '<a href="{8}" class="fb_learn_more" target="_blank">{6}</a> &ndash; ' +
+        '<a href="#" class="fb_no_thanks">{0}</a>' +
       '</span>',
       FB.Intl.tx._("No Thanks"),
       FB.getDomain('cdn') + FB.XFBML.ConnectBar.imgs.buttonUrl,
       FB.Intl.tx._("Close"),
       info[this._picFieldName] || FB.getDomain('cdn') +
-      FB.XFBML.ConnectBar.imgs.missingProfileUrl,
+                                  FB.XFBML.ConnectBar.imgs.missingProfileUrl,
       FB.String.escapeHTML(info.first_name),
       FB.Intl.tx._("Hi {firstName}. \u003Cstrong>{siteName}\u003C\/strong> is using Facebook to personalize your experience.", {
         firstName: FB.String.escapeHTML(info.first_name),
@@ -11611,22 +11612,22 @@ FB.provide('XFBML.IframeWidget', {
       FB.Intl.tx._("Learn More"),
       info.profile_url,
       FB.getDomain('www') + 'sitetour/connect.php'
-      );
-var _this = this;
-FB.Array.forEach(bar.getElementsByTagName('a'), function(el) {
-  el.onclick = FB.bind(_this._clickHandler, _this);
-});
-this._page = document.body;
-var top_margin = 0;
-if (this._page.parentNode) {
-  top_margin = Math.round(
-    (parseFloat(FB.Dom.getStyle(this._page.parentNode, 'height')) -
-      parseFloat(FB.Dom.getStyle(this._page, 'height'))) / 2);
-} else {
-  top_margin = parseInt(FB.Dom.getStyle(this._page, 'marginTop'), 10);
-}
-top_margin = isNaN(top_margin) ? 0 : top_margin;
-this._initTopMargin = top_margin;
+    );
+    var _this = this;
+    FB.Array.forEach(bar.getElementsByTagName('a'), function(el) {
+      el.onclick = FB.bind(_this._clickHandler, _this);
+    });
+    this._page = document.body;
+    var top_margin = 0;
+    if (this._page.parentNode) {
+      top_margin = Math.round(
+        (parseFloat(FB.Dom.getStyle(this._page.parentNode, 'height')) -
+        parseFloat(FB.Dom.getStyle(this._page, 'height'))) / 2);
+    } else {
+      top_margin = parseInt(FB.Dom.getStyle(this._page, 'marginTop'), 10);
+    }
+    top_margin = isNaN(top_margin) ? 0 : top_margin;
+    this._initTopMargin = top_margin;
     if (!window.XMLHttpRequest) { // ie6
       container.className += " fb_connect_bar_container_ie6";
     } else {
@@ -11646,7 +11647,7 @@ this._initTopMargin = top_margin;
    * Handle the anchor clicks from the connect bar
    *
    */
-   _clickHandler : function(e) {
+  _clickHandler : function(e) {
     e = e || window.event;
     var el = e.target || e.srcElement;
     while (el.nodeName != 'A') { el = el.parentNode; }
@@ -11661,11 +11662,11 @@ this._initTopMargin = top_margin;
         });
         this._closeConnectBar();
         break;
-        case 'fb_learn_more':
-        case 'fb_profile':
+      case 'fb_learn_more':
+      case 'fb_profile':
         window.open(el.href);
         break;
-        case 'fb_no_thanks':
+      case 'fb_no_thanks':
         this._closeConnectBar();
         FB.api({ // mark seen
           method: 'Connect.connectBarMarkAcknowledged'
@@ -11675,7 +11676,7 @@ this._initTopMargin = top_margin;
           name: 'widget_user_no_thanks'
         });
         FB.api({ method: 'auth.revokeAuthorization', block: true },
-         this.bind(function() {
+               this.bind(function() {
           this.fire('connectbar.ondeauth');
           FB.Event.fire('connectbar.ondeauth', this);
           FB.Helper.invokeHandler(this.getAttribute('on-deauth'), this);
@@ -11684,13 +11685,13 @@ this._initTopMargin = top_margin;
           }
         }));
         break;
-      }
-      return false;
-    },
+    }
+    return false;
+  },
 
-    _closeConnectBar: function() {
-      this._notDisplayed = true;
-      var move = { marginTop: this._initTopMargin + 'px' }
+  _closeConnectBar: function() {
+    this._notDisplayed = true;
+    var move = { marginTop: this._initTopMargin + 'px' }
     if (FB.UA.ie()) { // for ie
       move.backgroundPositionY = '0px'
     } else { // for others
@@ -11743,13 +11744,13 @@ FB.provide('XFBML.ConnectBar', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.Fan', 'XFBML.IframeWidget', null, {
+FB.subclass('XFBML.Fan', 'XFBML.IframeWidget', null, {
   _visibleAfter: 'load',
 
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     this._attr = {
       api_key     : FB._apiKey,
       connections : this.getAttribute('connections', '10'),
@@ -11771,16 +11772,16 @@ FB.provide('XFBML.ConnectBar', {
     var height = this._attr.height;
     if (!height) {
       if ((!this._attr.connections || this._attr.connections === '0') &&
-        !this._attr.stream) {
+          !this._attr.stream) {
         height = 65;
-    } else if (!this._attr.connections || this._attr.connections === '0') {
-      height = 375;
-    } else if (!this._attr.stream) {
-      height = 250;
-    } else {
-      height = 550;
+      } else if (!this._attr.connections || this._attr.connections === '0') {
+        height = 375;
+      } else if (!this._attr.stream) {
+        height = 250;
+      } else {
+        height = 550;
+      }
     }
-  }
     // add space for logobar
     if (this._attr.logobar) {
       height += 25;
@@ -11795,7 +11796,7 @@ FB.provide('XFBML.ConnectBar', {
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return { width: this._attr.width, height: this._attr.height };
   },
 
@@ -11804,7 +11805,7 @@ FB.provide('XFBML.ConnectBar', {
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'fan', params: this._attr };
   }
 });
@@ -11836,7 +11837,7 @@ FB.provide('XFBML.ConnectBar', {
  * @extends FB.XFBML.Friendpile
  * @private
  */
- FB.subclass('XFBML.Friendpile', 'XFBML.Facepile', null, {});
+FB.subclass('XFBML.Friendpile', 'XFBML.Facepile', null, {});
 
 /**
  * @provides fb.xfbml.edgecommentwidget
@@ -11869,7 +11870,7 @@ FB.provide('XFBML.ConnectBar', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.EdgeCommentWidget', 'XFBML.IframeWidget',
+FB.subclass('XFBML.EdgeCommentWidget', 'XFBML.IframeWidget',
   function(opts) {
     this._iframeWidth = opts.width + 1;
     this._iframeHeight = opts.height;
@@ -11891,15 +11892,15 @@ FB.provide('XFBML.ConnectBar', {
   /**
    * Make the iframe visible only when it has finished loading.
    */
-   _visibleAfter: 'load',
-   _showLoader: false,
+  _visibleAfter: 'load',
+  _showLoader: false,
 
   /**
    * Get the initial size.
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return {
       width: this._iframeWidth,
       height: this._iframeHeight
@@ -11911,7 +11912,7 @@ FB.provide('XFBML.ConnectBar', {
    *
    * @return {Object} the iframe URL bits.
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'comment_widget_shell', params: this._attr };
   }
 });
@@ -11952,18 +11953,18 @@ FB.provide('XFBML.EdgeCommentWidget', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.EdgeWidget', 'XFBML.IframeWidget', null, {
+FB.subclass('XFBML.EdgeWidget', 'XFBML.IframeWidget', null, {
   /**
    * Make the iframe visible only when it has finished loading.
    */
-   _visibleAfter: 'immediate',
-   _showLoader: false,
-   _rootPadding: null,
+  _visibleAfter: 'immediate',
+  _showLoader: false,
+  _rootPadding: null,
 
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate : function() {
+  setupAndValidate : function() {
     FB.Dom.addCss(this.dom, 'fb_edge_widget_with_comment');
     this._attr = {
       channel_url             : this.getChannelUrl(),
@@ -11982,7 +11983,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
       send                    : this._getBoolAttribute('send'),
       url_map                 : this.getAttribute('url_map'),
       extended_social_context :
-      this._getBoolAttribute('extended_social_context', false)
+        this._getBoolAttribute('extended_social_context', false)
     };
 
     this._rootPadding = {
@@ -11995,19 +11996,19 @@ FB.provide('XFBML.EdgeCommentWidget', {
 
   oneTimeSetup : function() {
     this.subscribe('xd.authPrompted',
-     FB.bind(this._onAuthPrompt, this));
+                   FB.bind(this._onAuthPrompt, this));
     this.subscribe('xd.edgeCreated',
-     FB.bind(this._onEdgeCreate, this));
+                   FB.bind(this._onEdgeCreate, this));
     this.subscribe('xd.edgeRemoved',
-     FB.bind(this._onEdgeRemove, this));
+                   FB.bind(this._onEdgeRemove, this));
     this.subscribe('xd.presentEdgeCommentDialog',
-     FB.bind(this._handleEdgeCommentDialogPresentation, this));
+                   FB.bind(this._handleEdgeCommentDialogPresentation, this));
     this.subscribe('xd.dismissEdgeCommentDialog',
-     FB.bind(this._handleEdgeCommentDialogDismissal, this));
+                   FB.bind(this._handleEdgeCommentDialogDismissal, this));
     this.subscribe('xd.hideEdgeCommentDialog',
-     FB.bind(this._handleEdgeCommentDialogHide, this));
+                   FB.bind(this._handleEdgeCommentDialogHide, this));
     this.subscribe('xd.showEdgeCommentDialog',
-     FB.bind(this._handleEdgeCommentDialogShow, this));
+                   FB.bind(this._handleEdgeCommentDialogShow, this));
 
   },
 
@@ -12016,7 +12017,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return {
       width: this._getWidgetWidth(),
       height: this._getWidgetHeight()
@@ -12037,16 +12038,16 @@ FB.provide('XFBML.EdgeCommentWidget', {
    * @return {String} the CSS-legitimate width in pixels, as
    *         with '460px'.
    */
-   _getWidgetHeight : function() {
+  _getWidgetHeight : function() {
     var layout = this._getLayout();
     var should_show_faces = this._shouldShowFaces() ? 'show' : 'hide';
     var send = this._getBoolAttribute('send');
     var box_count = 65 + (send ? 25 : 0);
     var layoutToDefaultHeightMap =
-    { 'standard' : {'show': 80, 'hide': 35},
-    'box_count' : {'show': box_count, 'hide': box_count},
-    'button_count' : {'show': 21, 'hide': 21},
-    'simple' : {'show': 20, 'hide': 20}};
+      { 'standard' : {'show': 80, 'hide': 35},
+        'box_count' : {'show': box_count, 'hide': box_count},
+        'button_count' : {'show': 21, 'hide': 21},
+        'simple' : {'show': 20, 'hide': 20}};
     return layoutToDefaultHeightMap[layout][should_show_faces];
   },
 
@@ -12064,40 +12065,40 @@ FB.provide('XFBML.EdgeCommentWidget', {
    * @return {String} the CSS-legitimate width in pixels, as
    *         with '460px'.
    */
-   _getWidgetWidth : function() {
+  _getWidgetWidth : function() {
     var layout = this._getLayout();
     var send = this._getBoolAttribute('send');
     var should_show_faces = this._shouldShowFaces() ? 'show' : 'hide';
 
     var recommend = (this.getAttribute('action') === 'recommend');
     var standard_min_width =
-    (recommend ? 265 : 225) + (send ? 60 : 0);
+      (recommend ? 265 : 225) + (send ? 60 : 0);
     var button_count_default_width =
-    (recommend ? 130 : 90) + (send ? 60 : 0);
+      (recommend ? 130 : 90) + (send ? 60 : 0);
     var box_count_default_width =
-    this.getAttribute('action') === 'recommend' ? 100 : 55;
+      this.getAttribute('action') === 'recommend' ? 100 : 55;
     var simple_default_width =
-    this.getAttribute('action') === 'recommend' ? 90 : 50;
+      this.getAttribute('action') === 'recommend' ? 90 : 50;
     var layoutToDefaultWidthMap =
-    { 'standard': {'show': 450,
-    'hide': 450},
-    'box_count': {'show': box_count_default_width,
-    'hide': box_count_default_width},
-    'button_count': {'show': button_count_default_width,
-    'hide': button_count_default_width},
-    'simple': {'show': simple_default_width,
-    'hide': simple_default_width}};
+      { 'standard': {'show': 450,
+                     'hide': 450},
+        'box_count': {'show': box_count_default_width,
+                      'hide': box_count_default_width},
+        'button_count': {'show': button_count_default_width,
+                         'hide': button_count_default_width},
+        'simple': {'show': simple_default_width,
+                   'hide': simple_default_width}};
     var defaultWidth = layoutToDefaultWidthMap[layout][should_show_faces];
     var width = this._getPxAttribute('width', defaultWidth);
 
     var allowedWidths =
-    { 'standard' : {'min' : standard_min_width, 'max' : 900},
-    'box_count' : {'min' : box_count_default_width,
-    'max' : 900},
-    'button_count' : {'min' : button_count_default_width,
-    'max' : 900},
-    'simple' : {'min' : 49,
-    'max' : 900}};
+      { 'standard' : {'min' : standard_min_width, 'max' : 900},
+        'box_count' : {'min' : box_count_default_width,
+                       'max' : 900},
+        'button_count' : {'min' : button_count_default_width,
+                          'max' : 900},
+        'simple' : {'min' : 49,
+                    'max' : 900}};
     if (width < allowedWidths[layout].min) {
       width = allowedWidths[layout].min;
     } else if (width > allowedWidths[layout].max) {
@@ -12119,7 +12120,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *
    * @return {String} the layout of the Connect Widget.
    */
-   _getLayout : function() {
+  _getLayout : function() {
     return this._getAttributeFromList(
       'layout',
       'standard',
@@ -12136,9 +12137,9 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *
    * @return {String} described above.
    */
-   _shouldShowFaces : function() {
+  _shouldShowFaces : function() {
     return this._getLayout() === 'standard' &&
-    this._getBoolAttribute('show-faces', true);
+           this._getBoolAttribute('show-faces', true);
   },
 
   /**
@@ -12152,7 +12153,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *        event.
    * @return void
    */
-   _handleEdgeCommentDialogPresentation : function(message) {
+  _handleEdgeCommentDialogPresentation : function(message) {
     if (!this.isValid()) {
       return;
     }
@@ -12176,7 +12177,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *                 will live.
    * @return FB.XFBML.EdgeCommentWidget
    */
-   _createEdgeCommentWidget : function(message, comment_node) {
+  _createEdgeCommentWidget : function(message, comment_node) {
     var opts = {
       commentNode          : comment_node,
       externalUrl          : message.externalURL,
@@ -12185,9 +12186,9 @@ FB.provide('XFBML.EdgeCommentWidget', {
       relativeHeightOffset : this._getHeightOffset(message),
       relativeWidthOffset  : this._getWidthOffset(message),
       anchorTargetX        : parseFloat(message['query[anchorTargetX]']) +
-      this._rootPadding.left,
+                             this._rootPadding.left,
       anchorTargetY        : parseFloat(message['query[anchorTargetY]']) +
-      this._rootPadding.top,
+                             this._rootPadding.top,
       width                : parseFloat(message.width),
       height               : parseFloat(message.height),
       paddingLeft          : this._rootPadding.left
@@ -12209,10 +12210,10 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *         comment widget.
    */
 
-   _getHeightOffset : function(message) {
+  _getHeightOffset : function(message) {
     return parseFloat(message['anchorGeometry[y]']) +
-    parseFloat(message['anchorPosition[y]']) +
-    this._rootPadding.top;
+           parseFloat(message['anchorPosition[y]']) +
+           this._rootPadding.top;
   },
 
   /**
@@ -12226,7 +12227,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *         placement of the external comment widget vsv the primary
    *         comment widget.
    */
-   _getWidthOffset : function(message) {
+  _getWidthOffset : function(message) {
     var off = parseFloat(message['anchorPosition[x]']) + this._rootPadding.left;
     var plugin_left = FB.Dom.getPosition(this.dom).x;
     var plugin_width = this.dom.offsetWidth;
@@ -12235,7 +12236,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
     var flipit = false;
 
     if (FB._localeIsRtl) {
-      flipit = comment_width < plugin_left;
+        flipit = comment_width < plugin_left;
     } else if ((plugin_left + comment_width) > screen_width) {
       flipit = true;
     }
@@ -12256,8 +12257,8 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *                 will live
    * @return {Object} options
    */
-   _getCommonEdgeCommentWidgetOpts : function(message,
-     comment_node) {
+  _getCommonEdgeCommentWidgetOpts : function(message,
+                                             comment_node) {
     return {
       colorscheme             : this._attr.colorscheme,
       commentNode             : comment_node,
@@ -12275,9 +12276,9 @@ FB.provide('XFBML.EdgeCommentWidget', {
       siderender              : message.siderender,
       extended_social_context : message.extended_social_context,
       anchorTargetX           : parseFloat(message['query[anchorTargetX]']) +
-      this._rootPadding.left,
+                                this._rootPadding.left,
       anchorTargetY           : parseFloat(message['query[anchorTargetY]']) +
-      this._rootPadding.top
+                                this._rootPadding.top
     };
   },
 
@@ -12293,7 +12294,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *        the event.
    * @return void
    */
-   _handleEdgeCommentDialogDismissal : function(message) {
+  _handleEdgeCommentDialogDismissal : function(message) {
     if (this._commentWidgetNode) {
       this.dom.removeChild(this._commentWidgetNode);
       delete this._commentWidgetNode;
@@ -12304,7 +12305,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    * Handles the XD event instructing the hose to hide the comment
    * widget iframe.
    */
-   _handleEdgeCommentDialogHide: function() {
+  _handleEdgeCommentDialogHide: function() {
     if (this._commentWidgetNode) {
       this._commentWidgetNode.style.display="none";
     }
@@ -12314,7 +12315,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    * Handles the XD event instructing the hose to show the comment
    * widget iframe.
    */
-   _handleEdgeCommentDialogShow: function() {
+  _handleEdgeCommentDialogShow: function() {
     if (this._commentWidgetNode) {
       this._commentWidgetNode.style.display="block";
     }
@@ -12324,7 +12325,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    * Helper method that fires a specified event and also invokes the
    * given inline handler.
    */
-   _fireEventAndInvokeHandler: function(eventName, eventAttribute) {
+  _fireEventAndInvokeHandler: function(eventName, eventAttribute) {
     FB.Helper.fireEvent(eventName, this);
     FB.Helper.invokeHandler(
       this.getAttribute(eventAttribute), this, [this._attr.href]); // inline
@@ -12334,7 +12335,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    * Invoked when the user likes/recommends/whatever the thing to create an
    * edge.
    */
-   _onEdgeCreate: function() {
+  _onEdgeCreate: function() {
     this._fireEventAndInvokeHandler('edge.create', 'on-create');
   },
 
@@ -12342,7 +12343,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    * Invoked when the user removes a like/recommendation/etc association with
    * something.
    */
-   _onEdgeRemove: function() {
+  _onEdgeRemove: function() {
     this._fireEventAndInvokeHandler('edge.remove', 'on-remove');
   },
 
@@ -12350,7 +12351,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    * Invoked when the user is prompted to opt-in/log-in due to clicking
    * on an edge widget in an un-authed state.
    */
-   _onAuthPrompt: function() {
+  _onAuthPrompt: function() {
     this._fireEventAndInvokeHandler('auth.prompt', 'on-prompt');
   }
 
@@ -12388,7 +12389,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
  * @extends FB.XFBML.EdgeCommentWidget
  * @private
  */
- FB.subclass('XFBML.SendButtonFormWidget', 'XFBML.EdgeCommentWidget',
+FB.subclass('XFBML.SendButtonFormWidget', 'XFBML.EdgeCommentWidget',
   function(opts) {
     this._base(opts);
 
@@ -12396,7 +12397,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
     FB.Dom.addCss(this.dom, opts.colorscheme);
     FB.Dom.addCss(this.dom,
       (typeof opts.siderender != 'undefined' && opts.siderender) ?
-      'siderender' : '');
+        'siderender' : '');
 
     // The url title, and image URL of the node
     this._attr.nodeImageURL = opts.nodeImageURL;
@@ -12440,7 +12441,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
 
   oneTimeSetup: function() {
     this.subscribe('xd.messageSent',
-     FB.bind(this._onMessageSent, this));
+                   FB.bind(this._onMessageSent, this));
   },
 
   _onMessageSent: function() {
@@ -12477,11 +12478,11 @@ FB.provide('XFBML.EdgeCommentWidget', {
  * @extends FB.XFBML.EdgeWidget
  * @private
  */
- FB.subclass('XFBML.Send', 'XFBML.EdgeWidget', null, {
+FB.subclass('XFBML.Send', 'XFBML.EdgeWidget', null, {
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     FB.Dom.addCss(this.dom, 'fb_edge_widget_with_comment');
     this._attr = {
       channel                 : this.getChannelUrl(),
@@ -12491,7 +12492,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
       href                    : this.getAttribute('href', window.location.href),
       ref                     : this.getAttribute('ref'),
       extended_social_context :
-      this.getAttribute('extended_social_context', false)
+        this.getAttribute('extended_social_context', false)
     };
 
     this._rootPadding = {
@@ -12507,7 +12508,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'send', params: this._attr };
   },
 
@@ -12521,7 +12522,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *                 will live.
    * @return FB.XFBML.EdgeCommentWidget
    */
-   _createEdgeCommentWidget: function(message, comment_node) {
+  _createEdgeCommentWidget: function(message, comment_node) {
     var opts = this._getCommonEdgeCommentWidgetOpts(message, comment_node);
     return new FB.XFBML.SendButtonFormWidget(opts);
   },
@@ -12531,7 +12532,7 @@ FB.provide('XFBML.EdgeCommentWidget', {
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return {
       width  : FB.XFBML.Send.Dimensions.width,
       height : FB.XFBML.Send.Dimensions.height
@@ -12576,21 +12577,21 @@ FB.provide('XFBML.Send', {
  * @extends FB.XFBML.EdgeWidget
  * @private
  */
- FB.subclass('XFBML.Like', 'XFBML.EdgeWidget', null, {
+FB.subclass('XFBML.Like', 'XFBML.EdgeWidget', null, {
 
   /**
    * Like Plugin isn't actually widget-pipe enabled yet, though
    * in principle it can be by just switching this false to
    * true.
    */
-   _widgetPipeEnabled: true,
+  _widgetPipeEnabled: true,
 
   /**
    * Get the URL bits for the iframe.
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'like', params: this._attr };
   },
 
@@ -12604,28 +12605,28 @@ FB.provide('XFBML.Send', {
    *                 will live.
    * @return FB.XFBML.EdgeCommentWidget
    */
-   _createEdgeCommentWidget: function(message, comment_node) {
+  _createEdgeCommentWidget: function(message, comment_node) {
     // the like widget is also responsible for the send button form if the user
     // decides to put a send button with the like widget (e.g. <fb:like
     // send="true"></fb:like>)
-if ('send' in this._attr && 'widget_type' in message &&
-  message.widget_type == 'send') {
-  var opts = this._getCommonEdgeCommentWidgetOpts(message,
-    comment_node);
-return new FB.XFBML.SendButtonFormWidget(opts);
-} else {
-  return this._callBase("_createEdgeCommentWidget",
-    message,
-    comment_node);
-}
-},
+    if ('send' in this._attr && 'widget_type' in message &&
+        message.widget_type == 'send') {
+      var opts = this._getCommonEdgeCommentWidgetOpts(message,
+                                                      comment_node);
+      return new FB.XFBML.SendButtonFormWidget(opts);
+    } else {
+      return this._callBase("_createEdgeCommentWidget",
+                            message,
+                            comment_node);
+    }
+  },
 
   /**
    * Get the title attribute for the like plugin's iframe.
    *
    * @return {String} the title of the like plugin's iframe.
    */
-   getIframeTitle: function() {
+  getIframeTitle: function() {
     return 'Like this content on Facebook.';
   }
 });
@@ -12657,13 +12658,13 @@ return new FB.XFBML.SendButtonFormWidget(opts);
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.LikeBox', 'XFBML.EdgeWidget', null, {
+FB.subclass('XFBML.LikeBox', 'XFBML.EdgeWidget', null, {
   _visibleAfter: 'load',
 
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     this._attr = {
       channel     : this.getChannelUrl(),
       api_key     : FB._apiKey,
@@ -12702,28 +12703,28 @@ return new FB.XFBML.SendButtonFormWidget(opts);
     var height = this._attr.height;
     if (!height) {
       if (!this._attr.show_faces &&
-        !this._attr.stream) {
+          !this._attr.stream) {
         height = 62;
-    } else {
-      height = 95;
+      } else {
+        height = 95;
 
-      if (this._attr.show_faces) {
-        height += 163;
-      }
+        if (this._attr.show_faces) {
+          height += 163;
+        }
 
-      if (this._attr.stream) {
-        height += 300;
-      }
+        if (this._attr.stream) {
+          height += 300;
+        }
 
         // add space for header
         if (this._attr.header &&
-          this._attr.header !== '0') {
+            this._attr.header !== '0') {
          height += 32;
-     }
-   }
- }
+        }
+      }
+    }
 
- this._attr.height = height;
+    this._attr.height = height;
 
     // listen for the XD 'likeboxLiked' and 'likeboxUnliked' events
     this.subscribe('xd.likeboxLiked', FB.bind(this._onLiked, this));
@@ -12737,7 +12738,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return { width: this._attr.width, height: this._attr.height };
   },
 
@@ -12746,7 +12747,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'likebox', params: this._attr };
   },
 
@@ -12754,7 +12755,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    * Invoked when the user Likes the page via the Like button
    * in the likebox.
    */
-   _onLiked: function() {
+  _onLiked: function() {
     FB.Helper.fireEvent('edge.create', this);
   },
 
@@ -12762,7 +12763,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    * Invoked when the user Unlikes the page via the Unlike button
    * in the likebox.
    */
-   _onUnliked: function() {
+  _onUnliked: function() {
     FB.Helper.fireEvent('edge.remove', this);
   }
 });
@@ -12794,13 +12795,13 @@ return new FB.XFBML.SendButtonFormWidget(opts);
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.LiveStream', 'XFBML.IframeWidget', null, {
+FB.subclass('XFBML.LiveStream', 'XFBML.IframeWidget', null, {
   _visibleAfter: 'load',
 
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     this._attr = {
       app_id : this.getAttribute('event-app-id'),
       height : this._getPxAttribute('height', 500),
@@ -12820,7 +12821,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return { width: this._attr.width, height: this._attr.height };
   },
 
@@ -12829,7 +12830,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     var name = this._attr.redesigned ? 'live_stream_box' : 'livefeed';
     if (this._getBoolAttribute('modern', false)) {
       name = 'live_stream';
@@ -12865,7 +12866,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.Login', 'XFBML.Facepile', null, {
+FB.subclass('XFBML.Login', 'XFBML.Facepile', null, {
   _visibleAfter: 'load',
 
   /**
@@ -12875,7 +12876,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return { width: this._attr.width, height: 94 };
   },
 
@@ -12884,7 +12885,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'login', params: this._attr };
   }
 });
@@ -12920,13 +12921,13 @@ return new FB.XFBML.SendButtonFormWidget(opts);
  * @extends  FB.XFBML.ButtonElement
  * @private
  */
- FB.subclass('XFBML.LoginButton', 'XFBML.ButtonElement', null, {
+FB.subclass('XFBML.LoginButton', 'XFBML.ButtonElement', null, {
   /**
    * Do initial attribute processing.
    *
    * @return {Boolean} true to continue processing, false to halt it
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     // This method sometimes makes a callback that will call process() which
     // in-tern calls this method. Let's only setup once.
     if (this._alreadySetup) {
@@ -12940,7 +12941,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
         'length',         // name
         'short',          // defaultValue
         ['long', 'short'] // allowed
-        ),
+      ),
       onlogin : this.getAttribute('on-login'),
       perms : this.getAttribute('perms'),
       scope : this.getAttribute('scope'),
@@ -12957,7 +12958,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
       // The act of putting a registration-url means that unTOSed users will
       // be redirected to the registration widget instead of the TOS dialog.
       FB.Event.subscribe('auth.statusChange',
-       this._saveStatus(this.process, /* on_click */ false));
+                         this._saveStatus(this.process, /* on_click */ false));
       // Change the displayed HTML immediately
       FB.getLoginStatus(this._saveStatus(this.process, /* on_click */ false));
     }
@@ -12971,7 +12972,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    *
    * @return {String} the HTML markup for the button
    */
-   getButtonMarkup: function() {
+  getButtonMarkup: function() {
     var originalHTML = this.getOriginalHTML();
     if (originalHTML) {
       return originalHTML;
@@ -12990,36 +12991,36 @@ return new FB.XFBML.SendButtonFormWidget(opts);
       // If there is a registration url it says "Logout", "Register" or "Login"
       switch (this._attr.status) {
         case 'unknown':
-        return this._getLoginText();
+          return this._getLoginText();
         case 'notConnected':
         case 'not_authorized':
-        return FB.Intl.tx._("Register");
+          return FB.Intl.tx._("Register");
         case 'connected':
-        if (FB.getAccessToken() && this._attr.autologoutlink) {
-          return FB.Intl.tx._("Facebook Logout");
-        }
+          if (FB.getAccessToken() && this._attr.autologoutlink) {
+            return FB.Intl.tx._("Facebook Logout");
+          }
           // registered already, don't render anything
           return '';
-          default:
+        default:
           FB.log('Unknown status: ' + this._attr.status);
           return FB.Intl.tx._("Log In");
-        }
       }
-    },
+    }
+  },
 
   /**
    * Helper function to show "Login" or "Login with Facebook"
    */
-   _getLoginText: function() {
+  _getLoginText: function() {
     return this._attr.length == 'short'
-    ? FB.Intl.tx._("Log In")
-    : FB.Intl.tx._("Log In with Facebook");
+      ? FB.Intl.tx._("Log In")
+      : FB.Intl.tx._("Log In with Facebook");
   },
 
   /**
    * The ButtonElement base class will invoke this when the button is clicked.
    */
-   onClick: function() {
+  onClick: function() {
     if (!this._attr.registration_url) {
       // In the normal case, this will either log you in, or log you out
       if (!FB.getAccessToken() || !this._attr.autologoutlink) {
@@ -13035,32 +13036,32 @@ return new FB.XFBML.SendButtonFormWidget(opts);
       // and then send them to the registration url
       switch (this._attr.status) {
         case 'unknown':
-        FB.ui({ method: 'auth.logintoFacebook' },
-          FB.bind(function(response) {
+          FB.ui({ method: 'auth.logintoFacebook' },
+                FB.bind(function(response) {
                   // Fetch the status again and then redo the click
                   FB.bind(FB.getLoginStatus(
                     this._saveStatus(this._authCallback, /* on_click */ true),
-                    /* force */ true), this);
+                                     /* force */ true), this);
                 }, this)
           );
-        break;
+          break;
         case 'notConnected':
         case 'not_authorized':
-        window.top.location = this._attr.registration_url;
-        break;
+          window.top.location = this._attr.registration_url;
+          break;
         case 'connected':
-        if (!FB.getAccessToken() || !this._attr.autologoutlink) {
+          if (!FB.getAccessToken() || !this._attr.autologoutlink) {
             // do nothing except call their callback
             this._authCallback();
           } else {
             FB.logout(FB.bind(this._authCallback, this));
           }
           break;
-          default:
+        default:
           FB.log('Unknown status: ' + this._attr.status);
-        }
       }
-    },
+    }
+  },
 
   /**
    * This will be invoked with the result of the FB.login() or FB.logout() to
@@ -13068,7 +13069,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    *
    * @param response {Object} the auth response object
    */
-   _authCallback: function(response) {
+  _authCallback: function(response) {
     FB.Helper.invokeHandler(this._attr.onlogin, this, [response]);
   },
 
@@ -13078,14 +13079,14 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    * @param cb {Function} callback
    * @param on_click {bool} whether this is an on click event
    */
-   _saveStatus: function(cb, on_click) {
+  _saveStatus: function(cb, on_click) {
     return FB.bind(function(response) {
       if (on_click &&
-        this._attr.registration_url &&
-        (this._attr.status == 'notConnected' ||
-         this._attr.status == 'not_authorized') &&
-        (response.status == 'notConnected' ||
-         response.status == 'not_authorized')) {
+          this._attr.registration_url &&
+          (this._attr.status == 'notConnected' ||
+           this._attr.status == 'not_authorized') &&
+          (response.status == 'notConnected' ||
+           response.status == 'not_authorized')) {
         // user clicked login and is now logged-in but not registered,
         // so redirect to registration uri
         window.top.location = this._attr.registration_url;
@@ -13131,11 +13132,11 @@ return new FB.XFBML.SendButtonFormWidget(opts);
  * @extends  FB.XFBML.Element
  * @private
  */
- FB.subclass('XFBML.Name', 'XFBML.Element', null, {
+FB.subclass('XFBML.Name', 'XFBML.Element', null, {
   /**
    * Processes this tag.
    */
-   process: function() {
+  process: function() {
     FB.copy(this, {
       _uid           : this.getAttribute('uid'),
       _firstnameonly : this._getBoolAttribute('first-name-only'),
@@ -13191,7 +13192,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
         data = FB.Data._selectByIndex(fields, 'user', 'uid', this._uid);
       } else {
         data = FB.Data._selectByIndex(['name', 'id'], 'profile', 'id',
-          this._uid);
+                                      this._uid);
       }
       data.wait(this.bind(function(data) {
         if (this._subjectId == this._uid) {
@@ -13207,10 +13208,10 @@ return new FB.XFBML.SendButtonFormWidget(opts);
   /**
    * Given this name, figure out the proper (English) pronoun for it.
    */
-   _renderPronoun: function(userInfo) {
+  _renderPronoun: function(userInfo) {
     var
-    word = '',
-    objective = this._objective;
+      word = '',
+      objective = this._objective;
     if (this._subjectId) {
       objective = true;
       if (this._subjectId === this._uid) {
@@ -13218,7 +13219,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
       }
     }
     if (this._uid == FB.Connect.get_loggedInUser() &&
-      this._getBoolAttribute('use-you', true)) {
+        this._getBoolAttribute('use-you', true)) {
       if (this._possessive) {
         if (this._reflexive) {
           word = 'your own';
@@ -13236,67 +13237,67 @@ return new FB.XFBML.SendButtonFormWidget(opts);
     else {
       switch (userInfo.sex) {
         case 'male':
-        if (this._possessive) {
-          word = this._reflexive ? 'his own' : 'his';
-        } else {
-          if (this._reflexive) {
-            word = 'himself';
-          } else if (objective) {
-            word = 'him';
+          if (this._possessive) {
+            word = this._reflexive ? 'his own' : 'his';
           } else {
-            word = 'he';
+            if (this._reflexive) {
+              word = 'himself';
+            } else if (objective) {
+              word = 'him';
+            } else {
+              word = 'he';
+            }
           }
-        }
-        break;
+          break;
         case 'female':
-        if (this._possessive) {
-          word = this._reflexive ? 'her own' : 'her';
-        } else {
-          if (this._reflexive) {
-            word = 'herself';
-          } else if (objective) {
-            word = 'her';
+          if (this._possessive) {
+            word = this._reflexive ? 'her own' : 'her';
           } else {
-            word = 'she';
+            if (this._reflexive) {
+              word = 'herself';
+            } else if (objective) {
+              word = 'her';
+            } else {
+              word = 'she';
+            }
           }
-        }
-        break;
+          break;
         default:
-        if (this._getBoolAttribute('use-they', true)) {
-          if (this._possessive) {
-            if (this._reflexive) {
-              word = 'their own';
+          if (this._getBoolAttribute('use-they', true)) {
+            if (this._possessive) {
+              if (this._reflexive) {
+                word = 'their own';
+              } else {
+                word = 'their';
+              }
             } else {
-              word = 'their';
-            }
-          } else {
-            if (this._reflexive) {
-              word = 'themselves';
-            } else if (objective) {
-              word = 'them';
-            } else {
-              word = 'they';
-            }
-          }
-        }
-        else {
-          if (this._possessive) {
-            if (this._reflexive) {
-              word = 'his/her own';
-            } else {
-              word = 'his/her';
-            }
-          } else {
-            if (this._reflexive) {
-              word = 'himself/herself';
-            } else if (objective) {
-              word = 'him/her';
-            } else {
-              word = 'he/she';
+              if (this._reflexive) {
+                word = 'themselves';
+              } else if (objective) {
+                word = 'them';
+              } else {
+                word = 'they';
+              }
             }
           }
-        }
-        break;
+          else {
+            if (this._possessive) {
+              if (this._reflexive) {
+                word = 'his/her own';
+              } else {
+                word = 'his/her';
+              }
+            } else {
+              if (this._reflexive) {
+                word = 'himself/herself';
+              } else if (objective) {
+                word = 'him/her';
+              } else {
+                word = 'he/she';
+              }
+            }
+          }
+          break;
       }
     }
     if (this._getBoolAttribute('capitalize', false)) {
@@ -13309,12 +13310,12 @@ return new FB.XFBML.SendButtonFormWidget(opts);
    * Handle rendering of the element, using the
    * metadata that came with it.
    */
-   _renderOther: function(userInfo) {
+  _renderOther: function(userInfo) {
     var
-    name = '',
-    html = '';
+      name = '',
+      html = '';
     if (this._uid == FB.Helper.getLoggedInUser() &&
-      this._getBoolAttribute('use-you', true)) {
+        this._getBoolAttribute('use-you', true)) {
       if (this._reflexive) {
         if (this._possessive) {
           name = 'your own';
@@ -13407,18 +13408,18 @@ return new FB.XFBML.SendButtonFormWidget(opts);
  * @extends  FB.XFBML.Element
  * @private
  */
- FB.subclass('XFBML.ProfilePic', 'XFBML.Element', null, {
+FB.subclass('XFBML.ProfilePic', 'XFBML.Element', null, {
   /**
    * Processes this tag.
    */
-   process: function() {
+  process: function() {
     var
-    size = this.getAttribute('size', 'thumb'),
-    picFieldName = FB.XFBML.ProfilePic._sizeToPicFieldMap[size],
-    width = this._getPxAttribute('width'),
-    height = this._getPxAttribute('height'),
-    style = this.dom.style,
-    uid = this.getAttribute('uid');
+      size = this.getAttribute('size', 'thumb'),
+      picFieldName = FB.XFBML.ProfilePic._sizeToPicFieldMap[size],
+      width = this._getPxAttribute('width'),
+      height = this._getPxAttribute('height'),
+      style = this.dom.style,
+      uid = this.getAttribute('uid');
 
     // Check if we need to add facebook logo image
     if (this._getBoolAttribute('facebook-logo')) {
@@ -13436,27 +13437,27 @@ return new FB.XFBML.SendButtonFormWidget(opts);
 
     var renderFn = this.bind(function(result) {
       var
-      userInfo = result ? result[0] : null,
-      imgSrc = userInfo ? userInfo[picFieldName] : null;
+        userInfo = result ? result[0] : null,
+        imgSrc = userInfo ? userInfo[picFieldName] : null;
 
       if (!imgSrc) {
         // Create default
         imgSrc = FB.getDomain('cdn') +
-        FB.XFBML.ProfilePic._defPicMap[picFieldName];
+                 FB.XFBML.ProfilePic._defPicMap[picFieldName];
       }
       // Copy width, height style, and class name of fb:profile-pic down to the
       // image element we create
       var
-      styleValue = (
-        (width ? 'width:' + width + ';' : '') +
-        (height ? 'height:' + width + ';' : '')
+        styleValue = (
+          (width ? 'width:' + width + ';' : '') +
+          (height ? 'height:' + width + ';' : '')
         ),
-      html = FB.String.format(
-        '<img src="{0}" alt="{1}" title="{1}" style="{2}" class="{3}" />',
-        imgSrc,
-        userInfo ? FB.String.escapeHTML(userInfo.name) : '',
-        styleValue,
-        this.dom.className
+        html = FB.String.format(
+          '<img src="{0}" alt="{1}" title="{1}" style="{2}" class="{3}" />',
+          imgSrc,
+          userInfo ? FB.String.escapeHTML(userInfo.name) : '',
+          styleValue,
+          this.dom.className
         );
 
       if (this._getBoolAttribute('linked', true)) {
@@ -13464,7 +13465,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
           userInfo,
           html,
           this.getAttribute('href', null)
-          );
+        );
       }
       this.dom.innerHTML = html;
       FB.Dom.addCss(this.dom, 'fb_profile_pic_rendered');
@@ -13492,7 +13493,7 @@ return new FB.XFBML.SendButtonFormWidget(opts);
           FB.Helper.isUser(uid) ? 'user' : 'profile',
           FB.Helper.isUser(uid) ? 'uid' : 'id',
           uid
-          ).wait(renderFn);
+        ).wait(renderFn);
       } else {
         // Render default
         renderFn();
@@ -13507,7 +13508,7 @@ FB.provide('XFBML.ProfilePic', {
    *
    * This dynamic data is replaced with rsrc.php backed URLs by Haste.
    */
-   _defPicMap: {
+  _defPicMap: {
     pic                  : 'pics/s_silhouette.jpg',
     pic_big              : 'pics/d_silhouette.gif',
     pic_big_with_logo    : 'pics/d_silhouette_logo.gif',
@@ -13521,7 +13522,7 @@ FB.provide('XFBML.ProfilePic', {
   /**
    * Maps user specified attribute for size to a field type.
    */
-   _sizeToPicFieldMap: {
+  _sizeToPicFieldMap: {
     n      : 'pic_big',
     normal : 'pic_big',
     q      : 'pic_square',
@@ -13561,7 +13562,7 @@ FB.provide('XFBML.ProfilePic', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.Question', 'XFBML.IframeWidget', null, {
+FB.subclass('XFBML.Question', 'XFBML.IframeWidget', null, {
   _visibleAfter: 'load',
   setupAndValidate: function() {
     this._attr = {
@@ -13592,7 +13593,7 @@ FB.provide('XFBML.ProfilePic', {
    * Invoked when the user initially votes on a question via the Question
    * Plugin.
    */
-   _onInitialVote: function(message) {
+  _onInitialVote: function(message) {
     FB.Event.fire('question.firstVote', this._attr.permalink, message.vote);
   },
 
@@ -13600,7 +13601,7 @@ FB.provide('XFBML.ProfilePic', {
    * Invoked when the user changes their vote on a question via the
    * Question Plugin.
    */
-   _onChangedVote: function(message) {
+  _onChangedVote: function(message) {
     FB.Event.fire('question.vote', this._attr.permalink, message.vote);
   }
 });
@@ -13632,18 +13633,18 @@ FB.provide('XFBML.ProfilePic', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.Recommendations', 'XFBML.IframeWidget', null, {
+FB.subclass('XFBML.Recommendations', 'XFBML.IframeWidget', null, {
   _visibleAfter: 'load',
 
   /**
    * Refresh the iframe on auth.statusChange events.
    */
-   _refreshOnAuthChange: true,
+  _refreshOnAuthChange: true,
 
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     this._attr = {
       border_color : this.getAttribute('border-color'),
       colorscheme  : this.getAttribute('color-scheme'),
@@ -13666,7 +13667,7 @@ FB.provide('XFBML.ProfilePic', {
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return { width: this._attr.width, height: this._attr.height };
   },
 
@@ -13675,7 +13676,7 @@ FB.provide('XFBML.ProfilePic', {
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'recommendations', params: this._attr };
   }
 });
@@ -13713,7 +13714,7 @@ FB.provide('XFBML.ProfilePic', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass(
+FB.subclass(
   'XFBML.RecommendationsBar', 'XFBML.IframeWidget', null, {
 
     getUrlBits: function() {
@@ -13780,7 +13781,7 @@ FB.provide('XFBML.ProfilePic', {
         trigger      : validate_trigger(this.getAttribute('trigger', '')),
         read_time    : validate_read_time(this.getAttribute('read_time')),
         num_recommendations :
-        parseInt(this.getAttribute('num_recommendations'), 10) || 2
+          parseInt(this.getAttribute('num_recommendations'), 10) || 2
       };
 
       // Right now this is used only to control the use of postMessage in
@@ -13890,9 +13891,9 @@ FB.provide('XFBML.ProfilePic', {
       // The width here is in Chrome; Firefox is 2px smaller in both cases.
       return {
         height: 25, width: (this._attr.action == 'recommend' ? 140 : 96) };
-      },
+    },
 
-      calculateVisibility: function() {
+    calculateVisibility: function() {
       var fold = document.documentElement.clientHeight; // viewport height
 
       // In Firefox, switching tabs causes viewport scrolling and size changes
@@ -13908,7 +13909,7 @@ FB.provide('XFBML.ProfilePic', {
 
       switch (this._attr.trigger) {
         case "manual":
-        return false;
+          return false;
 
         case "onvisible":
           // <fb:recommendations-bar /> position, relative to the viewport
@@ -13916,43 +13917,43 @@ FB.provide('XFBML.ProfilePic', {
           return elem <= fold;
 
         default: // "80%", etc.
-        var scroll = window.pageYOffset || document.body.scrollTop;
+          var scroll = window.pageYOffset || document.body.scrollTop;
           var height = document.documentElement.scrollHeight; // doc height
           return (scroll + fold) / height >= this._attr.trigger;
-        }
-      },
+      }
+    },
 
-      _handleResizeMsg: function(message) {
-        if (!this.isValid()) {
-          return;
-        }
+    _handleResizeMsg: function(message) {
+      if (!this.isValid()) {
+        return;
+      }
 
-        if (message.width) {
-          this.getIframeNode().style.width = message.width + 'px';
-        }
-        if (message.height) {
-          this._setNextResize(message.height);
-          this._checkNextResize();
-        }
+      if (message.width) {
+        this.getIframeNode().style.width = message.width + 'px';
+      }
+      if (message.height) {
+        this._setNextResize(message.height);
+        this._checkNextResize();
+      }
 
-        this._makeVisible();
-      },
+      this._makeVisible();
+    },
 
-      _setNextResize: function(height) {
-        this.next_resize = height;
-      },
+    _setNextResize: function(height) {
+      this.next_resize = height;
+    },
 
-      _checkNextResize: function() {
-        if (!this.next_resize || this.resize_running) {
-          return;
-        }
+    _checkNextResize: function() {
+      if (!this.next_resize || this.resize_running) {
+        return;
+      }
 
-        var iframe = this.getIframeNode();
-        var height = this.next_resize;
-        this.next_resize = null;
+      var iframe = this.getIframeNode();
+      var height = this.next_resize;
+      this.next_resize = null;
 
 
-        if (this.animate) {
+      if (this.animate) {
         this.animate = false; // the signal causes one resize to animate
         this.resize_running = true;
         FB.Anim.ate(
@@ -13973,7 +13974,7 @@ FB.provide('XFBML.ProfilePic', {
  * trigger the news.read action.  This will work only if the `trigger="manual"`
  * attribute is specified on the <fb:recommendations-bar /> tag.
  */
- FB.XFBML.RecommendationsBar.markRead = function(href) {
+FB.XFBML.RecommendationsBar.markRead = function(href) {
   FB.Event.fire('xfbml.recommendationsbar.read', href || window.location.href);
 };
 
@@ -14010,7 +14011,7 @@ FB.provide('XFBML.ProfilePic', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.Registration', 'XFBML.IframeWidget', null, {
+FB.subclass('XFBML.Registration', 'XFBML.IframeWidget', null, {
   _visibleAfter: 'immediate',
 
   /** Constants for guessing the height **/
@@ -14031,7 +14032,7 @@ FB.provide('XFBML.ProfilePic', {
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     this._attr = {
       action       : this.getAttribute('action'),
       border_color : this.getAttribute('border-color'),
@@ -14057,16 +14058,16 @@ FB.provide('XFBML.ProfilePic', {
         var callback = this.bind(function(errors) {
           // Send the message back to facebook
           FB.Arbiter.inform('Registration.Validation',
-            {errors: errors, id: message.id},
-            'parent.frames["' +
-            this.getIframeNode().name +
-            '"]',
-            this._attr.channel_url.substring(0, 5) == "https");
+                            {errors: errors, id: message.id},
+                            'parent.frames["' +
+                            this.getIframeNode().name +
+                            '"]',
+                            this._attr.channel_url.substring(0, 5) == "https");
         });
 
         // Call their function
         var response = FB.Helper.executeFunctionByName(this._attr.onvalidate,
-         value, callback);
+                                                       value, callback);
 
         // If they returned anything, call the callback
         if (response) {
@@ -14086,7 +14087,7 @@ FB.provide('XFBML.ProfilePic', {
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return { width: this._attr.width, height: this._getHeight() };
   },
 
@@ -14120,7 +14121,7 @@ FB.provide('XFBML.ProfilePic', {
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'registration', params: this._attr };
   },
 
@@ -14136,14 +14137,14 @@ FB.provide('XFBML.ProfilePic', {
    * because the large amount of configuration data must be sent via POST
    * instead of GET because of GET limits.
    */
-   getDefaultWebDomain: function() {
+  getDefaultWebDomain: function() {
     return 'https_www';
   },
 
   /**
    * Invoked when the user logs in
    */
-   _onAuthLogin: function() {
+  _onAuthLogin: function() {
     if (!FB.getAuthResponse()) {
       FB.getLoginStatus();
     }
@@ -14153,7 +14154,7 @@ FB.provide('XFBML.ProfilePic', {
   /**
    * Invoked when the user logs out
    */
-   _onAuthLogout: function() {
+  _onAuthLogout: function() {
     if (!FB.getAuthResponse()) {
       FB.getLoginStatus();
     }
@@ -14189,16 +14190,16 @@ FB.provide('XFBML.ProfilePic', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.ServerFbml', 'XFBML.IframeWidget', null, {
+FB.subclass('XFBML.ServerFbml', 'XFBML.IframeWidget', null, {
   /**
    * Make the iframe visible only when we get the initial resize message.
    */
-   _visibleAfter: 'resize',
+  _visibleAfter: 'resize',
 
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     // query parameters to the comments iframe
     this._attr = {
       channel_url : this.getChannelUrl(),
@@ -14228,7 +14229,7 @@ FB.provide('XFBML.ProfilePic', {
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return { width: this._attr.width, height: this._attr.height };
   },
 
@@ -14237,7 +14238,7 @@ FB.provide('XFBML.ProfilePic', {
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'serverfbml', params: this._attr };
   }
 });
@@ -14279,11 +14280,11 @@ FB.provide('XFBML.ProfilePic', {
  * @extends  FB.XFBML.Element
  * @private
  */
- FB.subclass('XFBML.ShareButton', 'XFBML.Element', null, {
+FB.subclass('XFBML.ShareButton', 'XFBML.Element', null, {
   /**
    * Processes this tag.
    */
-   process: function() {
+  process: function() {
     this._href = this.getAttribute('href', window.location.href);
 
     //TODO: When we turn sharepro on, replace icon_link with button_count
@@ -14302,59 +14303,59 @@ FB.provide('XFBML.ProfilePic', {
    * recursively call itself to do the final render, which is when we want to
    * fire the render event.
    */
-   _renderButton: function(skipRenderEvent) {
+  _renderButton: function(skipRenderEvent) {
     if (!this.isValid()) {
       this.fire('render');
       return;
     }
 
     var
-    contentStr = '',
-    post = '',
-    pre = '',
-    classStr = '',
-    share = FB.Intl.tx._("Share"),
-    wrapperClass = '';
+      contentStr = '',
+      post = '',
+      pre = '',
+      classStr = '',
+      share = FB.Intl.tx._("Share"),
+      wrapperClass = '';
 
     switch (this._type) {
-      case 'icon':
-      case 'icon_link':
+    case 'icon':
+    case 'icon_link':
       classStr = 'fb_button_simple';
       contentStr = (
         '<span class="fb_button_text">' +
-        (this._type == 'icon_link' ? share : '&nbsp;') +
+          (this._type == 'icon_link' ? share : '&nbsp;') +
         '</span>'
-        );
+      );
       skipRenderEvent = false;
       break;
-      case 'link':
+    case 'link':
       contentStr = FB.Intl.tx._("Share on Facebook");
       skipRenderEvent = false;
       break;
-      case 'button':
+    case 'button':
       contentStr = '<span class="fb_button_text">' + share +  '</span>';
       classStr = 'fb_button fb_button_small';
       skipRenderEvent = false;
       break;
-      case 'button_count':
+    case 'button_count':
       contentStr = '<span class="fb_button_text">' + share +  '</span>';
       post = (
         '<span class="fb_share_count_nub_right">&nbsp;</span>' +
         '<span class="fb_share_count fb_share_count_right">'+
-        this._getCounterMarkup() +
+          this._getCounterMarkup() +
         '</span>'
-        );
+      );
       classStr = 'fb_button fb_button_small';
       break;
-      default:
+    default:
       // box count
       contentStr = '<span class="fb_button_text">' + share +  '</span>';
       pre = (
         '<span class="fb_share_count_nub_top">&nbsp;</span>' +
         '<span class="fb_share_count fb_share_count_top">' +
-        this._getCounterMarkup() +
+          this._getCounterMarkup() +
         '</span>'
-        );
+      );
       classStr = 'fb_button fb_button_small';
       wrapperClass = 'fb_share_count_wrapper';
     }
@@ -14370,7 +14371,7 @@ FB.provide('XFBML.ProfilePic', {
       contentStr,
       pre,
       post
-      );
+    );
 
     var a = document.getElementById(a_id);
     a.href = this._href;
@@ -14391,7 +14392,7 @@ FB.provide('XFBML.ProfilePic', {
         'link_stat',
         'url',
         this._href
-        );
+      );
     }
 
     var prettyCount = '0';
@@ -14402,7 +14403,7 @@ FB.provide('XFBML.ProfilePic', {
           // now we want it to be visible
           FB.Dom.removeCss(this.dom, 'fb_share_count_hidden');
           prettyCount = c >= 10000000 ? Math.round(c/1000000) + 'M' :
-          (c >= 10000 ? Math.round(c/1000) + 'K' : c);
+                        (c >= 10000 ? Math.round(c/1000) + 'K' : c);
         }
       }
     } else {
@@ -14440,11 +14441,11 @@ FB.provide('XFBML.ProfilePic', {
  * @extends FB.XFBML.IframeWidget
  * @private
  */
- FB.subclass('XFBML.SocialContext', 'XFBML.IframeWidget', null, {
+FB.subclass('XFBML.SocialContext', 'XFBML.IframeWidget', null, {
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     var size = this.getAttribute('size', 'small');
     this._attr = {
       channel: this.getChannelUrl(),
@@ -14464,7 +14465,7 @@ FB.provide('XFBML.ProfilePic', {
    *
    * @return {Object} the size
    */
-   getSize: function() {
+  getSize: function() {
     return { width: this._attr.width, height: this._attr.height };
   },
 
@@ -14473,7 +14474,7 @@ FB.provide('XFBML.ProfilePic', {
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'social_context', params: this._attr };
   }
 });
@@ -14506,11 +14507,11 @@ FB.provide('XFBML.ProfilePic', {
  * @extends FB.XFBML.EdgeWidget
  * @private
  */
- FB.subclass('XFBML.Subscribe', 'XFBML.EdgeWidget', null, {
+FB.subclass('XFBML.Subscribe', 'XFBML.EdgeWidget', null, {
   /**
    * Do initial attribute processing.
    */
-   setupAndValidate: function() {
+  setupAndValidate: function() {
     this._attr = {
       channel                 : this.getChannelUrl(),
       api_key                 : FB._apiKey,
@@ -14530,7 +14531,7 @@ FB.provide('XFBML.ProfilePic', {
    *
    * @return {Object} the iframe URL bits
    */
-   getUrlBits: function() {
+  getUrlBits: function() {
     return { name: 'subscribe', params: this._attr };
   },
 
@@ -14544,20 +14545,20 @@ FB.provide('XFBML.ProfilePic', {
    * @return {String} the CSS-legitimate width in pixels, as
    *         with '460px'.
    */
-   _getWidgetWidth : function() {
+  _getWidgetWidth : function() {
     var layout = this._getLayout();
     var layoutToDefaultWidthMap = {
-      'standard': 450,
-      'box_count': 83,
-      'button_count': 115
+        'standard': 450,
+        'box_count': 83,
+        'button_count': 115
     };
     var defaultWidth = layoutToDefaultWidthMap[layout];
     var width = this._getPxAttribute('width', defaultWidth);
 
     var allowedWidths = {
-      'standard': {'min': 225, 'max': 900},
-      'box_count': {'min': 43, 'max': 900},
-      'button_count': {'min': 63, 'max': 900}
+        'standard': {'min': 225, 'max': 900},
+        'box_count': {'min': 43, 'max': 900},
+        'button_count': {'min': 63, 'max': 900}
     };
     if (width < allowedWidths[layout].min) {
       width = allowedWidths[layout].min;
@@ -14621,10 +14622,9 @@ FB.provide('XFBML.ProfilePic', {
  *   fb.xfbml.subscribe
  */
 
- void(0);
+void(0);
 
 
-}
 
 //FB.provide("", {"_domain":{"api":"https:\/\/api.facebook.com\/","api_read":"https:\/\/api-read.facebook.com\/","cdn":"https:\/\/s-static.facebook.com\/","cdn_foreign":"https:\/\/s-static.facebook.com\/","graph":"https:\/\/graph.facebook.com\/","https_cdn":"https:\/\/s-static.facebook.com\/","https_staticfb":"https:\/\/www.facebook.com\/","https_www":"https:\/\/www.facebook.com\/","staticfb":"http:\/\/www.facebook.com\/","www":"https:\/\/www.facebook.com\/","m":"https:\/\/m.facebook.com\/","https_m":"https:\/\/m.facebook.com\/"},"_locale":"en_US","_localeIsRtl":false}, true);
 //FB.provide("Flash", {"_minVersions":[[10,3,181,34],[11,0,0]],"_swfPath":"rsrc.php\/v1\/yQ\/r\/f3KaqM7xIBg.swf"}, true);
@@ -14637,3 +14637,4 @@ FB.provide('XFBML.ProfilePic', {
 //FB.provide("TemplateUI", {"_version":19}, true);
 //FB.provide("XFBML.ConnectBar", {"imgs":{"buttonUrl":"rsrc.php\/v1\/yY\/r\/h_Y6u1wrZPW.png","missingProfileUrl":"rsrc.php\/v1\/yo\/r\/UlIqmHJn-SK.gif"}}, true);
 //FB.provide("XFBML.ProfilePic", {"_defPicMap":{"pic":"rsrc.php\/v1\/yh\/r\/C5yt7Cqf3zU.jpg","pic_big":"rsrc.php\/v1\/yL\/r\/HsTZSDw4avx.gif","pic_big_with_logo":"rsrc.php\/v1\/y5\/r\/SRDCaeCL7hM.gif","pic_small":"rsrc.php\/v1\/yi\/r\/odA9sNLrE86.jpg","pic_small_with_logo":"rsrc.php\/v1\/yD\/r\/k1xiRXKnlGd.gif","pic_square":"rsrc.php\/v1\/yo\/r\/UlIqmHJn-SK.gif","pic_square_with_logo":"rsrc.php\/v1\/yX\/r\/9dYJBPDHXwZ.gif","pic_with_logo":"rsrc.php\/v1\/yu\/r\/fPPR9f2FJ3t.gif"}}, true);
+
