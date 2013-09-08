@@ -58,10 +58,10 @@
 
 
         <!-- release facebook 3.5.2 framework -->
-        <source-file src="src/ios/FacebookSDK.framework" framework="true" />
+        <resource-file src="src/ios/FacebookSDK.framework" framework="true" />
 
         <!-- facebook header files -->
-        <source-file src="src/ios/DeprecatedHeaders" framework="true" />
+        <resource-file src="src/ios/DeprecatedHeaders" framework="true" />
 
         <!-- facebook resource bundles -->
         <resource-file src="src/ios/resources/FBUserSettingsViewResources.bundle" />
