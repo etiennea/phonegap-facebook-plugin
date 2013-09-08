@@ -46,8 +46,25 @@
 
     <!-- ios -->
     <platform name="ios">
-       
-       
+
+        <config-file target="config.xml" parent="/widget/plugins">
+            <feature name="FacebookConnect">
+                <param name="ios-package" value="FacebookConnectPlugin" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/FacebookConnectPlugin.h" />
+        <source-file src="src/ios/FacebookConnectPlugin.m" />
+
+
+        <!-- release facebook 3.5.2 framework -->
+        <source-file src="src/ios/FacebookSDK.framework" framework="true" />
+
+        <!-- facebook header files -->
+        <source-file src="src/ios/DeprecatedHeaders" framework="true" />
+
+        <!-- facebook resource bundles -->
+        <resource-file src="src/ios/resources/FBUserSettingsViewResources.bundle" />
 
         <!-- system frameworks -->
         <framework src="libsqlite3.dylib" />
