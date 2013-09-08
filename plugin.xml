@@ -14,9 +14,6 @@
     <js-module src="www/facebook-js-sdk.js" name="facebook-js-sdk">
         <clobbers target="FB" />
     </js-module>
-    
-    <preference name="APP_ID" value="126462174095513" />
-    <preference name="APP_NAME" value="Poutsch" />
 
     <!-- android -->
     <platform name="android">
