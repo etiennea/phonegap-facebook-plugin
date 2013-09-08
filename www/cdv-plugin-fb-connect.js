@@ -67,4 +67,4 @@ FBConnect.prototype.init = function(apiKey, fail) {
     }, (fail?fail:null), 'FacebookConnectPlugin', 'showDialog', [params] );
   };
 
-  module.exports = FBConnect;
+  module.exports = new FBConnect();
