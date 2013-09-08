@@ -11,9 +11,6 @@
     <js-module src="www/cdv-plugin-fb-connect.js" name="cdv-plugin-fb-connect">
         <clobbers target="FBConnect" />
     </js-module>
-    <js-module src="www/facebook-js-sdk.js" name="facebook-js-sdk">
-        <clobbers target="FB" />
-    </js-module>
 
     <!-- android -->
     <platform name="android">
