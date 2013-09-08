@@ -7,13 +7,7 @@
     <name>Facebook Connect</name>
     <description>This is my verison the official plugin for Facebook in Apache Cordova/PhoneGap!</description>
     <license>Apache 2.0</license>
-    
-    <js-module src="www/cdv-plugin-fb-connect.js" name="cdv-plugin-fb-connect">
-        <clobbers target="FBConnect" />
-    </js-module>
-    <js-module src="www/facebook-js-sdk.js" name="facebook-js-sdk">
-        <clobbers target="FB" />
-    </js-module>
+
 
     <!-- android -->
     <platform name="android">
