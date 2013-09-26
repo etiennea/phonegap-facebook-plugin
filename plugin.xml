@@ -34,20 +34,12 @@
         <!-- cordova plugin src files -->
         <source-file src="src/android/ConnectPlugin.java" target-dir="src/org/apache/cordova/facebook" />
 
-        <!-- facebook src files -->
-        <source-file src="src/android/facebook/AsyncFacebookRunner.java" target-dir="src/com/facebook/android" />
-        <source-file src="src/android/facebook/DialogError.java" target-dir="src/com/facebook/android" />
-        <source-file src="src/android/facebook/Facebook.java" target-dir="src/com/facebook/android" />
-        <source-file src="src/android/facebook/FacebookError.java" target-dir="src/com/facebook/android" />
-        <source-file src="src/android/facebook/FbDialog.java" target-dir="src/com/facebook/android" />
-        <source-file src="src/android/facebook/Util.java" target-dir="src/com/facebook/android" />
-
     </platform>
 
     <!-- ios -->
     <platform name="ios">
         
-     <config-file target="config.xml" parent="/widget/plugins">
+       <config-file target="config.xml" parent="/widget/plugins">
         <feature name="FacebookConnectPlugin">
             <param name="ios-package" value="FacebookConnectPlugin" />
         </feature>
